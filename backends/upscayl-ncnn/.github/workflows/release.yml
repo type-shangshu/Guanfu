@@ -1,0 +1,302 @@
+name: release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+env:
+  APPLICATION_NAME: upscayl-bin
+  NCNN_REF: b16501a65edf03828dae55b4d20ccc6a6bf4a3b4
+
+jobs:
+  setup:
+    runs-on: ubuntu-22.04
+    outputs:
+      APPNAME: ${{ steps.app.outputs.APPNAME }}
+      VERSION: ${{ steps.ver.outputs.VERSION }}
+    steps:
+      - id: app
+        run: echo "APPNAME=${APPLICATION_NAME}" >> "$GITHUB_OUTPUT"
+      - id: ver
+        run: echo "VERSION=$(date +'%Y%m%d-%H%M%S')" >> "$GITHUB_OUTPUT"
+
+  # ---------------- Linux x86_64 ----------------
+  linux-x64:
+    needs: setup
+    runs-on: ubuntu-22.04
+    env:
+      PACKAGENAME: ${{ needs.setup.outputs.APPNAME }}-${{ needs.setup.outputs.VERSION }}-linux-x64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout current ncnn
+        uses: actions/checkout@v4
+        with:
+          repository: Tencent/ncnn
+          ref: ${{ env.NCNN_REF }}
+          path: ncnn-current
+          submodules: recursive
+
+      - name: Build
+        run: |
+          sudo apt update
+          sudo apt install -y gcc-9 g++-9 libvulkan-dev glslang-tools
+          export CC=gcc-9 CXX=g++-9
+          mkdir build && cd build
+          cmake ../src \
+            -DNCNN_SOURCE_DIR=../ncnn-current \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DUSE_SYSTEM_NCNN=OFF \
+            -DWITH_LAYER_gemm=ON \
+            -DWITH_LAYER_matmul=ON \
+            -DWITH_LAYER_layernorm=ON \
+            -DWITH_LAYER_softmax=ON \
+            -DWITH_LAYER_gelu=ON
+          cmake --build . --target upscayl-bin -j2
+
+      - name: Package
+        run: |
+          mkdir ${{ env.PACKAGENAME }}
+          cp README.md LICENSE build/${{ needs.setup.outputs.APPNAME }} ${{ env.PACKAGENAME }}
+          strip ${{ env.PACKAGENAME }}/${{ needs.setup.outputs.APPNAME }}
+          zip -9r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGENAME }}
+          path: ${{ env.PACKAGENAME }}.zip
+
+  # ---------------- Linux arm64 ----------------
+  linux-arm64:
+    needs: setup
+    runs-on: ubuntu-24.04-arm
+    env:
+      PACKAGENAME: ${{ needs.setup.outputs.APPNAME }}-${{ needs.setup.outputs.VERSION }}-linux-arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout current ncnn
+        uses: actions/checkout@v4
+        with:
+          repository: Tencent/ncnn
+          ref: ${{ env.NCNN_REF }}
+          path: ncnn-current
+          submodules: recursive
+
+      - name: Build
+        run: |
+          sudo apt update
+          sudo apt install -y gcc g++ libvulkan-dev glslang-tools
+          mkdir build && cd build
+          cmake ../src \
+            -DNCNN_SOURCE_DIR=../ncnn-current \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DUSE_SYSTEM_NCNN=OFF \
+            -DWITH_LAYER_gemm=ON \
+            -DWITH_LAYER_matmul=ON \
+            -DWITH_LAYER_layernorm=ON \
+            -DWITH_LAYER_softmax=ON \
+            -DWITH_LAYER_gelu=ON
+          cmake --build . --target upscayl-bin -j2
+
+      - name: Package
+        run: |
+          mkdir ${{ env.PACKAGENAME }}
+          cp README.md LICENSE build/${{ needs.setup.outputs.APPNAME }} ${{ env.PACKAGENAME }}
+          strip ${{ env.PACKAGENAME }}/${{ needs.setup.outputs.APPNAME }}
+          zip -9r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGENAME }}
+          path: ${{ env.PACKAGENAME }}.zip
+
+  # ---------------- macOS arm64 ----------------
+  macos-arm:
+    needs: setup
+    runs-on: macos-15
+    env:
+      PACKAGENAME: ${{ needs.setup.outputs.APPNAME }}-${{ needs.setup.outputs.VERSION }}-macos-arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout current ncnn
+        uses: actions/checkout@v4
+        with:
+          repository: Tencent/ncnn
+          ref: ${{ env.NCNN_REF }}
+          path: ncnn-current
+          submodules: recursive
+
+      - name: Dependencies
+        run: brew install libomp glslang molten-vk vulkan-headers
+
+      - name: Build arm64
+        run: |
+          LIBOMP=$(brew --prefix libomp)
+          MOLTENVK=$(brew --prefix molten-vk)
+          MOLTENVK_LIB="$MOLTENVK/lib/libMoltenVK.dylib"
+          mkdir build && cd build
+          cmake ../src \
+            -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DUSE_STATIC_MOLTENVK=OFF \
+            -DNCNN_SOURCE_DIR=../ncnn-current \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DUSE_SYSTEM_NCNN=OFF \
+            -DWITH_LAYER_gemm=ON \
+            -DWITH_LAYER_matmul=ON \
+            -DWITH_LAYER_layernorm=ON \
+            -DWITH_LAYER_softmax=ON \
+            -DWITH_LAYER_gelu=ON \
+            -DOpenMP_C_FLAGS="-Xclang -fopenmp -I$LIBOMP/include" \
+            -DOpenMP_CXX_FLAGS="-Xclang -fopenmp -I$LIBOMP/include" \
+            -DOpenMP_C_LIB_NAMES=omp \
+            -DOpenMP_CXX_LIB_NAMES=omp \
+            -DOpenMP_libomp_LIBRARY="$LIBOMP/lib/libomp.a" \
+            -DVulkan_INCLUDE_DIR="$MOLTENVK/include" \
+            -DVulkan_LIBRARY="$MOLTENVK_LIB"
+          cmake --build . --target upscayl-bin -j4
+
+      - name: Package
+        run: |
+          MOLTENVK=$(brew --prefix molten-vk)
+          mkdir ${{ env.PACKAGENAME }}
+          cp README.md LICENSE build/${{ needs.setup.outputs.APPNAME }} "$MOLTENVK/lib/libMoltenVK.dylib" ${{ env.PACKAGENAME }}
+          install_name_tool -add_rpath "@executable_path" ${{ env.PACKAGENAME }}/${{ needs.setup.outputs.APPNAME }}
+          strip ${{ env.PACKAGENAME }}/${{ needs.setup.outputs.APPNAME }}
+          zip -9r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGENAME }}
+          path: ${{ env.PACKAGENAME }}.zip
+
+  # ---------------- Windows x64 ----------------
+  windows-x64:
+    needs: setup
+    runs-on: windows-latest
+    env:
+      PACKAGENAME: ${{ needs.setup.outputs.APPNAME }}-${{ needs.setup.outputs.VERSION }}-windows-x64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout current ncnn
+        uses: actions/checkout@v4
+        with:
+          repository: Tencent/ncnn
+          ref: ${{ env.NCNN_REF }}
+          path: ncnn-current
+          submodules: recursive
+
+      - name: Vulkan SDK
+        run: choco install vulkan-sdk -y --no-progress
+
+      - name: Build
+        run: |
+          $sdk = Get-ChildItem "C:\VulkanSDK" -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          if (-not $sdk) { throw "Vulkan SDK was not installed under C:\VulkanSDK" }
+          $env:VULKAN_SDK=$sdk.FullName
+          mkdir build; cd build
+          cmake -A x64 ../src `
+            -DNCNN_SOURCE_DIR="../ncnn-current" `
+            -DNCNN_VULKAN=ON `
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON `
+            -DUSE_SYSTEM_NCNN=OFF `
+            -DWITH_LAYER_gemm=ON `
+            -DWITH_LAYER_matmul=ON `
+            -DWITH_LAYER_layernorm=ON `
+            -DWITH_LAYER_softmax=ON `
+            -DWITH_LAYER_gelu=ON
+          cmake --build . --config Release --target upscayl-bin
+
+      - name: Package
+        run: |
+          mkdir "${{ env.PACKAGENAME }}"
+          Copy-Item README.md, LICENSE, "build/Release/${{ needs.setup.outputs.APPNAME }}.exe" -Destination "${{ env.PACKAGENAME }}"
+          7z a "${{ env.PACKAGENAME }}.zip" "${{ env.PACKAGENAME }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGENAME }}
+          path: ${{ env.PACKAGENAME }}.zip
+
+  # ---------------- Windows arm64 ----------------
+  windows-arm64:
+    needs: setup
+    runs-on: windows-11-arm
+    env:
+      PACKAGENAME: ${{ needs.setup.outputs.APPNAME }}-${{ needs.setup.outputs.VERSION }}-windows-arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout current ncnn
+        uses: actions/checkout@v4
+        with:
+          repository: Tencent/ncnn
+          ref: ${{ env.NCNN_REF }}
+          path: ncnn-current
+          submodules: recursive
+
+      - name: Vulkan SDK
+        run: choco install vulkan-sdk -y --no-progress
+
+      - name: Build
+        run: |
+          $sdk = Get-ChildItem "C:\VulkanSDK" -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          if (-not $sdk) { throw "Vulkan SDK was not installed under C:\VulkanSDK" }
+          $env:VULKAN_SDK=$sdk.FullName
+          mkdir build; cd build
+          cmake -A ARM64 ../src `
+            -DNCNN_SOURCE_DIR="../ncnn-current" `
+            -DNCNN_VULKAN=ON `
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON `
+            -DUSE_SYSTEM_NCNN=OFF `
+            -DWITH_LAYER_gemm=ON `
+            -DWITH_LAYER_matmul=ON `
+            -DWITH_LAYER_layernorm=ON `
+            -DWITH_LAYER_softmax=ON `
+            -DWITH_LAYER_gelu=ON
+          cmake --build . --config Release --target upscayl-bin
+
+      - name: Package
+        run: |
+          mkdir "${{ env.PACKAGENAME }}"
+          Copy-Item README.md, LICENSE, "build/Release/${{ needs.setup.outputs.APPNAME }}.exe" -Destination "${{ env.PACKAGENAME }}"
+          7z a "${{ env.PACKAGENAME }}.zip" "${{ env.PACKAGENAME }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PACKAGENAME }}
+          path: ${{ env.PACKAGENAME }}.zip
+
+  # ---------------- GitHub Release ----------------
+  release:
+    needs: [linux-x64, linux-arm64, macos-arm, windows-x64, windows-arm64, setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.setup.outputs.VERSION }}
+          name: upscayl-bin-${{ needs.setup.outputs.VERSION }}
+          files: artifacts/**/**/*.zip

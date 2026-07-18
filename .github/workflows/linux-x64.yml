@@ -1,0 +1,85 @@
+name: Build Linux x64
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - ljw
+
+permissions:
+  contents: read
+
+jobs:
+  linux-x64:
+    runs-on: ubuntu-22.04
+
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            build-essential \
+            cmake \
+            glslang-tools \
+            libfuse2 \
+            libvulkan-dev \
+            zip
+
+      - name: Build upscayl-ncnn backend
+        run: |
+          cd backends/upscayl-ncnn
+          cmake -S src -B build-guanfu \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DNCNN_ENABLE_LTO=OFF \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-guanfu --target upscayl-bin -j2
+
+      - name: Stage backend binary
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/linux-x64/bin
+          cp backends/upscayl-ncnn/build-guanfu/upscayl-bin \
+            apps/guanfu-desktop/resources/linux-x64/bin/upscayl-bin
+          chmod 755 apps/guanfu-desktop/resources/linux-x64/bin/upscayl-bin
+
+      - name: Stage RestoreVAR models
+        if: env.RESTOREVAR_PARAM_URL != '' && env.RESTOREVAR_BIN_URL != ''
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/models
+          curl -L "$RESTOREVAR_PARAM_URL" \
+            -o apps/guanfu-desktop/resources/models/restorevar.param
+          curl -L "$RESTOREVAR_BIN_URL" \
+            -o apps/guanfu-desktop/resources/models/restorevar.bin
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Build desktop package
+        working-directory: apps/guanfu-desktop
+        run: npm run dist:linux-x64
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload Linux x64 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-linux-x64
+          path: apps/guanfu-desktop/dist/**

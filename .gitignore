@@ -1,0 +1,17 @@
+
+
+# Dependencies and generated outputs
+node_modules/
+dist/
+export/
+renderer/.next/
+renderer/out/
+
+# Native build outputs
+build-*/
+cmake-build-*/
+backends/upscayl-ncnn/build-*/
+
+# Large model artifacts staged for local packaging
+apps/guanfu-desktop/resources/models/restorevar.bin
+apps/guanfu-desktop/resources/models/restorevar.param
