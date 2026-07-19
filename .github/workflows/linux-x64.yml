@@ -17,6 +17,7 @@ jobs:
     env:
       RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
       RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - name: Checkout
