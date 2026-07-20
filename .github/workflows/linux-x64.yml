@@ -79,8 +79,18 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
+      - name: List desktop artifacts
+        run: find apps/guanfu-desktop/dist -maxdepth 1 -type f -print
+
       - name: Upload Linux x64 artifacts
         uses: actions/upload-artifact@v4
         with:
           name: guanfu-linux-x64
-          path: apps/guanfu-desktop/dist/**
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.AppImage
+            apps/guanfu-desktop/dist/*.deb
+            apps/guanfu-desktop/dist/*.rpm
+            apps/guanfu-desktop/dist/*.zip
+            apps/guanfu-desktop/dist/*.tar.*
