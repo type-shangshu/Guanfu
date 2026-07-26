@@ -335,6 +335,7 @@ jobs:
       RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
       RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
       CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      VULKAN_SDK_DIR: ${{ github.workspace }}/vulkan-mac-sdk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -349,51 +350,58 @@ jobs:
           cache: npm
           cache-dependency-path: apps/guanfu-desktop/package-lock.json
 
-      # Match upscayl-ncnn release.yml: brew provides glslangValidator + MoltenVK
-      - name: Install backend dependencies
+      - name: Install OpenMP
         run: |
-          brew install --quiet libomp cmake glslang molten-vk vulkan-headers
+          brew install --quiet libomp cmake
           echo "LIBOMP_PREFIX=$(brew --prefix libomp)" >> "$GITHUB_ENV"
-          echo "MOLTENVK_PREFIX=$(brew --prefix molten-vk)" >> "$GITHUB_ENV"
-          echo "$(brew --prefix glslang)/bin" >> "$GITHUB_PATH"
-          # Homebrew may ship glslangValidator and/or glslang
-          GLSANG_BIN="$(command -v glslangValidator || true)"
-          if [ -z "$GLSLANG_BIN" ]; then
-            GLSANG_BIN="$(command -v glslang || true)"
-          fi
-          if [ -z "$GLSLANG_BIN" ]; then
-            GLSANG_BIN="$(find "$(brew --prefix glslang)" -type f \( -name glslangValidator -o -name glslang \) | head -1)"
-          fi
-          echo "GLSLANG_BIN=$GLSLANG_BIN" >> "$GITHUB_ENV"
-          test -x "$GLSLANG_BIN"
-          "$GLSLANG_BIN" -v 2>&1 | head -5 || true
+
+      - name: Cache Vulkan / MoltenVK SDK
+        id: cache-vulkansdk
+        uses: actions/cache@v4
+        with:
+          path: vulkan-mac-sdk
+          key: vulkansdk-macos-${{ env.VK_VERSION }}-macos15
+
+      - name: Install Vulkan SDK
+        if: steps.cache-vulkansdk.outputs.cache-hit != 'true'
+        run: |
+          curl -L -o "vulkansdk-macos-${VK_VERSION}.dmg" \
+            "https://sdk.lunarg.com/sdk/download/${VK_VERSION}/mac/vulkansdk-macos-${VK_VERSION}.dmg?Human=true"
+          hdiutil attach "vulkansdk-macos-${VK_VERSION}.dmg" -nobrowse -quiet
+          sudo "/Volumes/vulkansdk-macos-${VK_VERSION}/InstallVulkan.app/Contents/MacOS/InstallVulkan" \
+            --root "${VULKAN_SDK_DIR}" \
+            --accept-licenses --default-answer --confirm-command install \
+            com.lunarg.vulkan.core com.lunarg.vulkan.usr com.lunarg.vulkan.sdl2 \
+            com.lunarg.vulkan.glm com.lunarg.vulkan.volk com.lunarg.vulkan.vma
+          hdiutil detach "/Volumes/vulkansdk-macos-${VK_VERSION}" -quiet || true
 
       - name: Build backend (upscayl-bin)
         working-directory: backends/upscayl-ncnn
         run: |
-          LIBOMP="${LIBOMP_PREFIX}"
-          MOLTENVK="${MOLTENVK_PREFIX}"
-          MOLTENVK_LIB="$MOLTENVK/lib/libMoltenVK.dylib"
-          if [ ! -f "$MOLTENVK_LIB" ]; then
-            MOLTENVK_LIB="$(find "$MOLTENVK" -name 'libMoltenVK.dylib' | head -1)"
+          MOLTEN="$(find "${VULKAN_SDK_DIR}" -path '*MoltenVK.xcframework/macos-arm64_x86_64/libMoltenVK.a' | head -1)"
+          VULKAN_INC="$(find "${VULKAN_SDK_DIR}" -type d -path '*/macOS/include' | head -1)"
+          if [ -z "$MOLTEN" ] || [ -z "$VULKAN_INC" ]; then
+            echo "MoltenVK or Vulkan headers not found under ${VULKAN_SDK_DIR}"
+            find "${VULKAN_SDK_DIR}" -maxdepth 5 -type f -name 'libMoltenVK*' | head
+            exit 1
           fi
-          GLSLANG="${GLSLANG_BIN}"
+          # CMake find_program looks in $VULKAN_SDK/bin for glslangValidator
+          export VULKAN_SDK="$(dirname "$VULKAN_INC")"
+          export PATH="${VULKAN_SDK}/bin:$PATH"
           cmake -S src -B build-guanfu \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DUSE_STATIC_MOLTENVK=OFF \
+            -DUSE_STATIC_MOLTENVK=ON \
             -DNCNN_VULKAN=ON \
             -DNCNN_VULKAN_ONLINE_SPIRV=ON \
             -DNCNN_ENABLE_LTO=OFF \
-            -DOpenMP_C_FLAGS="-Xclang -fopenmp -I${LIBOMP}/include" \
-            -DOpenMP_CXX_FLAGS="-Xclang -fopenmp -I${LIBOMP}/include" \
-            -DOpenMP_C_LIB_NAMES=omp \
-            -DOpenMP_CXX_LIB_NAMES=omp \
-            -DOpenMP_libomp_LIBRARY="${LIBOMP}/lib/libomp.a" \
-            -DVulkan_INCLUDE_DIR="${MOLTENVK}/include" \
-            -DVulkan_LIBRARY="${MOLTENVK_LIB}" \
-            -DGLSLANGVALIDATOR_EXECUTABLE="${GLSLANG}"
+            -DOpenMP_C_FLAGS="-Xclang -fopenmp -I${LIBOMP_PREFIX}/include" \
+            -DOpenMP_CXX_FLAGS="-Xclang -fopenmp -I${LIBOMP_PREFIX}/include" \
+            -DOpenMP_C_LIB_NAMES=libomp \
+            -DOpenMP_CXX_LIB_NAMES=libomp \
+            -DOpenMP_libomp_LIBRARY="${LIBOMP_PREFIX}/lib/libomp.a" \
+            -DVulkan_INCLUDE_DIR="${VULKAN_INC}" \
+            -DVulkan_LIBRARY="${MOLTEN}"
           cmake --build build-guanfu --target upscayl-bin -j3
 
       - name: Stage backend binary
@@ -402,13 +410,6 @@ jobs:
           cp backends/upscayl-ncnn/build-guanfu/upscayl-bin \
             apps/guanfu-desktop/resources/mac-arm64/bin/upscayl-bin
           chmod 755 apps/guanfu-desktop/resources/mac-arm64/bin/upscayl-bin
-          # dynamic MoltenVK next to binary (USE_STATIC_MOLTENVK=OFF)
-          MOLTENVK_LIB="$(find "$(brew --prefix molten-vk)" -name 'libMoltenVK.dylib' | head -1)"
-          if [ -n "$MOLTENVK_LIB" ]; then
-            cp "$MOLTENVK_LIB" apps/guanfu-desktop/resources/mac-arm64/bin/libMoltenVK.dylib
-            install_name_tool -add_rpath "@executable_path" \
-              apps/guanfu-desktop/resources/mac-arm64/bin/upscayl-bin || true
-          fi
 
       - name: Stage models
         run: bash scripts/ci-stage-models.sh
