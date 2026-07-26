@@ -40,14 +40,45 @@ RestoreVAR::RestoreVAR(int gpuid)
         net.set_vulkan_device(gpuid);
 }
 
+#if _WIN32
+int RestoreVAR::load(const std::wstring& parampath, const std::wstring& modelpath)
+#else
 int RestoreVAR::load(const std::string& parampath, const std::string& modelpath)
+#endif
 {
+#if _WIN32
+    {
+        FILE* fp = _wfopen(parampath.c_str(), L"rb");
+        if (!fp)
+        {
+            fwprintf(stderr, L"restorevar: failed to open %ls\n", parampath.c_str());
+            return -1;
+        }
+        int ret = net.load_param(fp);
+        fclose(fp);
+        if (ret != 0)
+            return ret;
+    }
+    {
+        FILE* fp = _wfopen(modelpath.c_str(), L"rb");
+        if (!fp)
+        {
+            fwprintf(stderr, L"restorevar: failed to open %ls\n", modelpath.c_str());
+            return -1;
+        }
+        int ret = net.load_model(fp);
+        fclose(fp);
+        if (ret != 0)
+            return ret;
+    }
+#else
     int ret = net.load_param(parampath.c_str());
     if (ret != 0)
         return ret;
     ret = net.load_model(modelpath.c_str());
     if (ret != 0)
         return ret;
+#endif
     build_rope();
     std::fprintf(stderr, "restorevar: model loaded\n");
     return 0;
