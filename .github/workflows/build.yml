@@ -15,10 +15,10 @@ permissions:
 
 env:
   NODE_VERSION: "20"
-  # Optional: pin ncnn if vendored submodule is incomplete
+  # Pin ncnn (must include glslang submodule via recursive clone)
   NCNN_REF: b16501a65edf03828dae55b4d20ccc6a6bf4a3b4
+  LIBWEBP_REF: v1.3.2
   VK_VERSION: "1.3.290.0"
-  # Default models pulled for packaging when not present in the tree
   MODELS_BASE_URL: https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models
   GH_TOKEN: ${{ github.token }}
 
@@ -38,8 +38,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Fetch backend deps (ncnn + libwebp)
+        run: bash scripts/ci-fetch-backend-deps.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -108,8 +109,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Fetch backend deps (ncnn + libwebp)
+        run: bash scripts/ci-fetch-backend-deps.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -184,8 +186,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Fetch backend deps (ncnn + libwebp)
+        shell: bash
+        run: bash scripts/ci-fetch-backend-deps.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -215,11 +219,8 @@ jobs:
           mkdir -p apps/guanfu-desktop/resources/win-x64/bin
           cp backends/upscayl-ncnn/build-guanfu/Release/upscayl-bin.exe \
             apps/guanfu-desktop/resources/win-x64/bin/upscayl-bin.exe
-          # OpenMP runtime often required next to the binary
-          if command -v find >/dev/null; then
-            vc="$(find "/c/Program Files/Microsoft Visual Studio" -name 'vcomp140.dll' 2>/dev/null | head -1 || true)"
-            if [ -n "$vc" ]; then cp "$vc" apps/guanfu-desktop/resources/win-x64/bin/; fi
-          fi
+          vc="$(find "/c/Program Files/Microsoft Visual Studio" -name 'vcomp140.dll' 2>/dev/null | head -1 || true)"
+          if [ -n "$vc" ]; then cp "$vc" apps/guanfu-desktop/resources/win-x64/bin/; fi
 
       - name: Stage models
         shell: bash
@@ -259,8 +260,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Fetch backend deps (ncnn + libwebp)
+        shell: bash
+        run: bash scripts/ci-fetch-backend-deps.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -328,8 +331,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Fetch backend deps (ncnn + libwebp)
+        run: bash scripts/ci-fetch-backend-deps.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
