@@ -1,5 +1,5 @@
 {
-  "appId": "org.upscayl.Upscayl",
+  "appId": "org.guanfu.Guanfu",
   "afterSign": "./notarize.js",
   "asar": true,
   "artifactName": "${name}-${version}-${os}.${ext}",

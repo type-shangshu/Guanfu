@@ -15,22 +15,21 @@ import {
   tileSizeAtom,
   showSidebarAtom,
   selectedModelIdAtom,
-  doubleUpscaylAtom,
+  doubleGuanfuAtom,
   gpuIdAtom,
   saveImageAsAtom,
   userStatsAtom,
   ttaModeAtom,
   copyMetadataAtom,
-  backendIdAtom,
 } from "../../atoms/user-settings-atom";
 import useLogger from "../hooks/use-logger";
 import {
-  BatchUpscaylPayload,
-  DoubleUpscaylPayload,
-  ImageUpscaylPayload,
+  BatchGuanfuPayload,
+  DoubleGuanfuPayload,
+  ImageGuanfuPayload,
 } from "@common/types/types";
 import { useToast } from "@/components/ui/use-toast";
-import UpscaylSteps from "./upscayl-tab/upscayl-steps";
+import GuanfuSteps from "./guanfu-tab/guanfu-steps";
 import SettingsTab from "./settings-tab";
 import Footer from "../footer";
 import Tabs from "../tabs";
@@ -38,9 +37,9 @@ import Header from "../header";
 import { ChevronLeftIcon } from "lucide-react";
 import { logAtom } from "@/atoms/log-atom";
 import { ELECTRON_COMMANDS } from "@common/electron-commands";
-import useUpscaylVersion from "../hooks/use-upscayl-version";
+import useGuanfuVersion from "../hooks/use-guanfu-version";
 import useTranslation from "../hooks/use-translation";
-import UpscaylLogo from "./upscayl-logo";
+import GuanfuLogo from "./guanfu-logo";
 import SidebarToggleButton from "./sidebar-button";
 
 const Sidebar = ({
@@ -66,14 +65,13 @@ const Sidebar = ({
   const t = useTranslation();
   const logit = useLogger();
   const { toast } = useToast();
-  const version = useUpscaylVersion();
+  const version = useGuanfuVersion();
 
   // LOCAL STATES
   // TODO: Add electron handler for os
   const [selectedModelId, setSelectedModelId] = useAtom(selectedModelIdAtom);
-  const [doubleUpscayl, setDoubleUpscayl] = useAtom(doubleUpscaylAtom);
+  const [doubleGuanfu, setDoubleGuanfu] = useAtom(doubleGuanfuAtom);
   const [gpuId, setGpuId] = useAtom(gpuIdAtom);
-  const [backendId, setBackendId] = useAtom(backendIdAtom);
   const [saveImageAs, setSaveImageAs] = useAtom(saveImageAsAtom);
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -97,21 +95,20 @@ const Sidebar = ({
   const ttaMode = useAtomValue(ttaModeAtom);
   const [copyMetadata] = useAtom(copyMetadataAtom);
 
-  const upscaylHandler = async () => {
+  const guanfuHandler = async () => {
     logit("🔄 Resetting Upscaled Image Path");
     setUpscaledImagePath("");
     setUpscaledBatchFolderPath("");
     if (imagePath !== "" || batchFolderPath !== "") {
       setProgress(t("APP.PROGRESS.WAIT_TITLE"));
-      // Double Upscayl
-      if (doubleUpscayl) {
-        window.electron.send<DoubleUpscaylPayload>(
-          ELECTRON_COMMANDS.DOUBLE_UPSCAYL,
+      // Double Guanfu
+      if (doubleGuanfu) {
+        window.electron.send<DoubleGuanfuPayload>(
+          ELECTRON_COMMANDS.DOUBLE_GUANFU,
           {
             imagePath,
             outputPath,
             model: selectedModelId,
-            backendId,
             gpuId: gpuId.length === 0 ? null : gpuId,
             saveImageAs,
             scale,
@@ -126,22 +123,21 @@ const Sidebar = ({
         );
         setUserStats((prev) => ({
           ...prev,
-          totalUpscayls: prev.totalUpscayls + 1,
+          totalGuanfus: prev.totalGuanfus + 1,
           lastUsedAt: new Date().getTime(),
-          doubleUpscayls: prev.doubleUpscayls + 1,
-          imageUpscayls: prev.imageUpscayls + 1,
+          doubleGuanfus: prev.doubleGuanfus + 1,
+          imageGuanfus: prev.imageGuanfus + 1,
         }));
-        logit("🏁 DOUBLE_UPSCAYL");
+        logit("🏁 DOUBLE_GUANFU");
       } else if (batchMode) {
-        // Batch Upscayl
-        setDoubleUpscayl(false);
-        window.electron.send<BatchUpscaylPayload>(
-          ELECTRON_COMMANDS.FOLDER_UPSCAYL,
+        // Batch Guanfu
+        setDoubleGuanfu(false);
+        window.electron.send<BatchGuanfuPayload>(
+          ELECTRON_COMMANDS.FOLDER_GUANFU,
           {
             batchFolderPath,
             outputPath,
             model: selectedModelId,
-            backendId,
             gpuId: gpuId.length === 0 ? null : gpuId,
             saveImageAs,
             scale,
@@ -156,18 +152,17 @@ const Sidebar = ({
         );
         setUserStats((prev) => ({
           ...prev,
-          totalUpscayls: prev.totalUpscayls + 1,
+          totalGuanfus: prev.totalGuanfus + 1,
           lastUsedAt: new Date().getTime(),
-          batchUpscayls: prev.doubleUpscayls + 1,
+          batchGuanfus: prev.doubleGuanfus + 1,
         }));
-        logit("🏁 FOLDER_UPSCAYL");
+        logit("🏁 FOLDER_GUANFU");
       } else {
-        // Single Image Upscayl
-        window.electron.send<ImageUpscaylPayload>(ELECTRON_COMMANDS.UPSCAYL, {
+        // Single Image Guanfu
+        window.electron.send<ImageGuanfuPayload>(ELECTRON_COMMANDS.GUANFU, {
           imagePath,
           outputPath,
           model: selectedModelId,
-          backendId,
           gpuId: gpuId.length === 0 ? null : gpuId,
           saveImageAs,
           scale,
@@ -182,11 +177,11 @@ const Sidebar = ({
         });
         setUserStats((prev) => ({
           ...prev,
-          totalUpscayls: prev.totalUpscayls + 1,
+          totalGuanfus: prev.totalGuanfus + 1,
           lastUsedAt: new Date().getTime(),
-          imageUpscayls: prev.imageUpscayls + 1,
+          imageGuanfus: prev.imageGuanfus + 1,
         }));
-        logit("🏁 UPSCAYL");
+        logit("🏁 GUANFU");
       }
     } else {
       toast({
@@ -200,7 +195,7 @@ const Sidebar = ({
   return (
     <>
       {/* TOP LOGO WHEN SIDEBAR IS HIDDEN */}
-      {!showSidebar && <UpscaylLogo />}
+      {!showSidebar && <GuanfuLogo />}
 
       <SidebarToggleButton
         showSidebar={showSidebar}
@@ -223,19 +218,18 @@ const Sidebar = ({
 
         <Header version={version} />
 
-
         <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
 
         {selectedTab === 0 && (
-          <UpscaylSteps
+          <GuanfuSteps
             selectImageHandler={selectImageHandler}
             selectFolderHandler={selectFolderHandler}
-            upscaylHandler={upscaylHandler}
+            guanfuHandler={guanfuHandler}
             batchMode={batchMode}
             setBatchMode={setBatchMode}
             imagePath={imagePath}
-            doubleUpscayl={doubleUpscayl}
-            setDoubleUpscayl={setDoubleUpscayl}
+            doubleGuanfu={doubleGuanfu}
+            setDoubleGuanfu={setDoubleGuanfu}
             dimensions={dimensions}
             setGpuId={setGpuId}
             setSaveImageAs={setSaveImageAs}
@@ -249,8 +243,6 @@ const Sidebar = ({
             setCompression={setCompression}
             gpuId={gpuId}
             setGpuId={setGpuId}
-            backendId={backendId}
-            setBackendId={setBackendId}
             saveImageAs={saveImageAs}
             setSaveImageAs={setSaveImageAs}
             logData={logData}

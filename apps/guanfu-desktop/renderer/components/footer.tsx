@@ -11,13 +11,12 @@ function Footer() {
         {t("FOOTER.COPYRIGHT")} {new Date().getFullYear()} -{" "}
         <a
           className="font-bold"
-          href="https://github.com/njulj/Guanfu"
+          href="https://github.com/type-shangshu/Guanfu"
           target="_blank"
         >
           Guanfu
         </a>
       </p>
-      <p>Derived from Upscayl under AGPL-3.0.</p>
     </div>
   );
 }

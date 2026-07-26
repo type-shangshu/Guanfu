@@ -6,9 +6,9 @@ body:
   attributes:
     label: Checklist
     options:
-      - label: I have checked that this issue isn't addressed in [the FAQ](https://github.com/upscayl/upscayl#-faq).
+      - label: I have checked that this issue isn't addressed in [the FAQ](https://github.com/guanfu/guanfu#-faq).
         required: true
-      - label: I have searched for this in the [issues tab](https://github.com/upscayl/upscayl/issues?q=).
+      - label: I have searched for this in the [issues tab](https://github.com/guanfu/guanfu/issues?q=).
         required: true
 - type: textarea
   attributes: 

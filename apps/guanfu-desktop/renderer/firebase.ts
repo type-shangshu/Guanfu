@@ -10,9 +10,9 @@ import {
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBwD3AM0XKRsHnA0YU-CKTSSD4xcfDu9wU",
-  authDomain: "upscayl.firebaseapp.com",
-  projectId: "upscayl",
-  storageBucket: "upscayl.appspot.com",
+  authDomain: "guanfu.firebaseapp.com",
+  projectId: "guanfu",
+  storageBucket: "guanfu.appspot.com",
   messagingSenderId: "1096660154086",
   appId: "1:1096660154086:web:ec1872e9ceb11dad686d27",
 };

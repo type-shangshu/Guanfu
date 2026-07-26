@@ -1,14 +1,14 @@
 {
   "name": "guanfu",
   "private": true,
-  "version": "2.15.0",
+  "version": "0.1.0",
   "productName": "Guanfu",
   "author": {
     "name": "Nayam Amarshe",
     "email": "nayam.emikx@aleeas.com",
     "url": "https://github.com/NayamAmarshe"
   },
-  "homepage": "https://github.com/njulj/Guanfu",
+  "homepage": "https://github.com/type-shangshu/Guanfu",
   "contributors": [
     {
       "name": "Nayam Amarshe",
@@ -202,7 +202,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "njulj",
+      "owner": "type-shangshu",
       "repo": "Guanfu"
     }
   },
@@ -241,7 +241,6 @@
     "electron-log": "^5.2.4",
     "electron-next": "^3.1.5",
     "electron-settings": "^4.0.4",
-    "electron-updater": "^6.3.9",
     "eslint-config-next": "^14.2.7",
     "exiftool-vendored": "^29.3.0",
     "firebase": "^11.1.0",

@@ -3,11 +3,11 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 APP="$ROOT/apps/guanfu-desktop"
-MODEL_SRC="${RESTOREVAR_MODEL_DIR:-/home/ljw/RestoreVAR/artifacts/restorevar_models}"
 
 "$ROOT/scripts/build-backend.sh"
-"$ROOT/scripts/stage-restorevar-models.sh" "$MODEL_SRC"
+"$ROOT/scripts/build-desktop.sh"
 
 cd "$APP"
-npm install
-npm run dist:linux-x64
+CSC_IDENTITY_AUTO_DISCOVERY=false npx electron-builder --linux AppImage --x64
+echo "Artifacts:"
+ls -la "$APP/dist"/*AppImage 2>/dev/null || true

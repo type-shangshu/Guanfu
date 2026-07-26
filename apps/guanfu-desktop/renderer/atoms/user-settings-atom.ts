@@ -1,5 +1,4 @@
 import { ImageFormat } from "@/lib/valid-formats";
-import { BackendId, DEFAULT_BACKEND_ID } from "@common/backends";
 import { ModelId } from "@common/models-list";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
@@ -13,12 +12,8 @@ export const selectedModelIdAtom = atomWithStorage<ModelId | string>(
   "selectedModelId",
   "upscayl-standard-4x",
 );
-export const doubleUpscaylAtom = atomWithStorage("doubleUpscayl", false);
+export const doubleGuanfuAtom = atomWithStorage("doubleGuanfu", false);
 export const gpuIdAtom = atomWithStorage("gpuId", "");
-export const backendIdAtom = atomWithStorage<BackendId>(
-  "backendId",
-  DEFAULT_BACKEND_ID,
-);
 export const saveImageAsAtom = atomWithStorage<ImageFormat>(
   "saveImageAs",
   "png",
@@ -84,20 +79,18 @@ export const tileSizeAtom = atomWithStorage<number | null>("tileSize", null);
 // CLIENT SIDE ONLY
 export const showSidebarAtom = atomWithStorage("showSidebar", true);
 
-export const autoUpdateAtom = atomWithStorage("autoUpdate", true);
-
 export const enableContributionAtom = atomWithStorage(
   "enableContribution",
   true,
 );
 
 export const userStatsAtom = atomWithStorage("userStats", {
-  totalUpscayls: 0,
-  doubleUpscayls: 0,
-  batchUpscayls: 0,
-  imageUpscayls: 0,
-  averageUpscaylTime: 0,
-  lastUpscaylDuration: 0,
+  totalGuanfus: 0,
+  doubleGuanfus: 0,
+  batchGuanfus: 0,
+  imageGuanfus: 0,
+  averageGuanfuTime: 0,
+  lastGuanfuDuration: 0,
   lastUsedAt: 0,
 });
 

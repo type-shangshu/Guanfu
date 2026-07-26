@@ -1,9 +1,9 @@
-Collection Name: Upscayl Cloud APIs
+Collection Name: Guanfu Cloud APIs
 
 Description: Free and Open Source AI Image Upscaler - Test all cloud APIs for image enhancement and upscaling
 
-GitHub: https://github.com/upscayl/upscayl
+GitHub: https://github.com/guanfu/guanfu
 
-Product: https://upscayl.org
+Product: https://guanfu.org
 
-Get API Keys: https://upscayl.org/account/api-keys
+Get API Keys: https://guanfu.org/account/api-keys

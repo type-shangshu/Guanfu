@@ -1,9 +1,10 @@
-import { dialog } from "electron";
+import { MessageBoxOptions, dialog } from "electron";
 import {
   savedCustomModelsPath,
   setSavedCustomModelsPath,
 } from "../utils/config-variables";
 import logit from "../utils/logit";
+import slash from "../utils/slash";
 import { ELECTRON_COMMANDS } from "../../common/electron-commands";
 import getModels from "../utils/get-models";
 import { getMainWindow } from "../main-window";
@@ -20,10 +21,10 @@ const customModelsSelect = async (event, message) => {
     bookmarks,
   } = await dialog.showOpenDialog({
     properties: ["openDirectory"],
-    title: "Select Custom Model Folder",
+    title: "Select Custom Models Folder",
     defaultPath: savedCustomModelsPath,
     securityScopedBookmarks: true,
-    message: "Select a folder containing matching .param and .bin model files",
+    message: "Select the folder that contains your custom models (.param and .bin files)",
   });
 
   if (FEATURE_FLAGS.APP_STORE_BUILD && bookmarks && bookmarks.length > 0) {
@@ -36,7 +37,6 @@ const customModelsSelect = async (event, message) => {
     return null;
   } else {
     setSavedCustomModelsPath(folderPaths[0]);
-
 
     const models = await getModels(savedCustomModelsPath);
     mainWindow.webContents.send(

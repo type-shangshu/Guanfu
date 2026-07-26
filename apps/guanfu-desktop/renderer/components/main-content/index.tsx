@@ -19,7 +19,7 @@ import { ImageFormat, VALID_IMAGE_FORMATS } from "@/lib/valid-formats";
 import ProgressBar from "./progress-bar";
 import InstructionsCard from "./instructions-card";
 import MoreOptionsDrawer from "./more-options-drawer";
-import useUpscaylVersion from "../hooks/use-upscayl-version";
+import useGuanfuVersion from "../hooks/use-guanfu-version";
 import MacTitlebarDragRegion from "./mac-titlebar-drag-region";
 import LensViewer from "./lens-view";
 import ImageViewer from "./image-viewer";
@@ -36,7 +36,7 @@ type MainContentProps = {
   selectImageHandler: () => void;
   upscaledImagePath: string;
   batchFolderPath: string;
-  doubleUpscaylCounter: number;
+  doubleGuanfuCounter: number;
   setDimensions: React.Dispatch<
     React.SetStateAction<{
       width: number;
@@ -55,13 +55,13 @@ const MainContent = ({
   selectImageHandler,
   upscaledImagePath,
   batchFolderPath,
-  doubleUpscaylCounter,
+  doubleGuanfuCounter,
   setDimensions,
 }: MainContentProps) => {
   const t = useTranslation();
   const logit = useLogger();
   const { toast } = useToast();
-  const version = useUpscaylVersion();
+  const version = useGuanfuVersion();
 
   const [outputPath, setOutputPath] = useAtom(savedOutputPathAtom);
   const progress = useAtomValue(progressAtom);
@@ -282,7 +282,7 @@ const MainContent = ({
           <ProgressBar
             batchMode={batchMode}
             progress={progress}
-            doubleUpscaylCounter={doubleUpscaylCounter}
+            doubleGuanfuCounter={doubleGuanfuCounter}
             resetImagePaths={resetImagePaths}
           />
         )}
@@ -325,7 +325,7 @@ const MainContent = ({
             className="bg-gradient-blue btn btn-primary rounded-btn p-3 font-medium text-white/90 transition-colors"
             onClick={openFolderHandler}
           >
-            {t("APP.PROGRESS.BATCH.OPEN_UPSCAYLED_FOLDER_TITLE")}
+            {t("APP.PROGRESS.BATCH.OPEN_GUANFUED_FOLDER_TITLE")}
           </button>
         </div>
       )}

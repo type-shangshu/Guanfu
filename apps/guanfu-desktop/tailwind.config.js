@@ -103,10 +103,10 @@ module.exports = {
     require("@tailwindcss/typography"),
   ],
   daisyui: {
-    darkTheme: "upscayl",
+    darkTheme: "guanfu",
     themes: [
       {
-        upscayl: {
+        guanfu: {
           primary: "#334155",
           secondary: "#4f46e5",
           accent: "#6d28d9",

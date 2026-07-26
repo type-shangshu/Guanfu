@@ -16,16 +16,18 @@ export function CustomModelsFolderSelect({
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <p className="text-sm font-medium">Custom Models</p>
-      <p className="text-xs leading-normal text-base-content/80">
-        Select any folder containing matching model files, for example
-        <span className="mx-1 font-mono">restorevar.param</span>
-        and
-        <span className="mx-1 font-mono">restorevar.bin</span>.
+      <p className="text-sm font-medium">{t("SETTINGS.CUSTOM_MODELS.TITLE")}</p>
+      <p className="text-xs text-base-content/80">
+        {t("SETTINGS.CUSTOM_MODELS.DESCRIPTION")}{" "}
+        <a
+          href="https://github.com/guanfu/custom-models/blob/main/README.md"
+          className="link uppercase underline"
+          target="_blank"
+        >
+          {t("SETTINGS.CUSTOM_MODELS.LINK_TITLE")}
+        </a>
       </p>
-      <p className="break-all text-sm text-base-content/60">
-        {customModelsPath || "No custom model folder selected"}
-      </p>
+      <p className="text-sm text-base-content/60">{customModelsPath}</p>
       <button
         className="btn btn-primary"
         onClick={async () => {

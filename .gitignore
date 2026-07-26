@@ -1,17 +1,137 @@
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
 
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.provisionprofile
+*.key
+flags.ts
 
-# Dependencies and generated outputs
+# --- Logs / caches ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+.turbo/
+.eslintcache
+*.tsbuildinfo
+
+# --- Node / JS package deps ---
 node_modules/
-dist/
-export/
-renderer/.next/
-renderer/out/
+.pnp
+.pnp.js
 
-# Native build outputs
-build-*/
-cmake-build-*/
-backends/upscayl-ncnn/build-*/
+# --- Electron / Next / TS build outputs ---
+**/dist/
+**/export/
+**/.next/
+**/out/
+**/coverage/
+**/build-dir/
+**/.flatpak/
+**/.flatpak-builder/
+**/repo/
 
-# Large model artifacts staged for local packaging
-apps/guanfu-desktop/resources/models/restorevar.bin
-apps/guanfu-desktop/resources/models/restorevar.param
+# electron-builder / packagers
+*.AppImage
+*.deb
+*.rpm
+*.snap
+*.dmg
+*.pkg
+*.exe
+*.msi
+*.blockmap
+*.yml.blockmap
+latest*.yml
+builder-effective-config.yaml
+builder-debug.yml
+
+# --- Native backend (cmake / compilers) ---
+**/build/
+**/build-*/
+**/cmake-build-*/
+**/CMakeCache.txt
+**/CMakeFiles/
+**/cmake_install.cmake
+**/compile_commands.json
+**/Makefile
+!**/src/**/Makefile
+**/*.o
+**/*.obj
+**/*.a
+**/*.lib
+**/*.so
+**/*.so.*
+**/*.dylib
+**/*.dll
+**/*.exe
+**/*.out
+**/*.app
+**/*.d
+**/*.gch
+**/*.pch
+**/*.slo
+**/*.lo
+**/*.lai
+**/*.la
+**/*.mod
+**/*.smod
+
+# backend binary product
+**/upscayl-bin
+**/upscayl-bin.*
+**/cpu-ncnn
+**/vulkan-sdk/
+**/VulkanSDK/
+**/*.tar.xz
+
+# staged platform binaries (packaged into app, not source)
+apps/guanfu-desktop/resources/*/bin/
+apps/guanfu-desktop/resources/linux/
+apps/guanfu-desktop/resources/mac/
+apps/guanfu-desktop/resources/win/
+
+# --- Model weights / large binary assets (not source) ---
+**/*.bin
+**/*.onnx
+**/*.pt
+**/*.pth
+**/*.safetensors
+# keep tiny placeholders out; param files are often text but still model artifacts:
+apps/guanfu-desktop/resources/models/**
+apps/guanfu-desktop/models/**
+models/**/*.bin
+models/**/*.param
+backends/**/images/outputs/
+backends/**/images_out/
+backends/**/output/
+
+# sample / media not needed in source commits
+**/*.mp4
+**/to_upscale.jpeg
+apps/guanfu-desktop/ups/
+apps/guanfu-desktop/screen1.png
+apps/guanfu-desktop/download.jpg
+apps/guanfu-desktop/1080p_*.jpg
+apps/guanfu-desktop/intel*.png
+
+# --- Misc local junk ---
+test.txt
+*.bak
+*.tmp
+*.temp
+.nyc_output/

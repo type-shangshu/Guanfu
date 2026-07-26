@@ -1,7 +1,7 @@
 import { app, dialog } from "electron";
 import {
-  savedBatchUpscaylFolderPath,
-  setSavedBatchUpscaylFolderPath,
+  savedBatchGuanfuFolderPath,
+  setSavedBatchGuanfuFolderPath,
 } from "../utils/config-variables";
 import logit from "../utils/logit";
 import settings from "electron-settings";
@@ -27,7 +27,7 @@ const selectFolder = async (event, message) => {
     bookmarks,
   } = await dialog.showOpenDialog({
     properties: ["openDirectory"],
-    defaultPath: savedBatchUpscaylFolderPath,
+    defaultPath: savedBatchGuanfuFolderPath,
     securityScopedBookmarks: true,
   });
 
@@ -40,8 +40,8 @@ const selectFolder = async (event, message) => {
     logit("🚫 Select Folder Operation Cancelled");
     return null;
   } else {
-    setSavedBatchUpscaylFolderPath(folderPaths[0]);
-    logit("📁 Selected Folder Path: ", savedBatchUpscaylFolderPath);
+    setSavedBatchGuanfuFolderPath(folderPaths[0]);
+    logit("📁 Selected Folder Path: ", savedBatchGuanfuFolderPath);
     return folderPaths[0];
   }
 };

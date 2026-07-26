@@ -1,1 +1,1 @@
-- [Using Upscayl on Windows without GPU](https://github.com/orgs/upscayl/discussions/580)
+- [Using Guanfu on Windows without GPU](https://github.com/orgs/guanfu/discussions/580)

@@ -13,7 +13,9 @@
   },
   "SETTINGS": {
     "TITLE": "الاعدادات",
-    "CHANGE_LANGUAGE": { "TITLE": "تغيير اللغة" },
+    "CHANGE_LANGUAGE": {
+      "TITLE": "تغيير اللغة"
+    },
     "IMAGE_COMPRESSION": {
       "TITLE": "اختزال الصورة",
       "DESCRIPTION": "صيغة png , ربما لن تؤثر على حجم الملف بشكل كبير و عملية الضغط القوية قد يؤثر على الاداء, JPG و WEBP صيغ تفقد جودتها"
@@ -159,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_UPSCAYL": {
+    "DOUBLE_GUANFU": {
       "TITLE": "تحجيم مزدوج",
       "DESCRIPTION": "تفعيل هذا الخيار سيقوم بمضاعفة التحجيم , لكن سيسبب ضعف في الاداء بالأخص مع تحجيم 4 اضعاف"
     },
@@ -184,16 +186,16 @@
       "LENS_VIEW_TITLE": "وضع المكبرة",
       "SLIDER_VIEW_TITLE": "وضع الشطر",
       "ZOOM_AMOUNT_TITLE": "قوة التكبير",
-      "TOTAL_UPSCAYLS": "مجموع التحجيم",
-      "TOTAL_BATCH_UPSCAYLS": "مجموع الصور المتعددة المحجمة",
-      "TOTAL_IMAGE_UPSCAYLS": "مجموع الصور المحجمة",
-      "TOTAL_DOUBLE_UPSCAYLS": "مجموع التحجيم المزدوج",
-      "AVERAGE_UPSCAYL_TIME": "الوقت المتوسط للتحجيم",
-      "LAST_UPSCAYL_DURATION": "مدة اخر تحجيم",
+      "TOTAL_GUANFUS": "مجموع التحجيم",
+      "TOTAL_BATCH_GUANFUS": "مجموع الصور المتعددة المحجمة",
+      "TOTAL_IMAGE_GUANFUS": "مجموع الصور المحجمة",
+      "TOTAL_DOUBLE_GUANFUS": "مجموع التحجيم المزدوج",
+      "AVERAGE_GUANFU_TIME": "الوقت المتوسط للتحجيم",
+      "LAST_GUANFU_DURATION": "مدة اخر تحجيم",
       "LAST_USED_AT": "اخر استخدام عند"
     },
     "PROGRESS_BAR": {
-      "BATCH_UPSCAYL_IN_PROGRESS_TITLE": "التحجيم المزدوج قيد العمل:",
+      "BATCH_GUANFU_IN_PROGRESS_TITLE": "التحجيم المزدوج قيد العمل:",
       "IN_PROGRESS_TITLE": "القيام ببعض السحر المحجم...",
       "STOP_BUTTON_TITLE": "أيقاف"
     },
@@ -213,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "اختر مجلد:",
         "DONE_TITLE": "تم!",
-        "OPEN_UPSCAYLED_FOLDER_TITLE": "افتح مجلد ابسكيل"
+        "OPEN_GUANFUED_FOLDER_TITLE": "افتح مجلد ابسكيل"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "اصلي",
-      "UPSCAYLED_TITLE": "مُحَجم"
+      "GUANFUED_TITLE": "مُحَجم"
     },
     "DIALOG_BOX": {
       "CLOSE": "أغلاق"
@@ -278,7 +280,7 @@
       "DESCRIPTION": "في بعض الأنظمة، قد لا تكون البيانات الوصفية مرئية في التنسيقات غير JPG. استخدم أدوات خاصة لعرض البيانات الوصفية إذا لزم الأمر."
     }
   },
-  "UPSCAYL_CLOUD": {
+  "GUANFU_CLOUD": {
     "COMING_SOON": "قادم قريبا!",
     "CATCHY_PHRASE_1": "لا مزيد من خطأ, مشاكل هاردوير, ولا مزيد من الانتظار لوقت طويل",
     "CATCHY_PHRASE_2": "🌐 استعمل ابسكيل في اي مكان وزمان\n☁️ لا تحتاج الى وحدة معالجة رسومd\n👩 تحسين جودة الوجوه\n🦋 اكثر من 10 نماذج\n🏎 اسرع بـ5 مرات على تطبيق ابسكيل\n🎞 تحجيم الفيديوهات\n💰 للاستخدام التجاري\n😴 حُجًم خلال نومك",
@@ -311,5 +313,3 @@
     }
   }
 }
-
-

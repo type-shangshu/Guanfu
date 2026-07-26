@@ -1,6 +1,6 @@
-# Upscayl Cloud API - Requestly Collection
+# Guanfu Cloud API - Requestly Collection
 
-Test the Upscayl Cloud API endpoints using Requestly for seamless AI image upscaling integration.
+Test the Guanfu Cloud API endpoints using Requestly for seamless AI image upscaling integration.
 
 ## About Requestly
 
@@ -10,7 +10,7 @@ Test the Upscayl Cloud API endpoints using Requestly for seamless AI image upsca
 
 ## API Endpoints Covered
 
-This collection includes 4 Upscayl Cloud API endpoints:
+This collection includes 4 Guanfu Cloud API endpoints:
 
 ### 1. Get Upload URL (`POST /get-upload-url`)
 Generates secure upload URLs for image files before processing.
@@ -28,20 +28,20 @@ Monitors the progress of upscaling tasks and retrieves download links when compl
 
 ### Prerequisites
 - [Requestly Desktop App](https://requestly.com/desktop) or Browser Extension
-- Upscayl API key from https://upscayl.org/account/api-keys
+- Guanfu API key from https://guanfu.org/account/api-keys
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/upscayl/upscayl.git
-cd upscayl/api-collection
+git clone https://github.com/guanfu/guanfu.git
+cd guanfu/api-collection
 ```
 
 ### Step 2: Configure Variables
 1. Open Requestly and navigate to the auto-imported collection
-2. Go to **Collections** > **Upscayl API Testing** > **Variables**
+2. Go to **Collections** > **Guanfu API Testing** > **Variables**
 3. Update the following values:
    ```
-   baseUrl: https://api.upscayl.org
+   baseUrl: https://api.guanfu.org
    x-api-key: YOUR_ACTUAL_API_KEY_HERE
    ```
 

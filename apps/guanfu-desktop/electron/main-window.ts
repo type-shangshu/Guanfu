@@ -5,7 +5,6 @@ import { ELECTRON_COMMANDS } from "../common/electron-commands";
 import { fetchLocalStorage } from "./utils/config-variables";
 import electronIsDev from "electron-is-dev";
 import { format } from "url";
-import { autoUpdater } from "electron-updater";
 
 let mainWindow: BrowserWindow | undefined;
 
@@ -51,23 +50,6 @@ const createMainWindow = () => {
   });
 
   fetchLocalStorage();
-
-  if (!electronIsDev) {
-    console.log("🚀 Checking for updates");
-    mainWindow.webContents
-      .executeJavaScript('localStorage.getItem("autoUpdate");', true)
-      .then((lastSaved: string | null) => {
-        if (
-          lastSaved === null ||
-          lastSaved === undefined ||
-          lastSaved === "true"
-        ) {
-          autoUpdater.checkForUpdates();
-        } else {
-          console.log("🚀 Auto Update is disabled");
-        }
-      });
-  }
 
   mainWindow.webContents.send(ELECTRON_COMMANDS.OS, getPlatform());
 

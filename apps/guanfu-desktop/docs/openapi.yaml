@@ -1,16 +1,16 @@
 openapi: "3.0.2"
 info:
-  title: Upscayl Cloud API
+  title: Guanfu Cloud API
   description: |
-    API for Upscayl Cloud - An AI-powered image upscaling service.
+    API for Guanfu Cloud - An AI-powered image upscaling service.
     Use this API to upscale images, check processing status, and manage uploads.
   version: 1.0.0
   contact:
-    name: Upscayl Support
-    url: mailto:support@upscayl.org
+    name: Guanfu Support
+    url: mailto:support@guanfu.org
 servers:
-  - url: https://api.upscayl.org
-    description: Upscayl Server
+  - url: https://api.guanfu.org
+    description: Guanfu Server
 
 security:
   - ApiKeyAuth: []
@@ -99,8 +99,8 @@ components:
               description: AI model used for processing
               enum:
                 [
-                  upscayl-standard-4x,
-                  upscayl-lite-4x,
+                  guanfu-standard-4x,
+                  guanfu-lite-4x,
                   clear-boost-4x,
                   crystal-plus-4x,
                   digital-art-4x,
@@ -183,8 +183,8 @@ components:
           description: AI model used for processing
           enum:
             [
-              upscayl-standard-4x,
-              upscayl-lite-4x,
+              guanfu-standard-4x,
+              guanfu-lite-4x,
               clear-boost-4x,
               crystal-plus-4x,
               digital-art-4x,
@@ -341,7 +341,7 @@ paths:
                         type: string
                         format: uri
                         description: Pre-signed URL for upload
-                        example: https://storage.upscayl.com/upload/abc123
+                        example: https://storage.guanfu.com/upload/abc123
                       fileName:
                         type: string
                         description: Generated unique filename
@@ -393,7 +393,7 @@ paths:
           $ref: "#/components/responses/TooManyRequests"
         "500":
           $ref: "#/components/responses/InternalError"
-  /get-upscayl-history:
+  /get-guanfu-history:
     post:
       tags:
         - History
@@ -401,7 +401,7 @@ paths:
       description: |
         Retrieves paginated history of image processing tasks.
         Results can be filtered by status and time range.
-      operationId: getUpscaylHistory
+      operationId: getGuanfuHistory
       security:
         - ApiKeyAuth: []
       x-rateLimit:
@@ -575,8 +575,8 @@ paths:
                   description: AI model for upscaling
                   enum:
                     [
-                      upscayl-standard-4x,
-                      upscayl-lite-4x,
+                      guanfu-standard-4x,
+                      guanfu-lite-4x,
                       clear-boost-4x,
                       crystal-plus-4x,
                       digital-art-4x,

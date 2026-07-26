@@ -1,5 +1,4 @@
 import prepareNext from "electron-next";
-import { autoUpdater } from "electron-updater";
 import log from "electron-log";
 import { app, ipcMain, protocol } from "electron";
 import { ELECTRON_COMMANDS } from "../common/electron-commands";
@@ -10,13 +9,12 @@ import selectFolder from "./commands/select-folder";
 import selectFile from "./commands/select-file";
 import getModelsList from "./commands/get-models-list";
 import customModelsSelect from "./commands/custom-models-select";
-import imageUpscayl from "./commands/image-upscayl";
+import imageGuanfu from "./commands/image-guanfu";
 import { createMainWindow } from "./main-window";
 import electronIsDev from "electron-is-dev";
 import { execPath, modelsPath } from "./utils/get-resource-paths";
-import batchUpscayl from "./commands/batch-upscayl";
-import doubleUpscayl from "./commands/double-upscayl";
-import autoUpdate from "./commands/auto-update";
+import batchGuanfu from "./commands/batch-guanfu";
+import doubleGuanfu from "./commands/double-guanfu";
 import { FEATURE_FLAGS } from "../common/feature-flags";
 import settings from "electron-settings";
 import pasteImage from "./commands/paste-image";
@@ -49,11 +47,11 @@ app.on("ready", async () => {
   createMainWindow();
 
   log.info(
-    "🆙 Upscayl version:",
+    "🆙 Guanfu version:",
     app.getVersion(),
     FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS",
   );
-  log.info("🚀 UPSCAYL EXEC PATH: ", execPath);
+  log.info("🚀 GUANFU EXEC PATH: ", execPath);
   log.info("🚀 MODELS PATH: ", modelsPath);
 
   let closeAccess;
@@ -96,11 +94,11 @@ ipcMain.handle(
   customModelsSelect,
 );
 
-ipcMain.on(ELECTRON_COMMANDS.UPSCAYL, imageUpscayl);
+ipcMain.on(ELECTRON_COMMANDS.GUANFU, imageGuanfu);
 
-ipcMain.on(ELECTRON_COMMANDS.FOLDER_UPSCAYL, batchUpscayl);
+ipcMain.on(ELECTRON_COMMANDS.FOLDER_GUANFU, batchGuanfu);
 
-ipcMain.on(ELECTRON_COMMANDS.DOUBLE_UPSCAYL, doubleUpscayl);
+ipcMain.on(ELECTRON_COMMANDS.DOUBLE_GUANFU, doubleGuanfu);
 
 ipcMain.on(ELECTRON_COMMANDS.PASTE_IMAGE, pasteImage);
 
@@ -118,7 +116,3 @@ ipcMain.handle("get-app-version", () => {
     FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS"
   }`;
 });
-
-if (!FEATURE_FLAGS.APP_STORE_BUILD) {
-  autoUpdater.on("update-downloaded", autoUpdate);
-}

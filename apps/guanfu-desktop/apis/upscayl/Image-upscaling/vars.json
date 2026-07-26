@@ -1,6 +1,6 @@
 {
   "baseUrl": {
-    "value": "https://api.upscayl.org",
+    "value": "https://api.guanfu.org",
     "type": "string",
     "id": 0,
     "isSecret": false

@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Upscayl",
+  "name": "Guanfu",
   "logo": {
     "dark": "logo/logo.svg",
     "light": "logo/logo.svg"
@@ -14,27 +14,27 @@
   "topbarLinks": [
     {
       "name": "Home",
-      "url": "https://upscayl.org/"
+      "url": "https://guanfu.org/"
     },
     {
       "name": "GitHub",
-      "url": "https://github.com/upscayl/upscayl"
+      "url": "https://github.com/guanfu/guanfu"
     }
   ],
   "topbarCtaButton": {
-    "name": "Download Upscayl",
-    "url": "https://upscayl.org/#download"
+    "name": "Download Guanfu",
+    "url": "https://guanfu.org/#download"
   },
   "anchors": [
     {
       "name": "GitHub",
       "icon": "github",
-      "url": "https://github.com/upscayl/"
+      "url": "https://github.com/guanfu/"
     },
     {
       "name": "Twitter",
       "icon": "x",
-      "url": "https://twitter.com/upscayl"
+      "url": "https://twitter.com/guanfu"
     },
     {
       "name": "Telegram",
@@ -69,14 +69,14 @@
         "get-upload-url",
         "complete-a-multipart-upload",
         "get-task-status",
-        "get-upscayl-history"
+        "get-guanfu-history"
       ]
     }
   ],
   "footerSocials": {
-    "website": "https://upscayl.org/",
-    "github": "https://github.com/upscayl/",
-    "x": "https://twitter.com/upscayl",
+    "website": "https://guanfu.org/",
+    "github": "https://github.com/guanfu/",
+    "x": "https://twitter.com/guanfu",
     "telegram": "https://t.me/iamnayam"
   }
 }

@@ -1090,11 +1090,6 @@ int main(int argc, char **argv)
         if (modelname.find(PATHSTR("tinysr")) != path_t::npos)
             prepadding = 0;
     }
-    else
-    {
-        fprintf(stderr, "🚨 Error: Unknown model dir type. Make sure that the model directory is called 'models' with *.param and *.bin files inside it.\n");
-        return -1;
-    }
 
     // if (modelname.find(PATHSTR("realesrgan-x4plus")) != path_t::npos
     //     || modelname.find(PATHSTR("realesrnet-x4plus")) != path_t::npos

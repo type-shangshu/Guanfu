@@ -17,14 +17,14 @@ export function setSavedImagePath(value: string | undefined): void {
 }
 
 /**
- * The saved folder path so that the select folder to upscayl dialog can open to the last used path.
+ * The saved folder path so that the select folder to guanfu dialog can open to the last used path.
  */
-export let savedBatchUpscaylFolderPath: string | undefined = undefined;
-export function setSavedBatchUpscaylFolderPath(
+export let savedBatchGuanfuFolderPath: string | undefined = undefined;
+export function setSavedBatchGuanfuFolderPath(
   value: string | undefined,
 ): void {
-  savedBatchUpscaylFolderPath = value;
-  logit("📁 Updating Folder Path: ", savedBatchUpscaylFolderPath);
+  savedBatchGuanfuFolderPath = value;
+  logit("📁 Updating Folder Path: ", savedBatchGuanfuFolderPath);
 }
 
 /**
@@ -37,12 +37,12 @@ export function setSavedCustomModelsPath(value: string | undefined): void {
 }
 
 /**
- * The stopped variable to stop the batch upscayl process.
+ * The stopped variable to stop the batch guanfu process.
  */
 export let stopped = false;
 
 /**
- * The child processes array to store the spawned upscayl processes.
+ * The child processes array to store the spawned guanfu processes.
  */
 export let childProcesses: {
   process: ChildProcessWithoutNullStreams;
@@ -94,15 +94,15 @@ export function fetchLocalStorage(): void {
   // GET LAST FOLDER PATH TO LOCAL STORAGE
   mainWindow.webContents
     .executeJavaScript(
-      'localStorage.getItem("lastSavedBatchUpscaylFolderPath");',
+      'localStorage.getItem("lastSavedBatchGuanfuFolderPath");',
       true,
     )
-    .then((lastSavedBatchUpscaylFolderPath: string | null) => {
+    .then((lastSavedBatchGuanfuFolderPath: string | null) => {
       if (
-        lastSavedBatchUpscaylFolderPath &&
-        lastSavedBatchUpscaylFolderPath.length > 0
+        lastSavedBatchGuanfuFolderPath &&
+        lastSavedBatchGuanfuFolderPath.length > 0
       ) {
-        setSavedBatchUpscaylFolderPath(lastSavedBatchUpscaylFolderPath);
+        setSavedBatchGuanfuFolderPath(lastSavedBatchGuanfuFolderPath);
       }
     });
   // GET LAST CUSTOM MODELS FOLDER PATH TO LOCAL STORAGE

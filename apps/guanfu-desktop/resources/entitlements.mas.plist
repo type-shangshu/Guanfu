@@ -24,10 +24,10 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-	<string>W2T4W74X87.org.upscayl.Upscayl</string>
+	<string>W2T4W74X87.org.guanfu.Guanfu</string>
 	</array>
 	<key>com.apple.application-identifier</key>
-	<string>W2T4W74X87.org.upscayl.Upscayl</string>
+	<string>W2T4W74X87.org.guanfu.Guanfu</string>
 	<key>com.apple.developer.team-identifier</key>
 	<string>W2T4W74X87</string>
 </dict>

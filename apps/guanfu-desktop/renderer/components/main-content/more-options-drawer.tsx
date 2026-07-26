@@ -126,55 +126,55 @@ const MoreOptionsDrawer = ({
           <div className="stats stats-vertical overflow-y-auto">
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_UPSCAYLS")}
+                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_GUANFUS")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {userStats.totalUpscayls}
+                {userStats.totalGuanfus}
               </div>
             </div>
 
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_BATCH_UPSCAYLS")}
+                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_BATCH_GUANFUS")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {userStats.batchUpscayls}
+                {userStats.batchGuanfus}
               </div>
             </div>
 
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_IMAGE_UPSCAYLS")}
+                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_IMAGE_GUANFUS")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {userStats.imageUpscayls}
+                {userStats.imageGuanfus}
               </div>
             </div>
 
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_DOUBLE_UPSCAYLS")}
+                {t("APP.MORE_OPTIONS_DRAWER.TOTAL_DOUBLE_GUANFUS")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {userStats.doubleUpscayls}
+                {userStats.doubleGuanfus}
               </div>
             </div>
 
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.AVERAGE_UPSCAYL_TIME")}
+                {t("APP.MORE_OPTIONS_DRAWER.AVERAGE_GUANFU_TIME")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {formatDuration(userStats.averageUpscaylTime / 1000)}
+                {formatDuration(userStats.averageGuanfuTime / 1000)}
               </div>
             </div>
 
             <div className="stat">
               <div className="stat-title">
-                {t("APP.MORE_OPTIONS_DRAWER.LAST_UPSCAYL_DURATION")}
+                {t("APP.MORE_OPTIONS_DRAWER.LAST_GUANFU_DURATION")}
               </div>
               <div className="stat-value text-2xl text-base-content">
-                {formatDuration(userStats.lastUpscaylDuration / 1000)}
+                {formatDuration(userStats.lastGuanfuDuration / 1000)}
               </div>
             </div>
 

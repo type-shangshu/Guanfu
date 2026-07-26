@@ -6,9 +6,9 @@ export default function showNotification(title: string, body: string) {
   if (turnOffNotifications) return;
 
   const iconPaths = [
-    "/app/share/icons/hicolor/128x128/apps/org.upscayl.Upscayl.png", // flatpak icon
-    "__appImage-x64/usr/share/icons/hicolor/128x128/apps/upscayl.png", // appimage icon
-    "/usr/share/icons/hicolor/128x128/apps/upscayl.png", // deb & rpm icon
+    "/app/share/icons/hicolor/128x128/apps/org.guanfu.Guanfu.png", // flatpak icon
+    "__appImage-x64/usr/share/icons/hicolor/128x128/apps/guanfu.png", // appimage icon
+    "/usr/share/icons/hicolor/128x128/apps/guanfu.png", // deb & rpm icon
     "resources/128x128.png", // win icon
     "build/icon.icns", // mac icon
   ];

@@ -1,16 +1,21 @@
 import fs from "fs";
-import path from "path";
 import logit from "./logit";
 import { MessageBoxOptions, app, dialog } from "electron";
 import settings from "electron-settings";
 import { FEATURE_FLAGS } from "../../common/feature-flags";
 
-const getModelStem = (file: string) => file.substring(0, file.lastIndexOf(".")) || file;
-
 const getModels = async (folderPath: string | undefined) => {
+  let models: string[] = [];
+  let isValid = false;
+
+  // SECURITY SCOPED BOOKMARKS
   let closeAccess;
   const customModelsBookmarks = await settings.get("custom-models-bookmarks");
   if (FEATURE_FLAGS.APP_STORE_BUILD && customModelsBookmarks) {
+    console.log(
+      "🚀 => file: get-models.ts:18 => customModelsBookmarks:",
+      customModelsBookmarks,
+    );
     try {
       closeAccess = app.startAccessingSecurityScopedResource(
         customModelsBookmarks as string,
@@ -20,64 +25,51 @@ const getModels = async (folderPath: string | undefined) => {
     }
   }
 
-  const showInvalidFolderDialog = (message: string) => {
-    logit("❌ Invalid Custom Model Folder Detected: ", message);
+  if (!folderPath) {
+    logit("❌ Invalid Custom Model Folder Detected");
     const options: MessageBoxOptions = {
       type: "error",
-      title: "Invalid Model Folder",
-      message,
+      title: "Invalid Folder",
+      message:
+        "The selected folder does not contain valid model files. Make sure you select the folder that ONLY contains '.param' and '.bin' files.",
       buttons: ["OK"],
     };
     dialog.showMessageBoxSync(options);
-  };
+    return null;
+  }
 
-  try {
-    if (!folderPath || !fs.existsSync(folderPath) || !fs.statSync(folderPath).isDirectory()) {
-      showInvalidFolderDialog("Select a folder that contains matching '.param' and '.bin' model files.");
-      return null;
-    }
-
-    const files = fs.readdirSync(folderPath);
-    const paramModels = new Set<string>();
-    const binModels = new Set<string>();
-
-    for (const file of files) {
-      const fullPath = path.join(folderPath, file);
-      if (!fs.statSync(fullPath).isFile()) continue;
-
-      const lower = file.toLowerCase();
-      if (lower.endsWith(".param")) {
-        paramModels.add(getModelStem(file));
-      } else if (lower.endsWith(".bin")) {
-        binModels.add(getModelStem(file));
+  // READ CUSTOM MODELS FOLDER
+  fs.readdirSync(folderPath).forEach((file) => {
+    // log.log("Files in Folder: ", file);
+    if (
+      file.endsWith(".param") ||
+      file.endsWith(".PARAM") ||
+      file.endsWith(".bin") ||
+      file.endsWith(".BIN")
+    ) {
+      isValid = true;
+      const modelName = file.substring(0, file.lastIndexOf(".")) || file;
+      if (!models.includes(modelName)) {
+        models.push(modelName);
       }
     }
+  });
 
-    const models = [...paramModels]
-      .filter((model) => binModels.has(model))
-      .sort((a, b) => a.localeCompare(b));
-
-    if (models.length === 0) {
-      showInvalidFolderDialog(
-        "The selected folder does not contain any complete model pair. Each custom model needs both 'model.param' and 'model.bin' with the same base name.",
-      );
-      return null;
-    }
-
-    const missingBins = [...paramModels].filter((model) => !binModels.has(model));
-    const missingParams = [...binModels].filter((model) => !paramModels.has(model));
-    if (missingBins.length > 0 || missingParams.length > 0) {
-      logit(
-        "⚠️ Ignored incomplete custom model files: ",
-        JSON.stringify({ missingBins, missingParams }),
-      );
-    }
-
-    logit("🔎 Detected Custom Models: ", models);
-    return models;
-  } finally {
-    if (closeAccess) closeAccess();
+  if (!isValid) {
+    logit("❌ Invalid Custom Model Folder Detected");
+    const options: MessageBoxOptions = {
+      type: "error",
+      title: "Invalid Folder",
+      message:
+        "The selected folder does not contain valid model files. Make sure you select the folder that ONLY contains '.param' and '.bin' files.",
+      buttons: ["OK"],
+    };
+    dialog.showMessageBoxSync(options);
+    return null;
   }
+
+  logit("🔎 Detected Custom Models: ", models);
+  return models;
 };
 
 export default getModels;

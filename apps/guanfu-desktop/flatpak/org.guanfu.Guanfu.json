@@ -1,0 +1,62 @@
+{
+  "id": "org.guanfu.Guanfu",
+  "sdk": "org.freedesktop.Sdk",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "22.08",
+  "base": "org.electronjs.Electron2.BaseApp",
+  "base-version": "22.08",
+  "command": "guanfu-run",
+  "separate-locales": false,
+  "finish-args": [
+    "--device=dri",
+    "--filesystem=home",
+    "--share=network",
+    "--socket=x11",
+    "--socket=pulseaudio"
+  ],
+  "modules": [
+    {
+      "name": "zypak",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/refi64/zypak",
+          "tag": "v2022.04"
+        }
+      ]
+    },
+    {
+      "name": "guanfu",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "file",
+          "only-arches": ["x86_64"],
+          "url": "https://github.com/guanfu/guanfu/releases/download/v2.9.1/guanfu-2.9.1-linux.zip",
+          "sha256": "238f1d9bebca8553b94572c6f9cf78b7838429f560842a90ad1f99ecda306c02"
+        },
+        {
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/guanfu/guanfu/main/flatpak/org.guanfu.Guanfu.metainfo.xml",
+          "sha256": "e9fe8dc362f7b70f31c752c9c025b2f03447e17eaa93aa725a3a56b3ffc7893c"
+        },
+        {
+          "type": "script",
+          "dest-filename": "guanfu-run",
+          "commands": ["zypak-wrapper /app/guanfu/guanfu"]
+        }
+      ],
+      "build-commands": [
+        "install -d /app/guanfu",
+        "unzip guanfu-2.9.1-linux -d /app/guanfu",
+        "install guanfu-run /app/bin/",
+        "install -Dm644 /app/guanfu/icon_512x512.png /app/share/icons/hicolor/512x512/apps/org.guanfu.Guanfu.png",
+        "install -Dm644 /app/guanfu/icon_128x128.png /app/share/icons/hicolor/128x128/apps/org.guanfu.Guanfu.png",
+        "install -Dp -m644 org.guanfu.Guanfu.metainfo.xml /app/share/metainfo/org.guanfu.Guanfu.metainfo.xml",
+        "touch /app/guanfu/org.guanfu.Guanfu.desktop",
+        "desktop-file-edit --set-key=Exec --set-value='guanfu-run %U' --set-key=Icon --set-value='org.guanfu.Guanfu' --set-key=Comment --set-value='Upscale Images' --set-key=Name --set-value='Guanfu' --set-key=StartupNotify --set-value='false' --set-key=Categories --set-value='ImageProcessing;RasterGraphics;Graphics;' --set-key=Type --set-value='Application' /app/guanfu/org.guanfu.Guanfu.desktop",
+        "install -Dm644 /app/guanfu/org.guanfu.Guanfu.desktop /app/share/applications/org.guanfu.Guanfu.desktop"
+      ]
+    }
+  ]
+}

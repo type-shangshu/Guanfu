@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import UpscaylSVGLogo from "@/components/icons/upscayl-logo-svg";
+import GuanfuSVGLogo from "@/components/icons/guanfu-logo-svg";
 import { useAtomValue } from "jotai";
 import { translationAtom } from "@/atoms/translations-atom";
 import { ELECTRON_COMMANDS } from "@common/electron-commands";
@@ -7,12 +7,12 @@ import useLogger from "../hooks/use-logger";
 
 function ProgressBar({
   progress,
-  doubleUpscaylCounter,
+  doubleGuanfuCounter,
   batchMode,
   resetImagePaths,
 }: {
   progress: string;
-  doubleUpscaylCounter: number;
+  doubleGuanfuCounter: number;
   batchMode: boolean;
   resetImagePaths: () => void;
 }) {
@@ -30,7 +30,7 @@ function ProgressBar({
 
   const stopHandler = () => {
     window.electron.send(ELECTRON_COMMANDS.STOP);
-    logit("🛑 Stopping Upscayl");
+    logit("🛑 Stopping Guanfu");
   };
 
   // const progressStyle = useMemo(() => {
@@ -51,11 +51,11 @@ function ProgressBar({
   return (
     <div className="absolute z-50 flex h-full w-full flex-col items-center justify-center bg-base-300/50 backdrop-blur-lg">
       <div className="flex flex-col items-center gap-2 rounded-btn bg-base-100/50 p-4 backdrop-blur-lg">
-        <UpscaylSVGLogo className="spinner h-12 w-12" />
+        <GuanfuSVGLogo className="spinner h-12 w-12" />
 
         <p className="rounded-full px-2 pb-2 font-bold">
           {batchMode &&
-            `${t("APP.PROGRESS_BAR.BATCH_UPSCAYL_IN_PROGRESS_TITLE")} ${batchProgress}`}
+            `${t("APP.PROGRESS_BAR.BATCH_GUANFU_IN_PROGRESS_TITLE")} ${batchProgress}`}
         </p>
 
         <div className="flex flex-col items-center gap-1">
@@ -63,8 +63,8 @@ function ProgressBar({
             <p className="text-sm font-bold">
               {progress}
               {!batchMode &&
-                doubleUpscaylCounter > 0 &&
-                "\nPass " + doubleUpscaylCounter}
+                doubleGuanfuCounter > 0 &&
+                "\nPass " + doubleGuanfuCounter}
             </p>
           ) : (
             <p className="text-sm font-bold">{progress}</p>

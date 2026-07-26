@@ -13,7 +13,7 @@ import {
 import useLogger from "../components/hooks/use-logger";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import UpscaylSVGLogo from "@/components/icons/upscayl-logo-svg";
+import GuanfuSVGLogo from "@/components/icons/guanfu-logo-svg";
 import { translationAtom } from "@/atoms/translations-atom";
 import Sidebar from "@/components/sidebar";
 import MainContent from "@/components/main-content";
@@ -21,7 +21,6 @@ import getDirectoryFromPath from "@common/get-directory-from-path";
 import { FEATURE_FLAGS } from "@common/feature-flags";
 import { ImageFormat, VALID_IMAGE_FORMATS } from "@/lib/valid-formats";
 import { initCustomModels } from "@/components/hooks/use-custom-models";
-import { OnboardingDialog } from "@/components/main-content/onboarding-dialog";
 import useSystemInfo from "@/components/hooks/use-system-info";
 
 const Home = () => {
@@ -45,7 +44,7 @@ const Home = () => {
   const [batchFolderPath, setBatchFolderPath] = useState("");
   const [upscaledBatchFolderPath, setUpscaledBatchFolderPath] = useState("");
   const setProgress = useSetAtom(progressAtom);
-  const [doubleUpscaylCounter, setDoubleUpscaylCounter] = useState(0);
+  const [doubleGuanfuCounter, setDoubleGuanfuCounter] = useState(0);
   const setModelIds = useSetAtom(customModelIdsAtom);
   const setUserStats = useSetAtom(userStatsAtom);
 
@@ -117,7 +116,7 @@ const Home = () => {
               >
                 {t("ERRORS.COPY_ERROR.TITLE")}
               </ToastAction>
-              <a href="https://docs.upscayl.org/" target="_blank">
+              <a href="https://docs.guanfu.org/" target="_blank">
                 <ToastAction altText={t("ERRORS.OPEN_DOCS_TITLE")}>
                   {t("ERRORS.OPEN_DOCS_BUTTON_TITLE")}
                 </ToastAction>
@@ -141,7 +140,7 @@ const Home = () => {
               >
                 {t("ERRORS.COPY_ERROR.TITLE")}
               </ToastAction>
-              <a href="https://docs.upscayl.org/" target="_blank">
+              <a href="https://docs.guanfu.org/" target="_blank">
                 <ToastAction altText={t("ERRORS.OPEN_DOCS_TITLE")}>
                   {t("ERRORS.OPEN_DOCS_BUTTON_TITLE")}
                 </ToastAction>
@@ -175,8 +174,8 @@ const Home = () => {
         setProgress(t("APP.PROGRESS.PROCESSING_TITLE"));
       },
     );
-    // UPSCAYL WARNING
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_WARNING, (_, data: string) => {
+    // GUANFU WARNING
+    window.electron.on(ELECTRON_COMMANDS.GUANFU_WARNING, (_, data: string) => {
       toast({
         title: t("WARNING.GENERIC_WARNING.TITLE"),
         description: data,
@@ -189,17 +188,17 @@ const Home = () => {
         description: data,
       });
     });
-    // UPSCAYL ERROR
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_ERROR, (_, data: string) => {
+    // GUANFU ERROR
+    window.electron.on(ELECTRON_COMMANDS.GUANFU_ERROR, (_, data: string) => {
       toast({
         title: t("ERRORS.GENERIC_ERROR.TITLE"),
         description: data,
       });
       resetImagePaths();
     });
-    // UPSCAYL PROGRESS
+    // GUANFU PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.UPSCAYL_PROGRESS,
+      ELECTRON_COMMANDS.GUANFU_PROGRESS,
       (_, data: string) => {
         if (data.length > 0 && data.length < 10) {
           setProgress(data);
@@ -209,12 +208,12 @@ const Home = () => {
           setProgress(t("APP.PROGRESS.SUCCESS_TITLE"));
         }
         handleErrors(data);
-        logit(`🚧 UPSCAYL_PROGRESS: `, data);
+        logit(`🚧 GUANFU_PROGRESS: `, data);
       },
     );
-    // FOLDER UPSCAYL PROGRESS
+    // FOLDER GUANFU PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_UPSCAYL_PROGRESS,
+      ELECTRON_COMMANDS.FOLDER_GUANFU_PROGRESS,
       (_, data: string) => {
         if (data.includes("Successful")) {
           setProgress(t("APP.PROGRESS.SUCCESS_TITLE"));
@@ -223,70 +222,70 @@ const Home = () => {
           setProgress(data);
         }
         handleErrors(data);
-        logit(`🚧 FOLDER_UPSCAYL_PROGRESS: `, data);
+        logit(`🚧 FOLDER_GUANFU_PROGRESS: `, data);
       },
     );
-    // DOUBLE UPSCAYL PROGRESS
+    // DOUBLE GUANFU PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_UPSCAYL_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
       (_, data: string) => {
         if (data.length > 0 && data.length < 10) {
           if (data === "0.00%") {
-            setDoubleUpscaylCounter(doubleUpscaylCounter + 1);
+            setDoubleGuanfuCounter(doubleGuanfuCounter + 1);
           }
           setProgress(data);
         }
         handleErrors(data);
-        logit(`🚧 DOUBLE_UPSCAYL_PROGRESS: `, data);
+        logit(`🚧 DOUBLE_GUANFU_PROGRESS: `, data);
       },
     );
-    // UPSCAYL DONE
-    window.electron.on(ELECTRON_COMMANDS.UPSCAYL_DONE, (_, data: string) => {
+    // GUANFU DONE
+    window.electron.on(ELECTRON_COMMANDS.GUANFU_DONE, (_, data: string) => {
       setProgress("");
       setUpscaledImagePath(data);
       setUserStats((prev) => ({
         ...prev,
-        lastUpscaylDuration: new Date().getTime() - prev.lastUsedAt,
-        averageUpscaylTime:
-          (prev.averageUpscaylTime * prev.totalUpscayls +
+        lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
+        averageGuanfuTime:
+          (prev.averageGuanfuTime * prev.totalGuanfus +
             (new Date().getTime() - prev.lastUsedAt)) /
-          (prev.totalUpscayls + 1),
+          (prev.totalGuanfus + 1),
       }));
       logit("upscaledImagePath: ", data);
-      logit(`💯 UPSCAYL_DONE: `, data);
+      logit(`💯 GUANFU_DONE: `, data);
     });
-    // FOLDER UPSCAYL DONE
+    // FOLDER GUANFU DONE
     window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_UPSCAYL_DONE,
+      ELECTRON_COMMANDS.FOLDER_GUANFU_DONE,
       (_, data: string) => {
         setProgress("");
         setUpscaledBatchFolderPath(data);
-        logit(`💯 FOLDER_UPSCAYL_DONE: `, data);
+        logit(`💯 FOLDER_GUANFU_DONE: `, data);
         setUserStats((prev) => ({
           ...prev,
-          lastUpscaylDuration: new Date().getTime() - prev.lastUsedAt,
-          averageUpscaylTime:
-            (prev.averageUpscaylTime * prev.totalUpscayls +
+          lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
+          averageGuanfuTime:
+            (prev.averageGuanfuTime * prev.totalGuanfus +
               (new Date().getTime() - prev.lastUsedAt)) /
-            (prev.totalUpscayls + 1),
+            (prev.totalGuanfus + 1),
         }));
       },
     );
-    // DOUBLE UPSCAYL DONE
+    // DOUBLE GUANFU DONE
     window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_UPSCAYL_DONE,
+      ELECTRON_COMMANDS.DOUBLE_GUANFU_DONE,
       (_, data: string) => {
         setProgress("");
         setTimeout(() => setUpscaledImagePath(data), 500);
-        setDoubleUpscaylCounter(0);
-        logit(`💯 DOUBLE_UPSCAYL_DONE: `, data);
+        setDoubleGuanfuCounter(0);
+        logit(`💯 DOUBLE_GUANFU_DONE: `, data);
         setUserStats((prev) => ({
           ...prev,
-          lastUpscaylDuration: new Date().getTime() - prev.lastUsedAt,
-          averageUpscaylTime:
-            (prev.averageUpscaylTime * prev.totalUpscayls +
+          lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
+          averageGuanfuTime:
+            (prev.averageGuanfuTime * prev.totalGuanfus +
               (new Date().getTime() - prev.lastUsedAt)) /
-            (prev.totalUpscayls + 1),
+            (prev.totalGuanfus + 1),
         }));
       },
     );
@@ -327,7 +326,7 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <UpscaylSVGLogo className="absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+      <GuanfuSVGLogo className="absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
     );
   }
 
@@ -355,10 +354,9 @@ const Home = () => {
         selectImageHandler={selectImageHandler}
         batchFolderPath={batchFolderPath}
         upscaledImagePath={upscaledImagePath}
-        doubleUpscaylCounter={doubleUpscaylCounter}
+        doubleGuanfuCounter={doubleGuanfuCounter}
         setDimensions={setDimensions}
       />
-      <OnboardingDialog />
     </div>
   );
 };

@@ -5,5 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 APP="$ROOT/apps/guanfu-desktop"
 
 cd "$APP"
-npm install
+if [ ! -d node_modules ]; then
+  npm install
+fi
 npm run build

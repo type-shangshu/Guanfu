@@ -6,9 +6,9 @@ body:
   attributes:
     label: Checklist
     options:
-      - label: I have **tried ALL** of the steps mentioned in the [troubleshooting guide](https://github.com/upscayl/upscayl/wiki/Troubleshooting).
+      - label: I have **tried ALL** of the steps mentioned in the [troubleshooting guide](https://github.com/guanfu/guanfu/wiki/Troubleshooting).
         required: true
-      - label: I have **searched** for this in the [issues tab](https://github.com/upscayl/upscayl/issues?q=).
+      - label: I have **searched** for this in the [issues tab](https://github.com/guanfu/guanfu/issues?q=).
         required: true
 - type: textarea
   attributes: 
@@ -26,8 +26,8 @@ body:
 
 - type: input
   attributes:
-    label: Upscayl Version (or commit hash)
-    description: ✍️ What version of Upscayl did you use?
+    label: Guanfu Version (or commit hash)
+    description: ✍️ What version of Guanfu did you use?
   validations:
     required: true
 
@@ -54,7 +54,7 @@ body:
 - type: input
   attributes:
     label: GPU Name
-    description: 📝 What GPU do you have? If you do not know, please just write the name of your device. If the name is something like "Intel Core", "Intel Graphics" or "AMD Vega" and you can't Upscayl images, [STOP and read the 4th point in the FAQ](https://github.com/upscayl/upscayl?tab=readme-ov-file#-faq). 
+    description: 📝 What GPU do you have? If you do not know, please just write the name of your device. If the name is something like "Intel Core", "Intel Graphics" or "AMD Vega" and you can't Guanfu images, [STOP and read the 4th point in the FAQ](https://github.com/guanfu/guanfu?tab=readme-ov-file#-faq). 
   validations:
     required: true
     
@@ -71,7 +71,7 @@ body:
 - type: textarea
   attributes: 
     label: Logs
-    description: 💥 Paste the logs below. [Here's a Guide if you don't know how to do that](https://github.com/upscayl/upscayl/wiki/Guide#logs).
+    description: 💥 Paste the logs below. [Here's a Guide if you don't know how to do that](https://github.com/guanfu/guanfu/wiki/Guide#logs).
     render: sh
   validations:
     required: true

@@ -4,7 +4,7 @@ version: 2023.11.28
 dontShow: true
 ---
 
-# Upscayl News! 🎉
+# Guanfu News! 🎉
 
 ---
 __Advertisement :)__

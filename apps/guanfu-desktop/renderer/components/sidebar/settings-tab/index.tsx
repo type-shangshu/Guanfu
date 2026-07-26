@@ -5,12 +5,13 @@ import { CustomModelsFolderSelect } from "./select-custom-models-folder";
 import { LogArea } from "./log-area";
 import { SelectImageScale } from "./select-image-scale";
 import { SelectImageFormat } from "./select-image-format";
+import { DonateButton } from "./donate-button";
 import React, { useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { customModelsPathAtom, scaleAtom } from "@/atoms/user-settings-atom";
 import { InputCompression } from "./input-compression";
 import OverwriteToggle from "./overwrite-toggle";
-import { UpscaylCloudModal } from "@/components/upscayl-cloud-modal";
+import { GuanfuCloudModal } from "@/components/guanfu-cloud-modal";
 import { ResetSettingsButton } from "./reset-settings-button";
 import { FEATURE_FLAGS } from "@common/feature-flags";
 import TurnOffNotificationsToggle from "./turn-off-notifications-toggle";
@@ -21,12 +22,9 @@ import LanguageSwitcher from "./language-switcher";
 import { translationAtom } from "@/atoms/translations-atom";
 import { ImageFormat } from "@/lib/valid-formats";
 import EnableContributionToggle from "./enable-contributions-toggle";
-import AutoUpdateToggle from "./auto-update-toggle";
 import TTAModeToggle from "./tta-mode-toggle";
 import SystemInfo from "./system-info";
 import CopyMetadataToggle from "./copy-metadata-toggle";
-import { SelectBackend } from "./select-backend";
-import { BackendId } from "@common/backends";
 
 interface IProps {
   batchMode: boolean;
@@ -36,8 +34,6 @@ interface IProps {
   setCompression: React.Dispatch<React.SetStateAction<number>>;
   gpuId: string;
   setGpuId: React.Dispatch<React.SetStateAction<string>>;
-  backendId: BackendId;
-  setBackendId: (backendId: BackendId) => void;
   logData: string[];
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,8 +46,6 @@ function SettingsTab({
   setCompression,
   gpuId,
   setGpuId,
-  backendId,
-  setBackendId,
   saveImageAs,
   setSaveImageAs,
   logData,
@@ -108,9 +102,8 @@ function SettingsTab({
     }
   };
 
-  const upscaylVersion = navigator?.userAgent?.match(
-    /Upscayl\/([\d\.]+\d+)/,
-  )[1];
+  const guanfuVersion =
+    navigator?.userAgent?.match(/(?:Guanfu|Guanfu)\/([\d.]+\d+)/)?.[1] ?? "";
 
   function disableScrolling() {
     if (timeoutId !== null) {
@@ -149,7 +142,7 @@ function SettingsTab({
         <p>{t("SETTINGS.SUPPORT.TITLE")}</p>
         <a
           className="btn btn-primary"
-          href="https://github.com/njulj/Guanfu"
+          href="https://docs.guanfu.org/"
           target="_blank"
         >
           {t("SETTINGS.SUPPORT.DOCS_BUTTON_TITLE")}
@@ -160,13 +153,14 @@ function SettingsTab({
             onClick={async () => {
               const systemInfo = await window.electron.getSystemInfo();
               const appVersion = await window.electron.getAppVersion();
-              const mailToUrl = `mailto:support@example.invalid?subject=Guanfu%20Issue%3A%20%3CWRITE%20HERE%3E&body=Hi%20Nayam!%0AI'm%20having%20an%20issue%20with%20Guanfu%20${appVersion}%0A%0A%3CPLEASE%20DESCRIBE%20ISSUE%20HERE%3E%0A%0A---%0ALOGS%3A%0A${logData.join("\n")}%0A%0ADEVICE%20DETAILS%3A%20${JSON.stringify(systemInfo)}`;
+              const mailToUrl = `mailto:support@guanfu.org?subject=Guanfu%20Issue%3A%20%3CWRITE%20HERE%3E&body=Hi%20Nayam!%0AI'm%20having%20an%20issue%20with%20Guanfu%20${appVersion}%0A%0A%3CPLEASE%20DESCRIBE%20ISSUE%20HERE%3E%0A%0A---%0ALOGS%3A%0A${logData.join("\n")}%0A%0ADEVICE%20DETAILS%3A%20${JSON.stringify(systemInfo)}`;
               window.open(mailToUrl, "_blank");
             }}
           >
             {t("SETTINGS.SUPPORT.EMAIL_BUTTON_TITLE")}
           </button>
         )}
+        {!FEATURE_FLAGS.APP_STORE_BUILD && <DonateButton />}
       </div>
 
       <LogArea
@@ -179,8 +173,6 @@ function SettingsTab({
       <SelectTheme />
 
       <LanguageSwitcher />
-
-      <SelectBackend backendId={backendId} setBackendId={setBackendId} />
 
       {/* IMAGE FORMAT BUTTONS */}
       <SelectImageFormat
@@ -206,7 +198,6 @@ function SettingsTab({
 
       <OverwriteToggle />
       <TurnOffNotificationsToggle />
-      <AutoUpdateToggle />
       <EnableContributionToggle />
 
       {/* GPU ID INPUT */}
@@ -225,7 +216,7 @@ function SettingsTab({
       {/* RESET SETTINGS */}
       <ResetSettingsButton />
 
-      {FEATURE_FLAGS.SHOW_UPSCAYL_CLOUD_INFO && (
+      {FEATURE_FLAGS.SHOW_GUANFU_CLOUD_INFO && (
         <>
           <button
             className="mx-5 mb-5 animate-pulse rounded-btn bg-success p-1 text-sm text-slate-50 shadow-lg shadow-success/40"
@@ -236,7 +227,7 @@ function SettingsTab({
             {t("INTRO")}
           </button>
 
-          <UpscaylCloudModal
+          <GuanfuCloudModal
             show={show}
             setShow={setShow}
             setDontShowCloudModal={setDontShowCloudModal}

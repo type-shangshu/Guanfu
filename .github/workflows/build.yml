@@ -1,0 +1,420 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - ljw
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "20"
+  # Optional: pin ncnn if vendored submodule is incomplete
+  NCNN_REF: b16501a65edf03828dae55b4d20ccc6a6bf4a3b4
+  VK_VERSION: "1.3.290.0"
+  # Default models pulled for packaging when not present in the tree
+  MODELS_BASE_URL: https://raw.githubusercontent.com/upscayl/upscayl/main/resources/models
+  GH_TOKEN: ${{ github.token }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Linux x64
+  # ---------------------------------------------------------------------------
+  linux-x64:
+    runs-on: ubuntu-22.04
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake glslang-tools \
+            libfuse2 libvulkan-dev zip rpm
+
+      - name: Build backend (upscayl-bin)
+        working-directory: backends/upscayl-ncnn
+        run: |
+          cmake -S src -B build-guanfu \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DNCNN_ENABLE_LTO=OFF
+          cmake --build build-guanfu --target upscayl-bin -j2
+
+      - name: Stage backend binary
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/linux-x64/bin
+          cp backends/upscayl-ncnn/build-guanfu/upscayl-bin \
+            apps/guanfu-desktop/resources/linux-x64/bin/upscayl-bin
+          chmod 755 apps/guanfu-desktop/resources/linux-x64/bin/upscayl-bin
+
+      - name: Stage models
+        run: bash scripts/ci-stage-models.sh
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Package desktop (linux x64)
+        working-directory: apps/guanfu-desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:linux-x64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-linux-x64
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.AppImage
+            apps/guanfu-desktop/dist/*.deb
+            apps/guanfu-desktop/dist/*.rpm
+            apps/guanfu-desktop/dist/*.zip
+
+  # ---------------------------------------------------------------------------
+  # Linux arm64
+  # ---------------------------------------------------------------------------
+  linux-arm64:
+    runs-on: ubuntu-24.04-arm
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake glslang-tools \
+            libfuse2 libvulkan-dev zip rpm
+
+      - name: Build backend (upscayl-bin)
+        working-directory: backends/upscayl-ncnn
+        run: |
+          cmake -S src -B build-guanfu \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DNCNN_ENABLE_LTO=OFF
+          cmake --build build-guanfu --target upscayl-bin -j2
+
+      - name: Stage backend binary
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/linux-arm64/bin
+          cp backends/upscayl-ncnn/build-guanfu/upscayl-bin \
+            apps/guanfu-desktop/resources/linux-arm64/bin/upscayl-bin
+          chmod 755 apps/guanfu-desktop/resources/linux-arm64/bin/upscayl-bin
+
+      - name: Stage models
+        run: bash scripts/ci-stage-models.sh
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Clean electron-builder cache
+        run: rm -rf ~/.cache/electron-builder
+
+      - name: Package desktop (linux arm64)
+        working-directory: apps/guanfu-desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:linux-arm64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-linux-arm64
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.AppImage
+            apps/guanfu-desktop/dist/*.deb
+            apps/guanfu-desktop/dist/*.rpm
+            apps/guanfu-desktop/dist/*.zip
+
+  # ---------------------------------------------------------------------------
+  # Windows x64
+  # ---------------------------------------------------------------------------
+  windows-x64:
+    runs-on: windows-latest
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install Vulkan SDK
+        run: choco install vulkan-sdk -y --no-progress
+
+      - name: Build backend (upscayl-bin.exe)
+        working-directory: backends/upscayl-ncnn
+        run: |
+          $sdk = Get-ChildItem "C:\VulkanSDK" -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          if (-not $sdk) { throw "Vulkan SDK not found under C:\VulkanSDK" }
+          $env:VULKAN_SDK = $sdk.FullName
+          cmake -S src -B build-guanfu -A x64 `
+            -DNCNN_VULKAN=ON `
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON `
+            -DNCNN_ENABLE_LTO=OFF
+          cmake --build build-guanfu --config Release --target upscayl-bin -j 2
+
+      - name: Stage backend binary
+        shell: bash
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/win-x64/bin
+          cp backends/upscayl-ncnn/build-guanfu/Release/upscayl-bin.exe \
+            apps/guanfu-desktop/resources/win-x64/bin/upscayl-bin.exe
+          # OpenMP runtime often required next to the binary
+          if command -v find >/dev/null; then
+            vc="$(find "/c/Program Files/Microsoft Visual Studio" -name 'vcomp140.dll' 2>/dev/null | head -1 || true)"
+            if [ -n "$vc" ]; then cp "$vc" apps/guanfu-desktop/resources/win-x64/bin/; fi
+          fi
+
+      - name: Stage models
+        shell: bash
+        run: bash scripts/ci-stage-models.sh
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Package desktop (windows x64)
+        working-directory: apps/guanfu-desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:win-x64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-windows-x64
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.exe
+            apps/guanfu-desktop/dist/*.zip
+
+  # ---------------------------------------------------------------------------
+  # Windows arm64
+  # ---------------------------------------------------------------------------
+  windows-arm64:
+    runs-on: windows-11-arm
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install Vulkan SDK
+        run: choco install vulkan-sdk -y --no-progress
+
+      - name: Build backend (upscayl-bin.exe)
+        working-directory: backends/upscayl-ncnn
+        run: |
+          $sdk = Get-ChildItem "C:\VulkanSDK" -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          if (-not $sdk) { throw "Vulkan SDK not found under C:\VulkanSDK" }
+          $env:VULKAN_SDK = $sdk.FullName
+          cmake -S src -B build-guanfu -A ARM64 `
+            -DNCNN_VULKAN=ON `
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON `
+            -DNCNN_ENABLE_LTO=OFF
+          cmake --build build-guanfu --config Release --target upscayl-bin -j 2
+
+      - name: Stage backend binary
+        shell: bash
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/win-arm64/bin
+          cp backends/upscayl-ncnn/build-guanfu/Release/upscayl-bin.exe \
+            apps/guanfu-desktop/resources/win-arm64/bin/upscayl-bin.exe
+
+      - name: Stage models
+        shell: bash
+        run: bash scripts/ci-stage-models.sh
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Package desktop (windows arm64)
+        working-directory: apps/guanfu-desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:win-arm64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-windows-arm64
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.exe
+            apps/guanfu-desktop/dist/*.zip
+
+  # ---------------------------------------------------------------------------
+  # macOS arm64
+  # ---------------------------------------------------------------------------
+  macos-arm64:
+    runs-on: macos-15
+    env:
+      RESTOREVAR_PARAM_URL: ${{ secrets.RESTOREVAR_PARAM_URL }}
+      RESTOREVAR_BIN_URL: ${{ secrets.RESTOREVAR_BIN_URL }}
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      VULKAN_SDK_DIR: ${{ github.workspace }}/vulkan-mac-sdk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/guanfu-desktop/package-lock.json
+
+      - name: Install OpenMP
+        run: |
+          brew install --quiet libomp cmake
+          echo "LIBOMP_PREFIX=$(brew --prefix libomp)" >> "$GITHUB_ENV"
+
+      - name: Cache Vulkan / MoltenVK SDK
+        id: cache-vulkansdk
+        uses: actions/cache@v4
+        with:
+          path: vulkan-mac-sdk
+          key: vulkansdk-macos-${{ env.VK_VERSION }}-macos15
+
+      - name: Install Vulkan SDK
+        if: steps.cache-vulkansdk.outputs.cache-hit != 'true'
+        run: |
+          curl -L -o "vulkansdk-macos-${VK_VERSION}.dmg" \
+            "https://sdk.lunarg.com/sdk/download/${VK_VERSION}/mac/vulkansdk-macos-${VK_VERSION}.dmg?Human=true"
+          hdiutil attach "vulkansdk-macos-${VK_VERSION}.dmg" -nobrowse -quiet
+          sudo "/Volumes/vulkansdk-macos-${VK_VERSION}/InstallVulkan.app/Contents/MacOS/InstallVulkan" \
+            --root "${VULKAN_SDK_DIR}" \
+            --accept-licenses --default-answer --confirm-command install \
+            com.lunarg.vulkan.core com.lunarg.vulkan.usr com.lunarg.vulkan.sdl2 \
+            com.lunarg.vulkan.glm com.lunarg.vulkan.volk com.lunarg.vulkan.vma
+          hdiutil detach "/Volumes/vulkansdk-macos-${VK_VERSION}" -quiet || true
+
+      - name: Build backend (upscayl-bin)
+        working-directory: backends/upscayl-ncnn
+        run: |
+          MOLTEN="$(find "${VULKAN_SDK_DIR}" -path '*MoltenVK.xcframework/macos-arm64_x86_64/libMoltenVK.a' | head -1)"
+          VULKAN_INC="$(find "${VULKAN_SDK_DIR}" -type d -path '*/macOS/include' | head -1)"
+          if [ -z "$MOLTEN" ] || [ -z "$VULKAN_INC" ]; then
+            echo "MoltenVK or Vulkan headers not found under ${VULKAN_SDK_DIR}"
+            find "${VULKAN_SDK_DIR}" -maxdepth 5 -type f -name 'libMoltenVK*' | head
+            exit 1
+          fi
+          cmake -S src -B build-guanfu \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DUSE_STATIC_MOLTENVK=ON \
+            -DNCNN_VULKAN=ON \
+            -DNCNN_VULKAN_ONLINE_SPIRV=ON \
+            -DNCNN_ENABLE_LTO=OFF \
+            -DOpenMP_C_FLAGS="-Xclang -fopenmp -I${LIBOMP_PREFIX}/include" \
+            -DOpenMP_CXX_FLAGS="-Xclang -fopenmp -I${LIBOMP_PREFIX}/include" \
+            -DOpenMP_C_LIB_NAMES=libomp \
+            -DOpenMP_CXX_LIB_NAMES=libomp \
+            -DOpenMP_libomp_LIBRARY="${LIBOMP_PREFIX}/lib/libomp.a" \
+            -DVulkan_INCLUDE_DIR="${VULKAN_INC}" \
+            -DVulkan_LIBRARY="${MOLTEN}"
+          cmake --build build-guanfu --target upscayl-bin -j3
+
+      - name: Stage backend binary
+        run: |
+          mkdir -p apps/guanfu-desktop/resources/mac-arm64/bin
+          cp backends/upscayl-ncnn/build-guanfu/upscayl-bin \
+            apps/guanfu-desktop/resources/mac-arm64/bin/upscayl-bin
+          chmod 755 apps/guanfu-desktop/resources/mac-arm64/bin/upscayl-bin
+
+      - name: Stage models
+        run: bash scripts/ci-stage-models.sh
+
+      - name: Install desktop dependencies
+        working-directory: apps/guanfu-desktop
+        run: npm ci
+
+      - name: Package desktop (macOS arm64)
+        working-directory: apps/guanfu-desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: npm run dist:mac-arm64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: guanfu-macos-arm64
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            apps/guanfu-desktop/dist/*.dmg
+            apps/guanfu-desktop/dist/*.zip

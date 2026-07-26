@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: upscayl-linux-x64
+          name: guanfu-linux-x64
           path: |
             dist/*.AppImage
             dist/*.deb
@@ -64,7 +64,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: upscayl-linux-arm64
+          name: guanfu-linux-arm64
           path: |
             dist/*.AppImage
             dist/*.deb
@@ -93,7 +93,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: upscayl-windows-x64
+          name: guanfu-windows-x64
           path: |
             dist/*.exe
             dist/*.zip
@@ -120,7 +120,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: upscayl-windows-arm64
+          name: guanfu-windows-arm64
           path: |
             dist/*.exe
             dist/*.zip
@@ -150,7 +150,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: upscayl-macos-arm64
+          name: guanfu-macos-arm64
           path: |
             dist/*.dmg
             dist/*.zip
