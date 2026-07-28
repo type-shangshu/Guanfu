@@ -17,7 +17,7 @@ To find out the GPU ID, follow these steps:
 `2`   
 or even `0,1,2`
     * On Windows, this setting may be overridden by the system if Guanfu has not been [set to performance mode](https://youtube.com/watch?v=sxvs6qYHJmc) under advanced display settings.
-    * This doesn't distribute the load evenly due to Real-ESRGAN shenanigans. See [#465](guanfu/guanfu/issues/465) for details.
+    * This doesn't distribute the load evenly due to Real-ESRGAN shenanigans. See [#465](upscaleProc/guanfu/issues/465) for details.
 
 ## Logs
 The logs appear in the Settings tab.   
@@ -34,7 +34,7 @@ To use your custom models, follow these steps:
 3. Open Guanfu.
 4. Go to the Settings tab and scroll down until you see the "Add Custom Models" area and the "Select Folder" button.
 5. Select the "models" folder you created in step 1.
-6. Go to the Guanfu tab and select the Guanfuing type to the filename of the custom model you want to use.
+6. Go to the Guanfu tab and select the Upscaling type to the filename of the custom model you want to use.
 
 ## Scale Option
 Since v2.8, Guanfu emulates the scale option by Downscayling the x4 image for unsupported models.

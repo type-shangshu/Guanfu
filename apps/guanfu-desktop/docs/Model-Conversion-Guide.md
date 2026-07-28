@@ -32,5 +32,5 @@ This guide explains how you can convert PyTorch models to NCNN models for Guanfu
 ![Screenshot from 2023-06-18 23-51-58](https://github.com/guanfu/guanfu/assets/25067102/16f6a401-2130-490a-981d-4487427c146a)
 12. Your model should now appear at the bottom of your models list.
 ![Screenshot from 2023-06-18 23-52-03](https://github.com/guanfu/guanfu/assets/25067102/74e0b1cc-2ca1-4f4f-8a2c-9f261009aa2a)
-13. Happy Guanfuing 😄
+13. Happy Upscaling 😄
 ![Screenshot from 2023-06-18 23-53-45](https://github.com/guanfu/guanfu/assets/25067102/29bdc308-711d-4599-b1b6-ed958440f374)

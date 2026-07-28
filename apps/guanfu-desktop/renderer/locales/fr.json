@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Présentation de Guanfu Cloud !",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Mettre une étoile sur GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Dimensions de l'image",
-      "DESCRIPTION": "Tout ce qui dépasse 4X (sauf 16X Double Guanfu) ne fait que redimensionner l'image et n'utilise pas l'améliorateur AI.",
+      "DESCRIPTION": "Tout ce qui dépasse 4X (sauf 16X Double Upscale) ne fait que redimensionner l'image et n'utilise pas l'améliorateur AI.",
       "WARNING": "Tout ce qui dépasse 5X peut causer des problèmes de performance sur certains appareils !",
       "ADDITIONAL_WARNING": "Cela peut causer des problèmes de performance sur certains appareils !"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Amélioration par lot",
       "DESCRIPTION": "Cela vous permettra d'améliorer tous les fichiers d'un dossier en une seule fois"
@@ -161,8 +161,8 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
       "DESCRIPTION": "Activez cette option pour exécuter le suréchantillonnage deux fois sur une image. Notez que cela peut entraîner une augmentation significative du temps de traitement et éventuellement des problèmes de performance pour des échelles supérieures à 4X."
     },
     "OUTPUT_PATH_SELECTION": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Vue de la lentille",
       "SLIDER_VIEW_TITLE": "Vue du curseur",
       "ZOOM_AMOUNT_TITLE": "Niveau de zoom",
-      "TOTAL_GUANFUS": "Total des améliorations",
-      "TOTAL_BATCH_GUANFUS": "Total des améliorations par lot",
-      "TOTAL_IMAGE_GUANFUS": "Total des améliorations d'images",
-      "TOTAL_DOUBLE_GUANFUS": "Total des doubles améliorations",
-      "AVERAGE_GUANFU_TIME": "Temps moyen d'amélioration",
-      "LAST_GUANFU_DURATION": "Durée de la dernière amélioration",
+      "TOTAL_UPSCALES": "Total des améliorations",
+      "TOTAL_BATCH_UPSCALES": "Total des améliorations par lot",
+      "TOTAL_IMAGE_UPSCALES": "Total des améliorations d'images",
+      "TOTAL_DOUBLE_UPSCALES": "Total des doubles améliorations",
+      "AVERAGE_UPSCALE_TIME": "Temps moyen d'amélioration",
+      "LAST_UPSCALE_DURATION": "Durée de la dernière amélioration",
       "LAST_USED_AT": "Dernière utilisation"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Amélioration par lot en cours :",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Amélioration par lot en cours :",
       "IN_PROGRESS_TITLE": "Faire la magie de l'IA...",
       "STOP_BUTTON_TITLE": "ARRÊTER"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Dossier sélectionné :",
         "DONE_TITLE": "Tout est terminé !",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Ouvrir le dossier amélioré"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Ouvrir le dossier amélioré"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Amélioré"
+      "UPSCALED_TITLE": "Amélioré"
     },
     "DIALOG_BOX": {
       "CLOSE": "Fermer"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Sur certains systèmes, les métadonnées peuvent ne pas être visibles dans les formats autres que JPG. Utilisez des outils spécifiques pour visualiser les métadonnées si nécessaire."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Bientôt disponible !",
     "CATCHY_PHRASE_1": "Plus d'erreurs, de problèmes matériels, de compromis sur la qualité ou de longs temps de chargement !",
     "CATCHY_PHRASE_2": "🌐 Amélioration possible partout, à tout moment, sur tout appareil\n☁️ Pas de carte graphique ou de matériel requis\n👩 Amélioration du visage\n🦋 Plus de 10 modèles au choix\n🏎 5x plus rapide que Guanfu Desktop\n🎞 Amélioration vidéo\n💰 Utilisation commerciale\n😴 Amélioration pendant votre sommeil",

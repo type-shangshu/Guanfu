@@ -47,12 +47,12 @@ const SliderView = ({
       itemTwo={
         <>
           <p className="absolute bottom-1 right-1 rounded-md bg-black p-1 text-sm font-medium text-white opacity-30">
-            {t("APP.SLIDER.GUANFUED_TITLE")}
+            {t("APP.SLIDER.UPSCALED_TITLE")}
           </p>
           <img
             /* USE REGEX TO GET THE FILENAME AND ENCODE IT INTO PROPER FORM IN ORDER TO AVOID ERRORS DUE TO SPECIAL CHARACTERS */
             src={"file:///" + sanitizedUpscaledImagePath}
-            alt={t("APP.SLIDER.GUANFUED_TITLE")}
+            alt={t("APP.SLIDER.UPSCALED_TITLE")}
             style={{
               objectFit: "contain",
               backgroundPosition: "0% 0%",

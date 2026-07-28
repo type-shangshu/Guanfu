@@ -12,7 +12,7 @@ export const selectedModelIdAtom = atomWithStorage<ModelId | string>(
   "selectedModelId",
   "upscayl-standard-4x",
 );
-export const doubleGuanfuAtom = atomWithStorage("doubleGuanfu", false);
+export const doubleUpscaleAtom = atomWithStorage("doubleUpscale", false);
 export const gpuIdAtom = atomWithStorage("gpuId", "");
 export const saveImageAsAtom = atomWithStorage<ImageFormat>(
   "saveImageAs",
@@ -85,12 +85,12 @@ export const enableContributionAtom = atomWithStorage(
 );
 
 export const userStatsAtom = atomWithStorage("userStats", {
-  totalGuanfus: 0,
-  doubleGuanfus: 0,
-  batchGuanfus: 0,
-  imageGuanfus: 0,
-  averageGuanfuTime: 0,
-  lastGuanfuDuration: 0,
+  totalUpscales: 0,
+  doubleUpscales: 0,
+  batchUpscales: 0,
+  imageUpscales: 0,
+  averageUpscaleTime: 0,
+  lastUpscaleDuration: 0,
   lastUsedAt: 0,
 });
 

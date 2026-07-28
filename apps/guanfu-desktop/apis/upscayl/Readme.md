@@ -28,11 +28,11 @@ Monitors the progress of upscaling tasks and retrieves download links when compl
 
 ### Prerequisites
 - [Requestly Desktop App](https://requestly.com/desktop) or Browser Extension
-- Guanfu API key from https://guanfu.org/account/api-keys
+- Guanfu API key from https://upscaleProc.org/account/api-keys
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/guanfu/guanfu.git
+git clone https://github.com/guanfu/upscaleProc.git
 cd guanfu/api-collection
 ```
 
@@ -41,7 +41,7 @@ cd guanfu/api-collection
 2. Go to **Collections** > **Guanfu API Testing** > **Variables**
 3. Update the following values:
    ```
-   baseUrl: https://api.guanfu.org
+   baseUrl: https://api.upscaleProc.org
    x-api-key: YOUR_ACTUAL_API_KEY_HERE
    ```
 

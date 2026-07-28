@@ -15,7 +15,7 @@ import {
   tileSizeAtom,
   showSidebarAtom,
   selectedModelIdAtom,
-  doubleGuanfuAtom,
+  doubleUpscaleAtom,
   gpuIdAtom,
   saveImageAsAtom,
   userStatsAtom,
@@ -24,12 +24,12 @@ import {
 } from "../../atoms/user-settings-atom";
 import useLogger from "../hooks/use-logger";
 import {
-  BatchGuanfuPayload,
-  DoubleGuanfuPayload,
-  ImageGuanfuPayload,
+  BatchUpscalePayload,
+  DoubleUpscalePayload,
+  ImageUpscalePayload,
 } from "@common/types/types";
 import { useToast } from "@/components/ui/use-toast";
-import GuanfuSteps from "./guanfu-tab/guanfu-steps";
+import UpscaleSteps from "./upscale-tab/upscale-steps";
 import SettingsTab from "./settings-tab";
 import Footer from "../footer";
 import Tabs from "../tabs";
@@ -37,7 +37,7 @@ import Header from "../header";
 import { ChevronLeftIcon } from "lucide-react";
 import { logAtom } from "@/atoms/log-atom";
 import { ELECTRON_COMMANDS } from "@common/electron-commands";
-import useGuanfuVersion from "../hooks/use-guanfu-version";
+import useAppVersion from "../hooks/use-app-version";
 import useTranslation from "../hooks/use-translation";
 import GuanfuLogo from "./guanfu-logo";
 import SidebarToggleButton from "./sidebar-button";
@@ -65,12 +65,12 @@ const Sidebar = ({
   const t = useTranslation();
   const logit = useLogger();
   const { toast } = useToast();
-  const version = useGuanfuVersion();
+  const version = useAppVersion();
 
   // LOCAL STATES
   // TODO: Add electron handler for os
   const [selectedModelId, setSelectedModelId] = useAtom(selectedModelIdAtom);
-  const [doubleGuanfu, setDoubleGuanfu] = useAtom(doubleGuanfuAtom);
+  const [doubleUpscale, setDoubleUpscale] = useAtom(doubleUpscaleAtom);
   const [gpuId, setGpuId] = useAtom(gpuIdAtom);
   const [saveImageAs, setSaveImageAs] = useAtom(saveImageAsAtom);
 
@@ -95,16 +95,16 @@ const Sidebar = ({
   const ttaMode = useAtomValue(ttaModeAtom);
   const [copyMetadata] = useAtom(copyMetadataAtom);
 
-  const guanfuHandler = async () => {
+  const upscaleHandler = async () => {
     logit("🔄 Resetting Upscaled Image Path");
     setUpscaledImagePath("");
     setUpscaledBatchFolderPath("");
     if (imagePath !== "" || batchFolderPath !== "") {
       setProgress(t("APP.PROGRESS.WAIT_TITLE"));
-      // Double Guanfu
-      if (doubleGuanfu) {
-        window.electron.send<DoubleGuanfuPayload>(
-          ELECTRON_COMMANDS.DOUBLE_GUANFU,
+      // Double Upscale
+      if (doubleUpscale) {
+        window.electron.send<DoubleUpscalePayload>(
+          ELECTRON_COMMANDS.DOUBLE_UPSCALE,
           {
             imagePath,
             outputPath,
@@ -123,17 +123,17 @@ const Sidebar = ({
         );
         setUserStats((prev) => ({
           ...prev,
-          totalGuanfus: prev.totalGuanfus + 1,
+          totalUpscales: prev.totalUpscales + 1,
           lastUsedAt: new Date().getTime(),
-          doubleGuanfus: prev.doubleGuanfus + 1,
-          imageGuanfus: prev.imageGuanfus + 1,
+          doubleUpscales: prev.doubleUpscales + 1,
+          imageUpscales: prev.imageUpscales + 1,
         }));
-        logit("🏁 DOUBLE_GUANFU");
+        logit("🏁 DOUBLE_UPSCALE");
       } else if (batchMode) {
-        // Batch Guanfu
-        setDoubleGuanfu(false);
-        window.electron.send<BatchGuanfuPayload>(
-          ELECTRON_COMMANDS.FOLDER_GUANFU,
+        // Batch Upscale
+        setDoubleUpscale(false);
+        window.electron.send<BatchUpscalePayload>(
+          ELECTRON_COMMANDS.FOLDER_UPSCALE,
           {
             batchFolderPath,
             outputPath,
@@ -152,14 +152,14 @@ const Sidebar = ({
         );
         setUserStats((prev) => ({
           ...prev,
-          totalGuanfus: prev.totalGuanfus + 1,
+          totalUpscales: prev.totalUpscales + 1,
           lastUsedAt: new Date().getTime(),
-          batchGuanfus: prev.doubleGuanfus + 1,
+          batchUpscales: prev.doubleUpscales + 1,
         }));
-        logit("🏁 FOLDER_GUANFU");
+        logit("🏁 FOLDER_UPSCALE");
       } else {
-        // Single Image Guanfu
-        window.electron.send<ImageGuanfuPayload>(ELECTRON_COMMANDS.GUANFU, {
+        // Single Image Upscale
+        window.electron.send<ImageUpscalePayload>(ELECTRON_COMMANDS.UPSCALE, {
           imagePath,
           outputPath,
           model: selectedModelId,
@@ -177,11 +177,11 @@ const Sidebar = ({
         });
         setUserStats((prev) => ({
           ...prev,
-          totalGuanfus: prev.totalGuanfus + 1,
+          totalUpscales: prev.totalUpscales + 1,
           lastUsedAt: new Date().getTime(),
-          imageGuanfus: prev.imageGuanfus + 1,
+          imageUpscales: prev.imageUpscales + 1,
         }));
-        logit("🏁 GUANFU");
+        logit("🏁 UPSCALE");
       }
     } else {
       toast({
@@ -221,15 +221,15 @@ const Sidebar = ({
         <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
 
         {selectedTab === 0 && (
-          <GuanfuSteps
+          <UpscaleSteps
             selectImageHandler={selectImageHandler}
             selectFolderHandler={selectFolderHandler}
-            guanfuHandler={guanfuHandler}
+            upscaleHandler={upscaleHandler}
             batchMode={batchMode}
             setBatchMode={setBatchMode}
             imagePath={imagePath}
-            doubleGuanfu={doubleGuanfu}
-            setDoubleGuanfu={setDoubleGuanfu}
+            doubleUpscale={doubleUpscale}
+            setDoubleUpscale={setDoubleUpscale}
             dimensions={dimensions}
             setGpuId={setGpuId}
             setSaveImageAs={setSaveImageAs}

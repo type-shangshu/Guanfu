@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Presentazione di Guanfu Cloud !",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Metti una stella su GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Scala dell'immagine",
-      "DESCRIPTION": "Qualsiasi valore superiore a 4X (eccetto 16X Double Guanfu) ridimensiona solo l'immagine e non utilizza l'upsampling AI.",
+      "DESCRIPTION": "Qualsiasi valore superiore a 4X (eccetto 16X Double Upscale) ridimensiona solo l'immagine e non utilizza l'upsampling AI.",
       "WARNING": "Qualsiasi valore superiore a 5X può causare problemi di prestazioni su alcuni dispositivi !",
       "ADDITIONAL_WARNING": "Ciò potrebbe causare problemi di prestazioni su alcuni dispositivi !"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Sovracampionamento batch",
       "DESCRIPTION": "Ciò ti consentirà di sovracampionare tutti i file in una cartella contemporaneamente"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Doppio Guanfu",
       "DESCRIPTION": "Abilita questa opzione per eseguire il supercampionamento due volte su un'immagine. Tieni presente che ciò potrebbe causare un aumento significativo del tempo di elaborazione e possibili problemi di prestazioni per scale superiori a 4X."
     },
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Vista dell'obiettivo",
       "SLIDER_VIEW_TITLE": "Vista cursore",
       "ZOOM_AMOUNT_TITLE": "Livello di zoom",
-      "TOTAL_GUANFUS": "Sovracampionamento totale",
-      "TOTAL_BATCH_GUANFUS": "Sovracampionamento totale per batch",
-      "TOTAL_IMAGE_GUANFUS": "Sovracampionamento totale dell'immagine",
-      "TOTAL_DOUBLE_GUANFUS": "Doppio sovracampionamento totale",
-      "AVERAGE_GUANFU_TIME": "Tempo medio di sovracampionamento",
-      "LAST_GUANFU_DURATION": "Durata dell'ultimo sovracampionamento",
+      "TOTAL_UPSCALES": "Sovracampionamento totale",
+      "TOTAL_BATCH_UPSCALES": "Sovracampionamento totale per batch",
+      "TOTAL_IMAGE_UPSCALES": "Sovracampionamento totale dell'immagine",
+      "TOTAL_DOUBLE_UPSCALES": "Doppio sovracampionamento totale",
+      "AVERAGE_UPSCALE_TIME": "Tempo medio di sovracampionamento",
+      "LAST_UPSCALE_DURATION": "Durata dell'ultimo sovracampionamento",
       "LAST_USED_AT": "Ultimo usato"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Sovracampionamento batch in corso :",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Sovracampionamento batch in corso :",
       "IN_PROGRESS_TITLE": "Fare la magia del sovracampionamento...",
       "STOP_BUTTON_TITLE": "FERMARE"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Cartella selezionata :",
         "DONE_TITLE": "È terminato !",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Apri la cartella sovracampionata"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Apri la cartella sovracampionata"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Originale",
-      "GUANFUED_TITLE": "Sovracampionato"
+      "UPSCALED_TITLE": "Sovracampionato"
     },
     "DIALOG_BOX": {
       "CLOSE": "Chiudi"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Su alcuni sistemi, i metadati potrebbero non essere visibili in formati diversi da JPG. Utilizza strumenti specifici per visualizzare i metadati se necessario."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Presto disponibile !",
     "CATCHY_PHRASE_1": "Niente più errori, problemi hardware, compromessi di qualità o lunghi tempi di caricamento !",
     "CATCHY_PHRASE_2": "🌐 Effettua l'upsample ovunque, in qualsiasi momento, su qualsiasi dispositivo\n☁️ Nessuna scheda grafica o hardware richiesto\n👩 Miglioramento del viso\n🦋 Più di 10 modelli tra cui scegliere\n🏎 5 volte più veloce di Guanfu Desktop\n🎞 Sovracampionamento video\n💰 Uso commerciale\n😴 Sovracampiona mentre voi dormite",

@@ -7,7 +7,7 @@ import { translationAtom } from "@/atoms/translations-atom";
 const nameRegex = /^[A-Za-z\s.'-]+$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-export const GuanfuCloudModal = ({ show, setShow, setDontShowCloudModal }) => {
+export const CloudModal = ({ show, setShow, setDontShowCloudModal }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const t = useAtomValue(translationAtom);
@@ -43,16 +43,16 @@ export const GuanfuCloudModal = ({ show, setShow, setDontShowCloudModal }) => {
           </svg>
         </button>
         <p className="badge badge-neutral text-xs">
-          {t("GUANFU_CLOUD.COMING_SOON")}
+          {t("CLOUD_MODAL.COMING_SOON")}
         </p>
         <p className="text-2xl font-semibold">{t("INTRO")}</p>
         <p className="w-9/12 text-lg font-medium">
-          {t("GUANFU_CLOUD.CATCHY_PHRASE_1")}
+          {t("CLOUD_MODAL.CATCHY_PHRASE_1")}
         </p>
 
         <div className="flex flex-col gap-2 text-start">
           <pre style={{ fontFamily: "inherit" }} className="leading-8">
-            {t("GUANFU_CLOUD.CATCHY_PHRASE_2")}
+            {t("CLOUD_MODAL.CATCHY_PHRASE_2")}
           </pre>
         </div>
 
@@ -72,16 +72,16 @@ export const GuanfuCloudModal = ({ show, setShow, setDontShowCloudModal }) => {
                   email,
                 });
               } catch (error) {
-                alert(t("GUANFU_CLOUD.ALREADY_REGISTERED_ALERT", { name }));
+                alert(t("CLOUD_MODAL.ALREADY_REGISTERED_ALERT", { name }));
                 return;
               }
               setName("");
               setEmail("");
               setDontShowCloudModal(true);
               setShow(false);
-              alert(t("GUANFU_CLOUD.ADD_SUCCESS"));
+              alert(t("CLOUD_MODAL.ADD_SUCCESS"));
             } else {
-              alert(t("GUANFU_CLOUD.INCORRECT_FIELDS_ALERT"));
+              alert(t("CLOUD_MODAL.INCORRECT_FIELDS_ALERT"));
             }
           }}
         >
@@ -105,7 +105,7 @@ export const GuanfuCloudModal = ({ show, setShow, setDontShowCloudModal }) => {
             type="submit"
             className="rounded-2xl bg-success px-4 py-2 text-success-content"
           >
-            {t("GUANFU_CLOUD.JOIN_WAITLIST")}
+            {t("CLOUD_MODAL.JOIN_WAITLIST")}
           </button>
 
           <button
@@ -116,7 +116,7 @@ export const GuanfuCloudModal = ({ show, setShow, setDontShowCloudModal }) => {
             }}
             type="button"
           >
-            {t("GUANFU_CLOUD.DONT_SHOW_AGAIN")}
+            {t("CLOUD_MODAL.DONT_SHOW_AGAIN")}
           </button>
         </form>
       </div>

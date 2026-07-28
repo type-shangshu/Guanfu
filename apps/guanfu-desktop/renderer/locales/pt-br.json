@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Apresentando o Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Siga-nos no GitHub 😁",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Guanfu em lote",
       "DESCRIPTION": "Permite que você faça Guanfu de todos os arquivos numa pasta de uma só vez"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Guanfu Duplo",
       "DESCRIPTION": "Ative esta opção para executar o guanfu duas vezes numa mesma imagem. Atenção: isto pode causar aumento significativo no tempo de processamento e talvez problemas de desempenho para escalas superiores a 4x."
     },
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Guanfu de ",
       "TO_TITLE": " para ",
       "NO_OUTPUT_FOLDER_ALERT": "Favor selecionar uma pasta de saída primeiro",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Guanfuizando ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Visualização de Lente",
       "SLIDER_VIEW_TITLE": "Visualização de Slide",
       "ZOOM_AMOUNT_TITLE": "Níve de Zoom",
-      "TOTAL_GUANFUS": "Guanfus Totais",
-      "TOTAL_BATCH_GUANFUS": "Guanfus em Lote Totais",
-      "TOTAL_IMAGE_GUANFUS": "Guanfus de Imagem Totais",
-      "TOTAL_DOUBLE_GUANFUS": "Guanfus Duplos Totais",
-      "AVERAGE_GUANFU_TIME": "Tempo Médio por Guanfu",
-      "LAST_GUANFU_DURATION": "Duração do Último Guanfu",
+      "TOTAL_UPSCALES": "Upscales Totais",
+      "TOTAL_BATCH_UPSCALES": "Upscales em Lote Totais",
+      "TOTAL_IMAGE_UPSCALES": "Upscales de Imagem Totais",
+      "TOTAL_DOUBLE_UPSCALES": "Upscales Duplos Totais",
+      "AVERAGE_UPSCALE_TIME": "Tempo Médio por Guanfu",
+      "LAST_UPSCALE_DURATION": "Duração do Último Guanfu",
       "LAST_USED_AT": "Usado por último em"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Guanfu em Lote em andamento:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Guanfu em Lote em andamento:",
       "IN_PROGRESS_TITLE": "Lançando o feitiço do Guanfu...",
       "STOP_BUTTON_TITLE": "PARAR"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Pasta selecionada:",
         "DONE_TITLE": "Tudo pronto!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Abrir Pasta Guanfuizada"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Abrir Pasta Guanfuizada"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Guanfuizado"
+      "UPSCALED_TITLE": "Guanfuizado"
     },
     "DIALOG_BOX": {
       "CLOSE": "Fechar"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Em alguns sistemas, os metadados podem não ser visíveis em formatos diferentes de JPG. Use ferramentas específicas para visualizar metadados se necessário."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Em breve!",
     "CATCHY_PHRASE_1": "Chega de erros, problemas de hardware, sacrifício de qualidade, ou tempos de espera longos!",
     "CATCHY_PHRASE_2": "🌐 Use o Guanfu de qualquer lugar, a qualquer hora, em qualquer dispositivo\n☁️ Não precisa de Placa de Vídeo ou hardware\n👩 Melhoria de rostos\n🦋 Mais de 10 modelos disponíveis\n🏎 5x mais rápido do que o Guanfu de Computador\n🎞 Aprimoramenteo de vídeo\n💰 Uso Comercial\n😴 Guanfu enquanto dorme",

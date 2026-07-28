@@ -10,10 +10,10 @@ import {
 import { getSingleImageArguments } from "../utils/get-arguments";
 import logit from "../utils/logit";
 import slash from "../utils/slash";
-import { spawnGuanfu } from "../utils/spawn-guanfu";
+import { spawnUpscale } from "../utils/spawn-upscale";
 import { parse } from "path";
 import { getMainWindow } from "../main-window";
-import { ImageGuanfuPayload } from "../../common/types/types";
+import { ImageUpscalePayload } from "../../common/types/types";
 import { ImageFormat } from "../types/types";
 import showNotification from "../utils/show-notification";
 import getFilenameFromPath from "../../common/get-file-name";
@@ -23,7 +23,7 @@ import { MODELS } from "../../common/models-list";
 import { getPlatform } from "../utils/get-device-specs";
 import { copyMetadata } from "../utils/copy-metadata";
 
-const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
+const imageUpscale = async (event, payload: ImageUpscalePayload) => {
   const mainWindow = getMainWindow();
 
   if (!mainWindow) {
@@ -52,7 +52,7 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
     outputDir +
     slash +
     fileName +
-    "_guanfu_" +
+    "_upscale_" +
     (useCustomWidth ? `${customWidth}px_` : `${scale}x_`) +
     model +
     "." +
@@ -65,12 +65,12 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
     if (getPlatform() === "win") {
       logit("Filename too long for Windows.");
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_ERROR,
+        ELECTRON_COMMANDS.UPSCALE_ERROR,
         "The filename exceeds the maximum path length allowed by Windows. Please shorten the filename or choose a different save location.",
       );
     } else {
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_WARNING,
+        ELECTRON_COMMANDS.UPSCALE_WARNING,
         "The output filename exceeds 255 characters, which is over the max path length allowed by Windows, though your OS supports it. Please consider shortening the filename next time.",
       );
     }
@@ -78,12 +78,12 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
 
   // UPSCALE
   if (fs.existsSync(outFile) && !overwrite) {
-    // If already guanfued, just output that file
-    logit("✅ Already guanfued at: ", outFile);
-    mainWindow.webContents.send(ELECTRON_COMMANDS.GUANFU_DONE, outFile);
+    // If already upscaled, just output that file
+    logit("✅ Already upscaled at: ", outFile);
+    mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCALE_DONE, outFile);
   } else {
     logit(
-      "✅ Guanfu Variables: ",
+      "✅ Upscale Variables: ",
       JSON.stringify({
         model,
         gpuId,
@@ -100,7 +100,7 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
         tileSize,
       }),
     );
-    const guanfu = spawnGuanfu(
+    const upscaleProc = spawnUpscale(
       getSingleImageArguments({
         inputDir: decodeURIComponent(inputDir),
         fileNameWithExt: decodeURIComponent(fileNameWithExt),
@@ -120,7 +120,7 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
       logit,
     );
 
-    setChildProcesses(guanfu);
+    setChildProcesses(upscaleProc);
 
     setStopped(false);
     let failed = false;
@@ -130,11 +130,11 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
       mainWindow.setProgressBar(parseFloat(data.slice(0, data.length)) / 100);
       data = data.toString();
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_PROGRESS,
+        ELECTRON_COMMANDS.UPSCALE_PROGRESS,
         data.toString(),
       );
       if (data.includes("Error") || data.includes("failed")) {
-        guanfu.kill();
+        upscaleProc.kill();
         failed = true;
         onError(data);
       } else if (data.includes("Resizing")) {
@@ -145,18 +145,18 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
       if (!mainWindow) return;
       mainWindow.setProgressBar(-1);
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_ERROR,
+        ELECTRON_COMMANDS.UPSCALE_ERROR,
         data.toString(),
       );
       failed = true;
-      guanfu.kill();
+      upscaleProc.kill();
       return;
     };
     const onClose = async () => {
       if (!failed && !stopped) {
         logit("💯 Done upscaling");
         // Free up memory
-        guanfu.kill();
+        upscaleProc.kill();
         mainWindow.setProgressBar(-1);
         if (payload.copyMetadata) {
           logit("🏷️ Copying metadata...");
@@ -171,15 +171,15 @@ const imageGuanfu = async (event, payload: ImageGuanfuPayload) => {
             );
           }
         }
-        mainWindow.webContents.send(ELECTRON_COMMANDS.GUANFU_DONE, outFile);
-        showNotification("Guanfu", "Image guanfued successfully!");
+        mainWindow.webContents.send(ELECTRON_COMMANDS.UPSCALE_DONE, outFile);
+        showNotification("Guanfu", "Image upscaled successfully!");
       }
     };
 
-    guanfu.process.stderr.on("data", onData);
-    guanfu.process.on("error", onError);
-    guanfu.process.on("close", onClose);
+    upscaleProc.process.stderr.on("data", onData);
+    upscaleProc.process.on("error", onError);
+    upscaleProc.process.on("close", onClose);
   }
 };
 
-export default imageGuanfu;
+export default imageUpscale;

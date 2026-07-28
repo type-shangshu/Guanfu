@@ -44,7 +44,7 @@ const Home = () => {
   const [batchFolderPath, setBatchFolderPath] = useState("");
   const [upscaledBatchFolderPath, setUpscaledBatchFolderPath] = useState("");
   const setProgress = useSetAtom(progressAtom);
-  const [doubleGuanfuCounter, setDoubleGuanfuCounter] = useState(0);
+  const [doubleUpscaleCounter, setDoubleUpscaleCounter] = useState(0);
   const setModelIds = useSetAtom(customModelIdsAtom);
   const setUserStats = useSetAtom(userStatsAtom);
 
@@ -116,7 +116,7 @@ const Home = () => {
               >
                 {t("ERRORS.COPY_ERROR.TITLE")}
               </ToastAction>
-              <a href="https://docs.guanfu.org/" target="_blank">
+              <a href="https://docs.upscaleProc.org/" target="_blank">
                 <ToastAction altText={t("ERRORS.OPEN_DOCS_TITLE")}>
                   {t("ERRORS.OPEN_DOCS_BUTTON_TITLE")}
                 </ToastAction>
@@ -140,7 +140,7 @@ const Home = () => {
               >
                 {t("ERRORS.COPY_ERROR.TITLE")}
               </ToastAction>
-              <a href="https://docs.guanfu.org/" target="_blank">
+              <a href="https://docs.upscaleProc.org/" target="_blank">
                 <ToastAction altText={t("ERRORS.OPEN_DOCS_TITLE")}>
                   {t("ERRORS.OPEN_DOCS_BUTTON_TITLE")}
                 </ToastAction>
@@ -174,8 +174,8 @@ const Home = () => {
         setProgress(t("APP.PROGRESS.PROCESSING_TITLE"));
       },
     );
-    // GUANFU WARNING
-    window.electron.on(ELECTRON_COMMANDS.GUANFU_WARNING, (_, data: string) => {
+    // UPSCALE WARNING
+    window.electron.on(ELECTRON_COMMANDS.UPSCALE_WARNING, (_, data: string) => {
       toast({
         title: t("WARNING.GENERIC_WARNING.TITLE"),
         description: data,
@@ -188,17 +188,17 @@ const Home = () => {
         description: data,
       });
     });
-    // GUANFU ERROR
-    window.electron.on(ELECTRON_COMMANDS.GUANFU_ERROR, (_, data: string) => {
+    // UPSCALE ERROR
+    window.electron.on(ELECTRON_COMMANDS.UPSCALE_ERROR, (_, data: string) => {
       toast({
         title: t("ERRORS.GENERIC_ERROR.TITLE"),
         description: data,
       });
       resetImagePaths();
     });
-    // GUANFU PROGRESS
+    // UPSCALE PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.UPSCALE_PROGRESS,
       (_, data: string) => {
         if (data.length > 0 && data.length < 10) {
           setProgress(data);
@@ -208,12 +208,12 @@ const Home = () => {
           setProgress(t("APP.PROGRESS.SUCCESS_TITLE"));
         }
         handleErrors(data);
-        logit(`🚧 GUANFU_PROGRESS: `, data);
+        logit(`🚧 UPSCALE_PROGRESS: `, data);
       },
     );
-    // FOLDER GUANFU PROGRESS
+    // FOLDER UPSCALE PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.FOLDER_UPSCALE_PROGRESS,
       (_, data: string) => {
         if (data.includes("Successful")) {
           setProgress(t("APP.PROGRESS.SUCCESS_TITLE"));
@@ -222,70 +222,70 @@ const Home = () => {
           setProgress(data);
         }
         handleErrors(data);
-        logit(`🚧 FOLDER_GUANFU_PROGRESS: `, data);
+        logit(`🚧 FOLDER_UPSCALE_PROGRESS: `, data);
       },
     );
-    // DOUBLE GUANFU PROGRESS
+    // DOUBLE UPSCALE PROGRESS
     window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_PROGRESS,
       (_, data: string) => {
         if (data.length > 0 && data.length < 10) {
           if (data === "0.00%") {
-            setDoubleGuanfuCounter(doubleGuanfuCounter + 1);
+            setDoubleUpscaleCounter(doubleUpscaleCounter + 1);
           }
           setProgress(data);
         }
         handleErrors(data);
-        logit(`🚧 DOUBLE_GUANFU_PROGRESS: `, data);
+        logit(`🚧 DOUBLE_UPSCALE_PROGRESS: `, data);
       },
     );
-    // GUANFU DONE
-    window.electron.on(ELECTRON_COMMANDS.GUANFU_DONE, (_, data: string) => {
+    // UPSCALE DONE
+    window.electron.on(ELECTRON_COMMANDS.UPSCALE_DONE, (_, data: string) => {
       setProgress("");
       setUpscaledImagePath(data);
       setUserStats((prev) => ({
         ...prev,
-        lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
-        averageGuanfuTime:
-          (prev.averageGuanfuTime * prev.totalGuanfus +
+        lastUpscaleDuration: new Date().getTime() - prev.lastUsedAt,
+        averageUpscaleTime:
+          (prev.averageUpscaleTime * prev.totalUpscales +
             (new Date().getTime() - prev.lastUsedAt)) /
-          (prev.totalGuanfus + 1),
+          (prev.totalUpscales + 1),
       }));
       logit("upscaledImagePath: ", data);
-      logit(`💯 GUANFU_DONE: `, data);
+      logit(`💯 UPSCALE_DONE: `, data);
     });
-    // FOLDER GUANFU DONE
+    // FOLDER UPSCALE DONE
     window.electron.on(
-      ELECTRON_COMMANDS.FOLDER_GUANFU_DONE,
+      ELECTRON_COMMANDS.FOLDER_UPSCALE_DONE,
       (_, data: string) => {
         setProgress("");
         setUpscaledBatchFolderPath(data);
-        logit(`💯 FOLDER_GUANFU_DONE: `, data);
+        logit(`💯 FOLDER_UPSCALE_DONE: `, data);
         setUserStats((prev) => ({
           ...prev,
-          lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
-          averageGuanfuTime:
-            (prev.averageGuanfuTime * prev.totalGuanfus +
+          lastUpscaleDuration: new Date().getTime() - prev.lastUsedAt,
+          averageUpscaleTime:
+            (prev.averageUpscaleTime * prev.totalUpscales +
               (new Date().getTime() - prev.lastUsedAt)) /
-            (prev.totalGuanfus + 1),
+            (prev.totalUpscales + 1),
         }));
       },
     );
-    // DOUBLE GUANFU DONE
+    // DOUBLE UPSCALE DONE
     window.electron.on(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_DONE,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_DONE,
       (_, data: string) => {
         setProgress("");
         setTimeout(() => setUpscaledImagePath(data), 500);
-        setDoubleGuanfuCounter(0);
-        logit(`💯 DOUBLE_GUANFU_DONE: `, data);
+        setDoubleUpscaleCounter(0);
+        logit(`💯 DOUBLE_UPSCALE_DONE: `, data);
         setUserStats((prev) => ({
           ...prev,
-          lastGuanfuDuration: new Date().getTime() - prev.lastUsedAt,
-          averageGuanfuTime:
-            (prev.averageGuanfuTime * prev.totalGuanfus +
+          lastUpscaleDuration: new Date().getTime() - prev.lastUsedAt,
+          averageUpscaleTime:
+            (prev.averageUpscaleTime * prev.totalUpscales +
               (new Date().getTime() - prev.lastUsedAt)) /
-            (prev.totalGuanfus + 1),
+            (prev.totalUpscales + 1),
         }));
       },
     );
@@ -354,7 +354,7 @@ const Home = () => {
         selectImageHandler={selectImageHandler}
         batchFolderPath={batchFolderPath}
         upscaledImagePath={upscaledImagePath}
-        doubleGuanfuCounter={doubleGuanfuCounter}
+        doubleUpscaleCounter={doubleUpscaleCounter}
         setDimensions={setDimensions}
       />
     </div>

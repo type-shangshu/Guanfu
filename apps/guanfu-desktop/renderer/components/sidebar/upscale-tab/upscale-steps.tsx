@@ -22,12 +22,12 @@ import { ImageFormat } from "@/lib/valid-formats";
 interface IProps {
   selectImageHandler: () => Promise<void>;
   selectFolderHandler: () => Promise<void>;
-  guanfuHandler: () => Promise<void>;
+  upscaleHandler: () => Promise<void>;
   batchMode: boolean;
   setBatchMode: React.Dispatch<React.SetStateAction<boolean>>;
   imagePath: string;
-  doubleGuanfu: boolean;
-  setDoubleGuanfu: React.Dispatch<React.SetStateAction<boolean>>;
+  doubleUpscale: boolean;
+  setDoubleUpscale: React.Dispatch<React.SetStateAction<boolean>>;
   dimensions: {
     width: number | null;
     height: number | null;
@@ -36,15 +36,15 @@ interface IProps {
   setGpuId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function GuanfuSteps({
+function UpscaleSteps({
   selectImageHandler,
   selectFolderHandler,
-  guanfuHandler,
+  upscaleHandler,
   batchMode,
   setBatchMode,
   imagePath,
-  doubleGuanfu,
-  setDoubleGuanfu,
+  doubleUpscale,
+  setDoubleUpscale,
   dimensions,
 }: IProps) {
   const [scale, setScale] = useAtom(scaleAtom);
@@ -72,7 +72,7 @@ function GuanfuSteps({
     themeChange(false);
   }, []);
 
-  const guanfuResolution = useMemo(() => {
+  const upscaleResolution = useMemo(() => {
     const newDimensions = {
       width: dimensions.width,
       height: dimensions.height,
@@ -81,7 +81,7 @@ function GuanfuSteps({
     let doubleScale = parseInt(scale) * parseInt(scale);
     let singleScale = parseInt(scale);
 
-    if (doubleGuanfu) {
+    if (doubleUpscale) {
       if (useCustomWidth) {
         newDimensions.width = customWidth;
         newDimensions.height = Math.round(
@@ -106,7 +106,7 @@ function GuanfuSteps({
     }
 
     return newDimensions;
-  }, [dimensions.width, dimensions.height, doubleGuanfu, scale]);
+  }, [dimensions.width, dimensions.height, doubleUpscale, scale]);
 
   return (
     <div
@@ -164,27 +164,27 @@ function GuanfuSteps({
             <input
               type="checkbox"
               className="checkbox"
-              checked={doubleGuanfu}
+              checked={doubleUpscale}
               onChange={(e) => {
                 if (e.target.checked) {
-                  setDoubleGuanfu(true);
+                  setDoubleUpscale(true);
                 } else {
-                  setDoubleGuanfu(false);
+                  setDoubleUpscale(false);
                 }
               }}
             />
             <p
               className="cursor-pointer text-sm"
               onClick={(e) => {
-                setDoubleGuanfu((prev) => !prev);
+                setDoubleUpscale((prev) => !prev);
               }}
             >
-              {t("APP.DOUBLE_GUANFU.TITLE")}
+              {t("APP.DOUBLE_UPSCALE.TITLE")}
             </p>
             <button
               className="badge badge-neutral badge-sm cursor-help"
               data-tooltip-id="tooltip"
-              data-tooltip-content={t("APP.DOUBLE_GUANFU.DESCRIPTION")}
+              data-tooltip-content={t("APP.DOUBLE_UPSCALE.DESCRIPTION")}
             >
               ?
             </button>
@@ -248,7 +248,7 @@ function GuanfuSteps({
             </span>
             {t("APP.SCALE_SELECTION.TO_TITLE")}
             <span className="font-bold">
-              {guanfuResolution.width}x{guanfuResolution.height}
+              {upscaleResolution.width}x{upscaleResolution.height}
             </span>
           </p>
         )}
@@ -262,7 +262,7 @@ function GuanfuSteps({
                       "APP.SCALE_SELECTION.NO_OUTPUT_FOLDER_ALERT",
                     ),
                   })
-              : guanfuHandler
+              : upscaleHandler
           }
         >
           {progress.length > 0
@@ -274,4 +274,4 @@ function GuanfuSteps({
   );
 }
 
-export default GuanfuSteps;
+export default UpscaleSteps;

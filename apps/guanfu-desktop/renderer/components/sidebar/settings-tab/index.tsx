@@ -11,7 +11,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { customModelsPathAtom, scaleAtom } from "@/atoms/user-settings-atom";
 import { InputCompression } from "./input-compression";
 import OverwriteToggle from "./overwrite-toggle";
-import { GuanfuCloudModal } from "@/components/guanfu-cloud-modal";
+import { CloudModal } from "@/components/cloud-modal";
 import { ResetSettingsButton } from "./reset-settings-button";
 import { FEATURE_FLAGS } from "@common/feature-flags";
 import TurnOffNotificationsToggle from "./turn-off-notifications-toggle";
@@ -102,8 +102,8 @@ function SettingsTab({
     }
   };
 
-  const guanfuVersion =
-    navigator?.userAgent?.match(/(?:Guanfu|Guanfu)\/([\d.]+\d+)/)?.[1] ?? "";
+  const appVersionMatch =
+    navigator?.userAgent?.match(/(?:Guanfu|Upscayl)\/([\d.]+\d+)/)?.[1] ?? "";
 
   function disableScrolling() {
     if (timeoutId !== null) {
@@ -142,7 +142,7 @@ function SettingsTab({
         <p>{t("SETTINGS.SUPPORT.TITLE")}</p>
         <a
           className="btn btn-primary"
-          href="https://docs.guanfu.org/"
+          href="https://docs.upscaleProc.org/"
           target="_blank"
         >
           {t("SETTINGS.SUPPORT.DOCS_BUTTON_TITLE")}
@@ -216,7 +216,7 @@ function SettingsTab({
       {/* RESET SETTINGS */}
       <ResetSettingsButton />
 
-      {FEATURE_FLAGS.SHOW_GUANFU_CLOUD_INFO && (
+      {FEATURE_FLAGS.SHOW_CLOUD_INFO && (
         <>
           <button
             className="mx-5 mb-5 animate-pulse rounded-btn bg-success p-1 text-sm text-slate-50 shadow-lg shadow-success/40"
@@ -227,7 +227,7 @@ function SettingsTab({
             {t("INTRO")}
           </button>
 
-          <GuanfuCloudModal
+          <CloudModal
             show={show}
             setShow={setShow}
             setDontShowCloudModal={setDontShowCloudModal}

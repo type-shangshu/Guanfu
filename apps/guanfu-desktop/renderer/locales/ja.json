@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Guanfu Cloudを紹介します！",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "GitHubでスターをつけてください 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "画像スケール",
-      "DESCRIPTION": "4X以上のスケール（16X Double Guanfuを除く）は、画像をリサイズするだけで、AIアップスケーリングは行われません。",
+      "DESCRIPTION": "4X以上のスケール（16X Double Upscaleを除く）は、画像をリサイズするだけで、AIアップスケーリングは行われません。",
       "WARNING": "5X以上は一部のデバイスでパフォーマンスに問題を引き起こす可能性があります！",
       "ADDITIONAL_WARNING": "これにより、一部のデバイスでパフォーマンスに問題が発生する可能性があります！"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "バッチGuanfu",
       "DESCRIPTION": "これにより、フォルダ内のすべてのファイルを一度にGuanfuできます"
@@ -161,8 +161,8 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
       "DESCRIPTION": "このオプションを有効にすると、画像に対して2回Guanfuを実行します。4X以上のスケールでは、処理時間が大幅に増加し、パフォーマンスに問題が発生する可能性があることに注意してください。"
     },
     "OUTPUT_PATH_SELECTION": {
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Guanfu元 ",
       "TO_TITLE": " から ",
       "NO_OUTPUT_FOLDER_ALERT": "まず出力フォルダを選択してください",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Guanfu中 ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "レンズビュー",
       "SLIDER_VIEW_TITLE": "スライダービュー",
       "ZOOM_AMOUNT_TITLE": "ズーム量",
-      "TOTAL_GUANFUS": "総アップスケール数",
-      "TOTAL_BATCH_GUANFUS": "総バッチアップスケール数",
-      "TOTAL_IMAGE_GUANFUS": "総画像アップスケール数",
-      "TOTAL_DOUBLE_GUANFUS": "総ダブルアップスケール数",
-      "AVERAGE_GUANFU_TIME": "平均アップスケール時間",
-      "LAST_GUANFU_DURATION": "最後のアップスケール時間",
+      "TOTAL_UPSCALES": "総アップスケール数",
+      "TOTAL_BATCH_UPSCALES": "総バッチアップスケール数",
+      "TOTAL_IMAGE_UPSCALES": "総画像アップスケール数",
+      "TOTAL_DOUBLE_UPSCALES": "総ダブルアップスケール数",
+      "AVERAGE_UPSCALE_TIME": "平均アップスケール時間",
+      "LAST_UPSCALE_DURATION": "最後のアップスケール時間",
       "LAST_USED_AT": "最終使用日時"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "バッチGuanfu進行中：",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "バッチGuanfu進行中：",
       "IN_PROGRESS_TITLE": "Guanfuの魔法をかけています...",
       "STOP_BUTTON_TITLE": "停止"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "選択されたフォルダ：",
         "DONE_TITLE": "すべて完了しました！",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Guanfuされたフォルダを開く"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Guanfuされたフォルダを開く"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "オリジナル",
-      "GUANFUED_TITLE": "Guanfu後"
+      "UPSCALED_TITLE": "Guanfu後"
     },
     "DIALOG_BOX": {
       "CLOSE": "閉じる"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "一部のシステムでは、JPG以外の形式ではメタデータが表示されない場合があります。必要に応じて専用のツールを使用してメタデータを表示してください。"
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "近日公開！",
     "CATCHY_PHRASE_1": "もうエラー、ハードウェアの問題、品質の妥協や長い読み込み時間はありません！",
     "CATCHY_PHRASE_2": "🌐 いつでもどこでも、どのデバイスでもGuanfu\n☁️ グラフィックカードやハードウェアは不要\n👩 顔の改善\n🦋 10以上のモデルから選べます\n🏎 Guanfuデスクトップの5倍の速さ\n🎞 ビデオアップスケーリング\n💰 商用利用\n😴 寝ている間にGuanfu",

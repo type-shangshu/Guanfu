@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Memperkenalkan Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Beri bintang di GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Skala Gambar",
-      "DESCRIPTION": "Apa pun di atas 4X (kecuali 16X Double Guanfu) hanya mengubah ukuran gambar dan tidak menggunakan peningkatan AI.",
+      "DESCRIPTION": "Apa pun di atas 4X (kecuali 16X Double Upscale) hanya mengubah ukuran gambar dan tidak menggunakan peningkatan AI.",
       "WARNING": "Nilai di atas 5X dapat menyebabkan masalah kinerja pada beberapa perangkat!",
       "ADDITIONAL_WARNING": "Hal ini dapat menyebabkan masalah kinerja pada beberapa perangkat!"
     },
@@ -70,7 +70,7 @@
       "DESCRIPTION": "Jika diaktifkan, Guanfu akan memproses gambar itu lagi alih-alih memuatnya secara langsung."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "RESET GUANFU",
+      "BUTTON_TITLE": "RESET SETTINGS",
       "ALERT": "Guanfu telah direset. Silakan restart aplikasi."
     },
     "SAVE_OUTPUT_FOLDER": {
@@ -113,10 +113,10 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Guanfu Massal",
-      "DESCRIPTION": "Ini akan memungkinkan Anda untuk Guanfu semua file dalam folder sekaligus"
+      "DESCRIPTION": "Ini akan memungkinkan Anda untuk upscale semua file dalam folder sekaligus"
     },
     "FILE_SELECTION": {
       "TITLE": "Langkah 1",
@@ -161,9 +161,9 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
-      "DESCRIPTION": "Aktifkan opsi ini untuk menjalankan guanfu dua kali pada gambar. Perlu diingat bahwa ini dapat menyebabkan peningkatan waktu pengolahan yang signifikan dan kemungkinan masalah kinerja untuk skala lebih dari 4X."
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
+      "DESCRIPTION": "Aktifkan opsi ini untuk menjalankan upscale dua kali pada gambar. Perlu diingat bahwa ini dapat menyebabkan peningkatan waktu pengolahan yang signifikan dan kemungkinan masalah kinerja untuk skala lebih dari 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Langkah 3",
@@ -178,25 +178,25 @@
       "FROM_TITLE": "Guanfu dari ",
       "TO_TITLE": " ke ",
       "NO_OUTPUT_FOLDER_ALERT": "Silakan pilih folder output terlebih dahulu",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Guanfuing ⏳"
+      "START_BUTTON_TITLE": "Upscale 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Upscaling ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Reset Gambar",
       "LENS_VIEW_TITLE": "Tampilan Lensa",
       "SLIDER_VIEW_TITLE": "Tampilan Slider",
       "ZOOM_AMOUNT_TITLE": "Jumlah Pembesaran",
-      "TOTAL_GUANFUS": "Total Guanfu",
-      "TOTAL_BATCH_GUANFUS": "Total Guanfu Massal",
-      "TOTAL_IMAGE_GUANFUS": "Total Guanfu Gambar",
-      "TOTAL_DOUBLE_GUANFUS": "Total Double Guanfu",
-      "AVERAGE_GUANFU_TIME": "Waktu Rata-rata Guanfu",
-      "LAST_GUANFU_DURATION": "Durasi Guanfu Terakhir",
+      "TOTAL_UPSCALES": "Total Upscale",
+      "TOTAL_BATCH_UPSCALES": "Total Upscale Massal",
+      "TOTAL_IMAGE_UPSCALES": "Total Upscale Gambar",
+      "TOTAL_DOUBLE_UPSCALES": "Total Double Upscale",
+      "AVERAGE_UPSCALE_TIME": "Waktu Rata-rata Upscale",
+      "LAST_UPSCALE_DURATION": "Durasi Upscale Terakhir",
       "LAST_USED_AT": "Terakhir Digunakan Pada"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Guanfu Massal Sedang Berlangsung:",
-      "IN_PROGRESS_TITLE": "Melakukan sihir Guanfu...",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Guanfu Massal Sedang Berlangsung:",
+      "IN_PROGRESS_TITLE": "Melakukan sihir upscale...",
       "STOP_BUTTON_TITLE": "HENTIKAN"
     },
     "RESET_BUTTON_TITLE": "Reset",
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Folder yang dipilih:",
         "DONE_TITLE": "Semua selesai!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Buka Folder Guanfu"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Buka Folder Upscaled"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Asli",
-      "GUANFUED_TITLE": "Guanfu"
+      "UPSCALED_TITLE": "Upscale"
     },
     "DIALOG_BOX": {
       "CLOSE": "Tutup"
@@ -245,7 +245,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Galat Sistem",
-      "DESCRIPTION": "Guanfu mengalami galat. Mungkin, binari guanfu gagal mengeksekusi perintah dengan benar. Coba periksa log untuk melihat apakah Anda mendapatkan informasi. Anda dapat memposting masalah di repositori GitHub Guanfu untuk bantuan lebih lanjut."
+      "DESCRIPTION": "Guanfu mengalami galat. Mungkin, binari upscale gagal mengeksekusi perintah dengan benar. Coba periksa log untuk melihat apakah Anda mendapatkan informasi. Anda dapat memposting masalah di repositori GitHub Guanfu untuk bantuan lebih lanjut."
     },
     "GENERIC_ERROR": {
       "TITLE": "Galat"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Pada beberapa sistem, metadata mungkin tidak terlihat dalam format selain JPG. Gunakan alat khusus untuk melihat metadata jika diperlukan."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Segera hadir!",
     "CATCHY_PHRASE_1": "Tidak ada lagi galat, masalah perangkat keras, kompromi kualitas atau waktu pemuatan yang lama!",
     "CATCHY_PHRASE_2": "🌐 Guanfu di mana saja, kapan saja, di perangkat apapun\n☁️ Tidak perlu Kartu Grafis atau perangkat keras\n👩 Peningkatan Wajah\n🦋 10+ model untuk dipilih\n🏎 5x lebih cepat daripada Guanfu Desktop\n🎞 Peningkatan Video\n💰 Penggunaan Komersial\n😴 Guanfu saat Anda tidur",

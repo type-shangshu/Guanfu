@@ -1,6 +1,6 @@
 import { ImageFormat } from "@electron/types/types";
 
-export type ImageGuanfuPayload = {
+export type ImageUpscalePayload = {
   imagePath: string;
   outputPath: string;
   scale: string;
@@ -17,7 +17,7 @@ export type ImageGuanfuPayload = {
   copyMetadata: boolean;
 };
 
-export type DoubleGuanfuPayload = {
+export type DoubleUpscalePayload = {
   model: string;
   /**
    * The path to the image to upscale.
@@ -36,7 +36,7 @@ export type DoubleGuanfuPayload = {
   copyMetadata: boolean;
 };
 
-export type BatchGuanfuPayload = {
+export type BatchUpscalePayload = {
   batchFolderPath: string;
   outputPath: string;
   model: string;

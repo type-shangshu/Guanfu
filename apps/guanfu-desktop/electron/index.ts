@@ -9,12 +9,12 @@ import selectFolder from "./commands/select-folder";
 import selectFile from "./commands/select-file";
 import getModelsList from "./commands/get-models-list";
 import customModelsSelect from "./commands/custom-models-select";
-import imageGuanfu from "./commands/image-guanfu";
+import imageUpscale from "./commands/image-upscale";
 import { createMainWindow } from "./main-window";
 import electronIsDev from "electron-is-dev";
 import { execPath, modelsPath } from "./utils/get-resource-paths";
-import batchGuanfu from "./commands/batch-guanfu";
-import doubleGuanfu from "./commands/double-guanfu";
+import batchUpscale from "./commands/batch-upscale";
+import doubleUpscale from "./commands/double-upscale";
 import { FEATURE_FLAGS } from "../common/feature-flags";
 import settings from "electron-settings";
 import pasteImage from "./commands/paste-image";
@@ -47,11 +47,11 @@ app.on("ready", async () => {
   createMainWindow();
 
   log.info(
-    "🆙 Guanfu version:",
+    "🆙 App version:",
     app.getVersion(),
     FEATURE_FLAGS.APP_STORE_BUILD ? "MAC-APP-STORE" : "FOSS",
   );
-  log.info("🚀 GUANFU EXEC PATH: ", execPath);
+  log.info("🚀 UPSCALE EXEC PATH: ", execPath);
   log.info("🚀 MODELS PATH: ", modelsPath);
 
   let closeAccess;
@@ -94,11 +94,11 @@ ipcMain.handle(
   customModelsSelect,
 );
 
-ipcMain.on(ELECTRON_COMMANDS.GUANFU, imageGuanfu);
+ipcMain.on(ELECTRON_COMMANDS.UPSCALE, imageUpscale);
 
-ipcMain.on(ELECTRON_COMMANDS.FOLDER_GUANFU, batchGuanfu);
+ipcMain.on(ELECTRON_COMMANDS.FOLDER_UPSCALE, batchUpscale);
 
-ipcMain.on(ELECTRON_COMMANDS.DOUBLE_GUANFU, doubleGuanfu);
+ipcMain.on(ELECTRON_COMMANDS.DOUBLE_UPSCALE, doubleUpscale);
 
 ipcMain.on(ELECTRON_COMMANDS.PASTE_IMAGE, pasteImage);
 

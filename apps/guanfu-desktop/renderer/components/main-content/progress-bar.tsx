@@ -7,12 +7,12 @@ import useLogger from "../hooks/use-logger";
 
 function ProgressBar({
   progress,
-  doubleGuanfuCounter,
+  doubleUpscaleCounter,
   batchMode,
   resetImagePaths,
 }: {
   progress: string;
-  doubleGuanfuCounter: number;
+  doubleUpscaleCounter: number;
   batchMode: boolean;
   resetImagePaths: () => void;
 }) {
@@ -30,7 +30,7 @@ function ProgressBar({
 
   const stopHandler = () => {
     window.electron.send(ELECTRON_COMMANDS.STOP);
-    logit("🛑 Stopping Guanfu");
+    logit("🛑 Stopping upscale");
   };
 
   // const progressStyle = useMemo(() => {
@@ -55,7 +55,7 @@ function ProgressBar({
 
         <p className="rounded-full px-2 pb-2 font-bold">
           {batchMode &&
-            `${t("APP.PROGRESS_BAR.BATCH_GUANFU_IN_PROGRESS_TITLE")} ${batchProgress}`}
+            `${t("APP.PROGRESS_BAR.BATCH_UPSCALE_IN_PROGRESS_TITLE")} ${batchProgress}`}
         </p>
 
         <div className="flex flex-col items-center gap-1">
@@ -63,8 +63,8 @@ function ProgressBar({
             <p className="text-sm font-bold">
               {progress}
               {!batchMode &&
-                doubleGuanfuCounter > 0 &&
-                "\nPass " + doubleGuanfuCounter}
+                doubleUpscaleCounter > 0 &&
+                "\nPass " + doubleUpscaleCounter}
             </p>
           ) : (
             <p className="text-sm font-bold">{progress}</p>

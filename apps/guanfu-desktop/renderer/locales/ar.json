@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "تحجيم مزدوج",
       "DESCRIPTION": "تفعيل هذا الخيار سيقوم بمضاعفة التحجيم , لكن سيسبب ضعف في الاداء بالأخص مع تحجيم 4 اضعاف"
     },
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "وضع المكبرة",
       "SLIDER_VIEW_TITLE": "وضع الشطر",
       "ZOOM_AMOUNT_TITLE": "قوة التكبير",
-      "TOTAL_GUANFUS": "مجموع التحجيم",
-      "TOTAL_BATCH_GUANFUS": "مجموع الصور المتعددة المحجمة",
-      "TOTAL_IMAGE_GUANFUS": "مجموع الصور المحجمة",
-      "TOTAL_DOUBLE_GUANFUS": "مجموع التحجيم المزدوج",
-      "AVERAGE_GUANFU_TIME": "الوقت المتوسط للتحجيم",
-      "LAST_GUANFU_DURATION": "مدة اخر تحجيم",
+      "TOTAL_UPSCALES": "مجموع التحجيم",
+      "TOTAL_BATCH_UPSCALES": "مجموع الصور المتعددة المحجمة",
+      "TOTAL_IMAGE_UPSCALES": "مجموع الصور المحجمة",
+      "TOTAL_DOUBLE_UPSCALES": "مجموع التحجيم المزدوج",
+      "AVERAGE_UPSCALE_TIME": "الوقت المتوسط للتحجيم",
+      "LAST_UPSCALE_DURATION": "مدة اخر تحجيم",
       "LAST_USED_AT": "اخر استخدام عند"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "التحجيم المزدوج قيد العمل:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "التحجيم المزدوج قيد العمل:",
       "IN_PROGRESS_TITLE": "القيام ببعض السحر المحجم...",
       "STOP_BUTTON_TITLE": "أيقاف"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "اختر مجلد:",
         "DONE_TITLE": "تم!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "افتح مجلد ابسكيل"
+        "OPEN_UPSCALED_FOLDER_TITLE": "افتح مجلد ابسكيل"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "اصلي",
-      "GUANFUED_TITLE": "مُحَجم"
+      "UPSCALED_TITLE": "مُحَجم"
     },
     "DIALOG_BOX": {
       "CLOSE": "أغلاق"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "في بعض الأنظمة، قد لا تكون البيانات الوصفية مرئية في التنسيقات غير JPG. استخدم أدوات خاصة لعرض البيانات الوصفية إذا لزم الأمر."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "قادم قريبا!",
     "CATCHY_PHRASE_1": "لا مزيد من خطأ, مشاكل هاردوير, ولا مزيد من الانتظار لوقت طويل",
     "CATCHY_PHRASE_2": "🌐 استعمل ابسكيل في اي مكان وزمان\n☁️ لا تحتاج الى وحدة معالجة رسومd\n👩 تحسين جودة الوجوه\n🦋 اكثر من 10 نماذج\n🏎 اسرع بـ5 مرات على تطبيق ابسكيل\n🎞 تحجيم الفيديوهات\n💰 للاستخدام التجاري\n😴 حُجًم خلال نومك",

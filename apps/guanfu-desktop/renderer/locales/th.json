@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "แนะนำ Guanfu คลาวด์!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "ติดดาวให้เราบน GitHub 😁",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Guanfu แบบกลุ่ม",
       "DESCRIPTION": "วิธีนี้จะช่วยให้คุณ Guanfu ไฟล์ทั้งหมดในโฟลเดอร์พร้อมกันได้"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Guanfu 2 รอบ",
       "DESCRIPTION": "เปิดใช้งานตัวเลือกนี้เพื่อเรียกใช้ guanfu กับรูป 2 รอบ โปรดทราบว่านี่อาจทำให้เวลาการประมวลผลเพิ่มขึ้นอย่างมีนัยสำคัญ และอาจเกิดปัญหาประสิทธิภาพสำหรับการขยายขนาดมากกว่า 4 เท่า"
     },
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "มุมมองเลนส์",
       "SLIDER_VIEW_TITLE": "มุมมองแบบเลื่แน",
       "ZOOM_AMOUNT_TITLE": "จำนวนที่ซูม",
-      "TOTAL_GUANFUS": "ขยายทั้งหมด",
-      "TOTAL_BATCH_GUANFUS": "ขยายแบบกลุ่มทั้งหมด",
-      "TOTAL_IMAGE_GUANFUS": "ขยายรูปทั้งหมด",
-      "TOTAL_DOUBLE_GUANFUS": "ขยายรูป 2 รอบทั้งหมด",
-      "AVERAGE_GUANFU_TIME": "เวลาขยายโดยเฉลี่ย",
-      "LAST_GUANFU_DURATION": "ระยะเวลาขยายครั้งล่าสุด",
+      "TOTAL_UPSCALES": "ขยายทั้งหมด",
+      "TOTAL_BATCH_UPSCALES": "ขยายแบบกลุ่มทั้งหมด",
+      "TOTAL_IMAGE_UPSCALES": "ขยายรูปทั้งหมด",
+      "TOTAL_DOUBLE_UPSCALES": "ขยายรูป 2 รอบทั้งหมด",
+      "AVERAGE_UPSCALE_TIME": "เวลาขยายโดยเฉลี่ย",
+      "LAST_UPSCALE_DURATION": "ระยะเวลาขยายครั้งล่าสุด",
       "LAST_USED_AT": "ใช้ครั้งล่าสุดเมื่อ"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "กำลังขยายรูปแบบกลุ่ม:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "กำลังขยายรูปแบบกลุ่ม:",
       "IN_PROGRESS_TITLE": "Guanfu กำลังร่ายเวทมนตร์...",
       "STOP_BUTTON_TITLE": "หยุด"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "โฟลเดอร์ที่เลือก:",
         "DONE_TITLE": "เสร็จสิ้นทั้งหมดแล้ว!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "เปิดโฟลเดอร์ที่ถูกขยาย"
+        "OPEN_UPSCALED_FOLDER_TITLE": "เปิดโฟลเดอร์ที่ถูกขยาย"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "ต้นฉบับ",
-      "GUANFUED_TITLE": "ที่ถูกขยาย"
+      "UPSCALED_TITLE": "ที่ถูกขยาย"
     },
     "DIALOG_BOX": {
       "CLOSE": "ปิด"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "ในบางระบบ ข้อมูลเมตาอาจไม่แสดงในรูปแบบอื่นนอกเหนือจาก JPG ใช้เครื่องมือเฉพาะทางเพื่อดูข้อมูลเมตาหากจำเป็น"
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "เร็ว ๆ นี้!",
     "CATCHY_PHRASE_1": "ไม่มีข้อผิดพลาด ปัญหาเกี่ยวกับฮาร์ดแวร์ การบีบอัดคุณภาพ หรือเวลาโหลดที่ยาวนานอีกต่อไป!",
     "CATCHY_PHRASE_2": "🌐 ใช้ Guanfu ได้ทุกที่ ทุกเวลา ทุกอุปกรณ์\n☁️ ไม่ต้องใช้การ์ดจอหรืออุปกรณ์เสริม\n👩 การเพิ่มคุณภาพใบหน้า\n🦋 เลือกจากโมเดลได้มากกว่า 10 แบบ\n🏎 เร็วกว่า Guanfu บนเดสก์ท็อป 5 เท่า\n🎞 การขยายขนาดวิดีโอ\n💰 ใช้งานเชิงพาณิชย์ได้\n😴 ใช้ Guanfu ขณะคุณนอนหลับ",

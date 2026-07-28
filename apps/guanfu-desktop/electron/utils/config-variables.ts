@@ -17,14 +17,14 @@ export function setSavedImagePath(value: string | undefined): void {
 }
 
 /**
- * The saved folder path so that the select folder to guanfu dialog can open to the last used path.
+ * The saved folder path so that the select folder to upscale dialog can open to the last used path.
  */
-export let savedBatchGuanfuFolderPath: string | undefined = undefined;
-export function setSavedBatchGuanfuFolderPath(
+export let savedBatchUpscaleFolderPath: string | undefined = undefined;
+export function setSavedBatchUpscaleFolderPath(
   value: string | undefined,
 ): void {
-  savedBatchGuanfuFolderPath = value;
-  logit("📁 Updating Folder Path: ", savedBatchGuanfuFolderPath);
+  savedBatchUpscaleFolderPath = value;
+  logit("📁 Updating Folder Path: ", savedBatchUpscaleFolderPath);
 }
 
 /**
@@ -37,12 +37,12 @@ export function setSavedCustomModelsPath(value: string | undefined): void {
 }
 
 /**
- * The stopped variable to stop the batch guanfu process.
+ * The stopped variable to stop the batch upscale process.
  */
 export let stopped = false;
 
 /**
- * The child processes array to store the spawned guanfu processes.
+ * The child processes array to store the spawned upscale processes.
  */
 export let childProcesses: {
   process: ChildProcessWithoutNullStreams;
@@ -94,15 +94,15 @@ export function fetchLocalStorage(): void {
   // GET LAST FOLDER PATH TO LOCAL STORAGE
   mainWindow.webContents
     .executeJavaScript(
-      'localStorage.getItem("lastSavedBatchGuanfuFolderPath");',
+      'localStorage.getItem("lastSavedBatchUpscaleFolderPath");',
       true,
     )
-    .then((lastSavedBatchGuanfuFolderPath: string | null) => {
+    .then((lastSavedBatchUpscaleFolderPath: string | null) => {
       if (
-        lastSavedBatchGuanfuFolderPath &&
-        lastSavedBatchGuanfuFolderPath.length > 0
+        lastSavedBatchUpscaleFolderPath &&
+        lastSavedBatchUpscaleFolderPath.length > 0
       ) {
-        setSavedBatchGuanfuFolderPath(lastSavedBatchGuanfuFolderPath);
+        setSavedBatchUpscaleFolderPath(lastSavedBatchUpscaleFolderPath);
       }
     });
   // GET LAST CUSTOM MODELS FOLDER PATH TO LOCAL STORAGE

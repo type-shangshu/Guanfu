@@ -30,7 +30,7 @@
   ![Frame 111](https://github.com/guanfu/guanfu/assets/25067102/d1b4af3c-aade-4bc9-97d0-cf88db679931)
 </a>
 
-<a href="https://guanfu.org/#download">
+<a href="https://upscaleProc.org/#download">
   <img src="https://img.shields.io/github/downloads/guanfu/guanfu/total.svg?style=for-the-badge&logo=data:image/png;base64,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&labelColor=ede9fe&color=8e6bf6" width="200px" style="border-radius:50%"/>
 </a>
 
@@ -55,7 +55,7 @@
 Guanfu lets you enlarge and enhance low-resolution images using advanced AI algorithms.
 Enlarge images without losing quality. It's almost like magic! 🎩🪄
 
-**https://guanfu.org**
+**https://upscaleProc.org**
 
 <video src="https://github.com/guanfu/guanfu/assets/25067102/ad2453b1-3c5a-4eb2-b992-4cf10e6a49f5" autoplay muted loop />
 
@@ -82,7 +82,7 @@ Enlarge images without losing quality. It's almost like magic! 🎩🪄
 
 ## 🐧 Linux
 
-  <a href="https://flathub.org/apps/org.guanfu.Guanfu">
+  <a href="https://flathub.org/apps/org.upscaleProc.Guanfu">
     <img src="https://dl.flathub.org/assets/badges/flathub-badge-en.svg" height="50px"/>
   </a>
 
@@ -106,7 +106,7 @@ Guanfu should be available on the software listings of most Linux operating syst
 
 ### 💼 Portable Method
 
-1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://guanfu.org/).
+1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://upscaleProc.org/).
 2. Download the `guanfu-x.x.x-linux.AppImage` file.
 3. Right Click AppImage -> Go to Permissions tab -> Check 'allow file to execute' and then double click the file to run Guanfu.
 
@@ -119,7 +119,7 @@ Guanfu should be available on the software listings of most Linux operating syst
   Link
 </a>
 
-1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://guanfu.org/).
+1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://upscaleProc.org/).
 2. Download the `guanfu-x.x.x-mac.dmg` file.
 3. Double click dmg, drag Guanfu icon into Applications folder.
 4. Open Finder, click 'Applications' tab in the left sidebar. Find Guanfu and right click on it. Select 'Open'.
@@ -132,7 +132,7 @@ Guanfu should be available on the software listings of most Linux operating syst
 ## 🐌 Windows
 (Windows 10 and later)
 
-1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://guanfu.org/).
+1. Go to [releases section](https://github.com/guanfu/guanfu/releases/latest) or [our official website](https://upscaleProc.org/).
 2. Download the `guanfu-x.x.x-win.exe` file.
 3. Double click exe file to launch.
 4. If you get a SmartScreen warning - click 'More Info' and then 'Run Anyway' OR press 'YES' on the unverified publisher dialog.
@@ -141,7 +141,7 @@ Guanfu should be available on the software listings of most Linux operating syst
 
 # 👨‍🏫 Documentation - Tutorials and Guides
 
-Check out our Documentation [here](https://docs.guanfu.org/).
+Check out our Documentation [here](https://docs.upscaleProc.org/).
 
 - [Try out even more new models!](https://github.com/guanfu/custom-models)
 - [Convert your own models](https://github.com/guanfu/guanfu/wiki/%F0%9F%96%A5%EF%B8%8F-Model-Conversion---Create-more-AI-models!)
@@ -205,8 +205,8 @@ npm run publish-app
 - **Do I need a GPU for this to work?**
   - Yes, unfortunately. NCNN Vulkan requires a Vulkan-compatible GPU. Guanfu won't work with **most** iGPUs or CPUs. But hey, no harm in trying ;)
     - @Wyrdgirn has contributed a workaround for Windows and Linux in [#390](https://github.com/guanfu/guanfu/issues/390)! Nobody knows how to manipulate the macOS and Haiku frameworks...
-- **I stopped the magic Batch Guanfu and my images haven't been processed, compressed, or are in the wrong scale!**
-  - When a model doesn't support an action, Guanfu will finish guanfuing all the images first before post-processing them. What this means is that you should simply **wait** for the process to finish.
+- **I stopped the magic Batch Upscale and my images haven't been processed, compressed, or are in the wrong scale!**
+  - When a model doesn't support an action, Guanfu will finish upscaling all the images first before post-processing them. What this means is that you should simply **wait** for the process to finish.
 - **How can I contribute?**
   - You can report issues, fix code and add features by submitting PRs, or donate! 😊
 - **What's the GPU ID for?**

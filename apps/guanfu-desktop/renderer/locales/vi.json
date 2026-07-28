@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Giới thiệu Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Star chúng tôi trên GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Tỷ lệ Hình ảnh",
-      "DESCRIPTION": "Bất kỳ tỷ lệ nào trên 4X (ngoại trừ 16X Double Guanfu) chỉ thay đổi kích thước hình ảnh mà không sử dụng tăng cường AI.",
+      "DESCRIPTION": "Bất kỳ tỷ lệ nào trên 4X (ngoại trừ 16X Double Upscale) chỉ thay đổi kích thước hình ảnh mà không sử dụng tăng cường AI.",
       "WARNING": "Bất kỳ tỷ lệ nào trên 5X có thể gây ra vấn đề về hiệu suất trên một số thiết bị!",
       "ADDITIONAL_WARNING": "Điều này có thể gây ra vấn đề về hiệu suất trên một số thiết bị!"
     },
@@ -113,9 +113,9 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
-      "TITLE": "Batch Guanfu",
+      "TITLE": "Batch Upscale",
       "DESCRIPTION": "Điều này sẽ cho phép bạn Guanfu tất cả các tệp trong một thư mục cùng một lúc"
     },
     "FILE_SELECTION": {
@@ -161,8 +161,8 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
       "DESCRIPTION": "Kích hoạt tùy chọn này để chạy Guanfu hai lần trên một hình ảnh. Lưu ý rằng điều này có thể làm tăng đáng kể thời gian xử lý và có thể gây ra vấn đề hiệu suất cho các tỷ lệ lớn hơn 4X."
     },
     "OUTPUT_PATH_SELECTION": {
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Guanfu từ ",
       "TO_TITLE": " đến ",
       "NO_OUTPUT_FOLDER_ALERT": "Vui lòng chọn một thư mục đầu ra trước",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Đang tiến hành Guanfu ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Chế độ Ống kính",
       "SLIDER_VIEW_TITLE": "Chế độ Trượt",
       "ZOOM_AMOUNT_TITLE": "Số lượng Phóng to",
-      "TOTAL_GUANFUS": "Tổng số Guanfus",
-      "TOTAL_BATCH_GUANFUS": "Tổng số Batch Guanfus",
-      "TOTAL_IMAGE_GUANFUS": "Tổng số Guanfus Hình Ảnh",
-      "TOTAL_DOUBLE_GUANFUS": "Tổng số Double Guanfus",
-      "AVERAGE_GUANFU_TIME": "Thời gian Guanfu Trung Bình",
-      "LAST_GUANFU_DURATION": "Thời gian Guanfu Cuối Cùng",
+      "TOTAL_UPSCALES": "Tổng số Upscales",
+      "TOTAL_BATCH_UPSCALES": "Tổng số Batch Upscales",
+      "TOTAL_IMAGE_UPSCALES": "Tổng số Upscales Hình Ảnh",
+      "TOTAL_DOUBLE_UPSCALES": "Tổng số Double Upscales",
+      "AVERAGE_UPSCALE_TIME": "Thời gian Guanfu Trung Bình",
+      "LAST_UPSCALE_DURATION": "Thời gian Guanfu Cuối Cùng",
       "LAST_USED_AT": "Lần Cuối Sử Dụng Tại"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Batch Guanfu Đang Tiến Hành:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Batch Upscale Đang Tiến Hành:",
       "IN_PROGRESS_TITLE": "Đang thực hiện phép màu Guanfu...",
       "STOP_BUTTON_TITLE": "DỪNG"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Thư mục đã chọn:",
         "DONE_TITLE": "Tất cả đã xong!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Mở Thư mục Guanfued"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Mở Thư mục Upscaled"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Gốc",
-      "GUANFUED_TITLE": "Đã Guanfu"
+      "UPSCALED_TITLE": "Đã Guanfu"
     },
     "DIALOG_BOX": {
       "CLOSE": "Đóng"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Trên một số hệ thống, metadata có thể không hiển thị trong các định dạng khác ngoài JPG. Sử dụng các công cụ chuyên dụng để xem metadata nếu cần."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Sẽ ra mắt sớm!",
     "CATCHY_PHRASE_1": "Không còn lỗi, vấn đề phần cứng, thỏa hiệp chất lượng hoặc thời gian tải lâu!",
     "CATCHY_PHRASE_2": "🌐 Guanfu bất cứ nơi nào, bất cứ lúc nào, trên bất cứ thiết bị nào\n☁️ Không cần Card Đồ họa hoặc phần mềm phần cứng\n👩 Tăng cường Khuôn mặt\n🦋 Hơn 10 mô hình để lựa chọn\n🏎 Nhanh hơn 5 lần so với Guanfu Desktop\n🎞 Tăng cường Video\n💰 Sử dụng Thương mại\n😴 Guanfu trong khi bạn ngủ",

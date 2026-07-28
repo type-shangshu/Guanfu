@@ -7,7 +7,7 @@ import {
   stopped,
 } from "../utils/config-variables";
 import slash from "../utils/slash";
-import { spawnGuanfu } from "../utils/spawn-guanfu";
+import { spawnUpscale } from "../utils/spawn-upscale";
 import {
   getDoubleUpscaleArguments,
   getDoubleUpscaleSecondPassArguments,
@@ -15,7 +15,7 @@ import {
 import { modelsPath } from "../utils/get-resource-paths";
 import logit from "../utils/logit";
 import { ELECTRON_COMMANDS } from "../../common/electron-commands";
-import { DoubleGuanfuPayload } from "../../common/types/types";
+import { DoubleUpscalePayload } from "../../common/types/types";
 import { ImageFormat } from "../types/types";
 import showNotification from "../utils/show-notification";
 import getFilenameFromPath from "../../common/get-file-name";
@@ -24,7 +24,7 @@ import getDirectoryFromPath from "../../common/get-directory-from-path";
 import { MODELS } from "../../common/models-list";
 import { copyMetadata } from "../utils/copy-metadata";
 
-const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
+const doubleUpscale = async (event, payload: DoubleUpscalePayload) => {
   const mainWindow = getMainWindow();
   if (!mainWindow) return;
 
@@ -51,14 +51,14 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     outputDir +
     slash +
     fileName +
-    "_guanfu_" +
+    "_upscale_" +
     (useCustomWidth ? `${customWidth}px_` : `${scale}x_`) +
     model +
     "." +
     saveImageAs;
 
   // UPSCALE
-  let guanfu = spawnGuanfu(
+  let upscaleProc = spawnUpscale(
     getDoubleUpscaleArguments({
       inputDir,
       fullfileName: decodeURIComponent(fullfileName),
@@ -76,9 +76,9 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     logit,
   );
 
-  let guanfu2: ReturnType<typeof spawnGuanfu>;
+  let upscaleProc2: ReturnType<typeof spawnUpscale>;
 
-  childProcesses.push(guanfu);
+  childProcesses.push(upscaleProc);
 
   setStopped(false);
   let failed = false;
@@ -88,20 +88,20 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
   const onError2 = (data) => {
     if (!mainWindow) return;
     data.toString();
-    // SEND GUANFU PROGRESS TO RENDERER
+    // SEND UPSCALE PROGRESS TO RENDERER
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_PROGRESS,
       data,
     );
     // SET FAILED TO TRUE
     failed2 = true;
     mainWindow &&
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_ERROR,
+        ELECTRON_COMMANDS.UPSCALE_ERROR,
         "Error upscaling image. Error: " + data,
       );
-    showNotification("Guanfu Failure", "Failed to upscale image!");
-    guanfu2.kill();
+    showNotification("Upscale Failure", "Failed to upscale image!");
+    upscaleProc2.kill();
     return;
   };
 
@@ -109,14 +109,14 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     if (!mainWindow) return;
     // CONVERT DATA TO STRING
     data = data.toString();
-    // SEND GUANFU PROGRESS TO RENDERER
+    // SEND UPSCALE PROGRESS TO RENDERER
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_PROGRESS,
       data,
     );
-    // IF PROGRESS HAS ERROR, GUANFU FAILED
+    // IF PROGRESS HAS ERROR, UPSCALE FAILED
     if (data.includes("Error") || data.includes("failed")) {
-      guanfu2.kill();
+      upscaleProc2.kill();
       failed2 = true;
       onError2(data);
     } else if (data.includes("Resizing")) {
@@ -144,10 +144,10 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
         }
       }
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.DOUBLE_GUANFU_DONE,
+        ELECTRON_COMMANDS.DOUBLE_UPSCALE_DONE,
         outFile,
       );
-      showNotification("Guanfued", "Image guanfued successfully!");
+      showNotification("Upscaled", "Image upscaled successfully!");
     }
   };
 
@@ -156,20 +156,20 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     if (!mainWindow) return;
     mainWindow.setProgressBar(-1);
     data.toString();
-    // SEND GUANFU PROGRESS TO RENDERER
+    // SEND UPSCALE PROGRESS TO RENDERER
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_PROGRESS,
       data,
     );
     // SET FAILED TO TRUE
     failed = true;
     mainWindow &&
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_ERROR,
+        ELECTRON_COMMANDS.UPSCALE_ERROR,
         "Error upscaling image. Error: " + data,
       );
-    showNotification("Guanfu Failure", "Failed to upscale image!");
-    guanfu.kill();
+    showNotification("Upscale Failure", "Failed to upscale image!");
+    upscaleProc.kill();
     return;
   };
 
@@ -177,14 +177,14 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     if (!mainWindow) return;
     // CONVERT DATA TO STRING
     data = data.toString();
-    // SEND GUANFU PROGRESS TO RENDERER
+    // SEND UPSCALE PROGRESS TO RENDERER
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.DOUBLE_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.DOUBLE_UPSCALE_PROGRESS,
       data,
     );
-    // IF PROGRESS HAS ERROR, GUANFU FAILED
+    // IF PROGRESS HAS ERROR, UPSCALE FAILED
     if (data.includes("Error") || data.includes("failed")) {
-      guanfu.kill();
+      upscaleProc.kill();
       failed = true;
       onError(data);
     } else if (data.includes("Resizing")) {
@@ -196,7 +196,7 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
     // IF NOT FAILED
     if (!failed && !stopped) {
       // SPAWN A SECOND PASS
-      guanfu2 = spawnGuanfu(
+      upscaleProc2 = spawnUpscale(
         getDoubleUpscaleSecondPassArguments({
           outFile,
           modelsPath: isDefaultModel
@@ -214,16 +214,16 @@ const doubleGuanfu = async (event, payload: DoubleGuanfuPayload) => {
         logit,
       );
       logit("🚀 Upscaling Second Pass");
-      childProcesses.push(guanfu2);
-      guanfu2.process.stderr.on("data", onData2);
-      guanfu2.process.on("error", onError2);
-      guanfu2.process.on("close", onClose2);
+      childProcesses.push(upscaleProc2);
+      upscaleProc2.process.stderr.on("data", onData2);
+      upscaleProc2.process.on("error", onError2);
+      upscaleProc2.process.on("close", onClose2);
     }
   };
 
-  guanfu.process.stderr.on("data", onData);
-  guanfu.process.on("error", onError);
-  guanfu.process.on("close", onClose);
+  upscaleProc.process.stderr.on("data", onData);
+  upscaleProc.process.on("error", onError);
+  upscaleProc.process.on("close", onClose);
 };
 
-export default doubleGuanfu;
+export default doubleUpscale;

@@ -7,17 +7,17 @@ import {
   stopped,
 } from "../utils/config-variables";
 import logit from "../utils/logit";
-import { spawnGuanfu } from "../utils/spawn-guanfu";
+import { spawnUpscale } from "../utils/spawn-upscale";
 import { getBatchArguments } from "../utils/get-arguments";
 import slash from "../utils/slash";
 import { modelsPath } from "../utils/get-resource-paths";
 import { ELECTRON_COMMANDS } from "../../common/electron-commands";
-import { BatchGuanfuPayload } from "../../common/types/types";
+import { BatchUpscalePayload } from "../../common/types/types";
 import showNotification from "../utils/show-notification";
 import { MODELS } from "../../common/models-list";
 import { copyMetadata } from "../utils/copy-metadata";
 
-const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
+const batchUpscale = async (event, payload: BatchUpscalePayload) => {
   const mainWindow = getMainWindow();
   if (!mainWindow) return;
 
@@ -34,7 +34,7 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
   let inputDir = decodeURIComponent(payload.batchFolderPath);
   // GET THE OUTPUT DIRECTORY
   let outputFolderPath = decodeURIComponent(payload.outputPath);
-  const outputFolderName = `guanfu_${saveImageAs}_${model}_${
+  const outputFolderName = `upscaled_${saveImageAs}_${model}_${
     useCustomWidth ? `${customWidth}px` : `${scale}x`
   }`;
   outputFolderPath += slash + outputFolderName;
@@ -46,7 +46,7 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
   const isDefaultModel = model in MODELS;
 
   // UPSCALE
-  const guanfu = spawnGuanfu(
+  const upscaleProc = spawnUpscale(
     getBatchArguments({
       inputDir,
       outputDir: outputFolderPath,
@@ -65,7 +65,7 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
     logit,
   );
 
-  childProcesses.push(guanfu);
+  childProcesses.push(upscaleProc);
 
   setStopped(false);
   let failed = false;
@@ -75,7 +75,7 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
     if (!mainWindow) return;
     data = data.toString();
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.FOLDER_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.FOLDER_UPSCALE_PROGRESS,
       data.toString(),
     );
     if (
@@ -93,14 +93,14 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
     if (!mainWindow) return;
     mainWindow.setProgressBar(-1);
     mainWindow.webContents.send(
-      ELECTRON_COMMANDS.FOLDER_GUANFU_PROGRESS,
+      ELECTRON_COMMANDS.FOLDER_UPSCALE_PROGRESS,
       data.toString(),
     );
     failed = true;
-    guanfu.kill();
+    upscaleProc.kill();
     mainWindow &&
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.GUANFU_ERROR,
+        ELECTRON_COMMANDS.UPSCALE_ERROR,
         `Error upscaling images! ${data}`,
       );
     return;
@@ -109,7 +109,7 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
     if (!mainWindow) return;
     if (!failed && !stopped) {
       logit("💯 Done upscaling");
-      guanfu.kill();
+      upscaleProc.kill();
       if (payload.copyMetadata) {
         logit("🏷️ Copying metadata...");
         try {
@@ -135,24 +135,24 @@ const batchGuanfu = async (event, payload: BatchGuanfuPayload) => {
         }
       }
       mainWindow.webContents.send(
-        ELECTRON_COMMANDS.FOLDER_GUANFU_DONE,
+        ELECTRON_COMMANDS.FOLDER_UPSCALE_DONE,
         outputFolderPath,
       );
       if (!encounteredError) {
-        showNotification("Guanfued", "Images guanfued successfully!");
+        showNotification("Upscaled", "Images upscaled successfully!");
       } else {
         showNotification(
-          "Guanfued",
-          "Images were guanfued but encountered some errors!",
+          "Upscaled",
+          "Images were upscaled but encountered some errors!",
         );
       }
     } else {
-      guanfu.kill();
+      upscaleProc.kill();
     }
   };
-  guanfu.process.stderr.on("data", onData);
-  guanfu.process.on("error", onError);
-  guanfu.process.on("close", onClose);
+  upscaleProc.process.stderr.on("data", onData);
+  upscaleProc.process.on("error", onError);
+  upscaleProc.process.on("close", onClose);
 };
 
-export default batchGuanfu;
+export default batchUpscale;

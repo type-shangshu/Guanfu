@@ -7,9 +7,9 @@ info:
   version: 1.0.0
   contact:
     name: Guanfu Support
-    url: mailto:support@guanfu.org
+    url: mailto:support@upscaleProc.org
 servers:
-  - url: https://api.guanfu.org
+  - url: https://api.upscaleProc.org
     description: Guanfu Server
 
 security:
@@ -341,7 +341,7 @@ paths:
                         type: string
                         format: uri
                         description: Pre-signed URL for upload
-                        example: https://storage.guanfu.com/upload/abc123
+                        example: https://storage.upscaleProc.com/upload/abc123
                       fileName:
                         type: string
                         description: Generated unique filename

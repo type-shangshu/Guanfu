@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Introducing Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Star us on GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Image Scale",
-      "DESCRIPTION": "Anything above 4X (except 16X Double Guanfu) only resizes the image and does not use AI upscaling.",
+      "DESCRIPTION": "Anything above 4X (except 16X Double Upscale) only resizes the image and does not use AI upscaling.",
       "WARNING": "Anything above 5X may cause performance issues on some devices!",
       "ADDITIONAL_WARNING": "This may cause performance issues on some devices!"
     },
@@ -70,7 +70,7 @@
       "DESCRIPTION": "If enabled, Guanfu will process the image again instead of loading it directly."
     },
     "RESET_SETTINGS": {
-      "BUTTON_TITLE": "RESET GUANFU",
+      "BUTTON_TITLE": "RESET SETTINGS",
       "ALERT": "Guanfu has been reset. Please restart the app."
     },
     "SAVE_OUTPUT_FOLDER": {
@@ -113,10 +113,10 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
-      "TITLE": "Batch Guanfu",
-      "DESCRIPTION": "This will let you Guanfu all files in a folder at once"
+      "TITLE": "Batch Upscale",
+      "DESCRIPTION": "This will let you upscale all files in a folder at once"
     },
     "FILE_SELECTION": {
       "TITLE": "Step 1",
@@ -161,9 +161,9 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
-      "DESCRIPTION": "Enable this option to run guanfu twice on an image. Note that this may cause a significant increase in processing time and possibly performance issues for scales greater than 4X."
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
+      "DESCRIPTION": "Enable this option to run upscale twice on an image. Note that this may cause a significant increase in processing time and possibly performance issues for scales greater than 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Step 3",
@@ -175,28 +175,28 @@
     },
     "SCALE_SELECTION": {
       "TITLE": "Step 4",
-      "FROM_TITLE": "Guanfu from ",
+      "FROM_TITLE": "Upscale from ",
       "TO_TITLE": " to ",
       "NO_OUTPUT_FOLDER_ALERT": "Please select an output folder first",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
-      "IN_PROGRESS_BUTTON_TITLE": "Guanfuing ⏳"
+      "START_BUTTON_TITLE": "Upscale 🚀",
+      "IN_PROGRESS_BUTTON_TITLE": "Upscaling ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
       "RESET_BUTTON_TITLE": "Reset Image",
       "LENS_VIEW_TITLE": "Lens View",
       "SLIDER_VIEW_TITLE": "Slider View",
       "ZOOM_AMOUNT_TITLE": "Zoom Amount",
-      "TOTAL_GUANFUS": "Total Guanfus",
-      "TOTAL_BATCH_GUANFUS": "Total Batch Guanfus",
-      "TOTAL_IMAGE_GUANFUS": "Total Image Guanfus",
-      "TOTAL_DOUBLE_GUANFUS": "Total Double Guanfus",
-      "AVERAGE_GUANFU_TIME": "Average Guanfu Time",
-      "LAST_GUANFU_DURATION": "Last Guanfu Duration",
+      "TOTAL_UPSCALES": "Total Upscales",
+      "TOTAL_BATCH_UPSCALES": "Total Batch Upscales",
+      "TOTAL_IMAGE_UPSCALES": "Total Image Upscales",
+      "TOTAL_DOUBLE_UPSCALES": "Total Double Upscales",
+      "AVERAGE_UPSCALE_TIME": "Average Upscale Time",
+      "LAST_UPSCALE_DURATION": "Last Upscale Duration",
       "LAST_USED_AT": "Last Used At"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Batch Guanfu In Progress:",
-      "IN_PROGRESS_TITLE": "Doing the Guanfu magic...",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Batch Upscale In Progress:",
+      "IN_PROGRESS_TITLE": "Doing the upscale magic...",
       "STOP_BUTTON_TITLE": "STOP"
     },
     "RESET_BUTTON_TITLE": "Reset",
@@ -211,16 +211,16 @@
       "PROCESSING_TITLE": "Processing the image...",
       "SCALING_CONVERTING_TITLE": "Scaling and converting image...",
       "WAIT_TITLE": "Hold on...",
-      "SUCCESS_TITLE": "Guanfu Successful!",
+      "SUCCESS_TITLE": "Upscale Successful!",
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Selected folder:",
         "DONE_TITLE": "All done!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Open Guanfued Folder"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Open Upscaled Folder"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Guanfued"
+      "UPSCALED_TITLE": "Upscaled"
     },
     "DIALOG_BOX": {
       "CLOSE": "Close"
@@ -245,7 +245,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Exception Error",
-      "DESCRIPTION": "Guanfu encountered an error. Possibly, the guanfu binary failed to execute the commands properly. Try checking the logs to see if you get any information. You can post an issue on Guanfu's GitHub repository for more help."
+      "DESCRIPTION": "Guanfu encountered an error. Possibly, the upscale binary failed to execute the commands properly. Try checking the logs to see if you get any information. You can post an issue on Guanfu's GitHub repository for more help."
     },
     "GENERIC_ERROR": {
       "TITLE": "Error"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "On some systems, metadata may not be visible in formats other than JPG. Use specific tools to view metadata if needed."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Coming soon!",
     "CATCHY_PHRASE_1": "No more errors, hardware issues, quality compromises or long loading times!",
     "CATCHY_PHRASE_2": "🌐 Guanfu anywhere, anytime, any device\n☁️ No Graphics Card or hardware required\n👩 Face Enhancement\n🦋 10+ models to choose from\n🏎 5x faster than Guanfu Desktop\n🎞 Video Upscaling\n💰 Commercial Usage\n😴 Guanfu while you sleep",

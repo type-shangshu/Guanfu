@@ -1,12 +1,12 @@
 import { spawn } from "child_process";
 import { execPath } from "./get-resource-paths";
 
-export const spawnGuanfu = (
+export const spawnUpscale = (
   command: string[],
   logit: (...args: any) => void,
 ) => {
   logit(
-    "📢 Guanfu Command: ",
+    "📢 Upscale Command: ",
     command.filter((arg) => arg !== ""),
   );
 

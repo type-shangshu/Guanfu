@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Presentem Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Doneu-nos una estrela en GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Escala d'imatge",
-      "DESCRIPTION": "Qualsevol cosa per damunt de 4x (excepte 16x Double Guanfu) només redimensiona la imatge i no usa augment amb IA.",
+      "DESCRIPTION": "Qualsevol cosa per damunt de 4x (excepte 16x Double Upscale) només redimensiona la imatge i no usa augment amb IA.",
       "WARNING": "Qualsevol cosa per damunt de 5x pot causar problemes de rendiment en alguns dispositius!",
       "ADDITIONAL_WARNING": "Això pot causar problemes de rendiment en alguns dispositius!"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Augment per lots",
       "DESCRIPTION": "Això vos permetrà augmentar totes les imatges d'una carpeta alhora"
@@ -162,7 +162,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Doble Guanfu",
       "DESCRIPTION": "Habilita esta opció per a realitzar dos augments en una imatge. Tingueu en compte que això pot causar un augment significatiu en el temps de processament i possiblement problemes de rendiment per a escales superiors a 4x."
     },
@@ -179,7 +179,7 @@
       "FROM_TITLE": "Augmentar des de ",
       "TO_TITLE": " a ",
       "NO_OUTPUT_FOLDER_ALERT": "Seleccioneu primer una carpeta d'eixida",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "S'està augmentant ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -187,16 +187,16 @@
       "LENS_VIEW_TITLE": "Vista de lent",
       "SLIDER_VIEW_TITLE": "Vista del control lliscant",
       "ZOOM_AMOUNT_TITLE": "Quantitat de zoom",
-      "TOTAL_GUANFUS": "Total d'augments",
-      "TOTAL_BATCH_GUANFUS": "Total d'augments per lots",
-      "TOTAL_IMAGE_GUANFUS": "Total d'imatges augmentades",
-      "TOTAL_DOUBLE_GUANFUS": "Total de dobles augments",
-      "AVERAGE_GUANFU_TIME": "Temps mitjà d'augment",
-      "LAST_GUANFU_DURATION": "Duració de l'últim augment",
+      "TOTAL_UPSCALES": "Total d'augments",
+      "TOTAL_BATCH_UPSCALES": "Total d'augments per lots",
+      "TOTAL_IMAGE_UPSCALES": "Total d'imatges augmentades",
+      "TOTAL_DOUBLE_UPSCALES": "Total de dobles augments",
+      "AVERAGE_UPSCALE_TIME": "Temps mitjà d'augment",
+      "LAST_UPSCALE_DURATION": "Duració de l'últim augment",
       "LAST_USED_AT": "Últim ús"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Augment per lots en progrés:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Augment per lots en progrés:",
       "IN_PROGRESS_TITLE": "S'està fent la màgia d'Guanfu...",
       "STOP_BUTTON_TITLE": "DETÍN"
     },
@@ -216,12 +216,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Carpeta seleccionada:",
         "DONE_TITLE": "Tot llest!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Obri carpeta amb imatges augmentades"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Obri carpeta amb imatges augmentades"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Augmentat"
+      "UPSCALED_TITLE": "Augmentat"
     },
     "DIALOG_BOX": {
       "CLOSE": "Tanca"
@@ -281,7 +281,7 @@
       "DESCRIPTION": "En alguns sistemes, les metadades poden no ser visibles en formats diferents de JPG. Utilitzeu eines específiques per a veure metadades si cal."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Pròximament!",
     "CATCHY_PHRASE_1": "No més errors, problemes de maquinari, compromisos de qualitat o llargs temps de càrrega!",
     "CATCHY_PHRASE_2": "🌐 Augmenta en qualsevol lloc, en qualsevol moment, en qualsevol dispositiu\n☁️ No es requerix targeta gràfica ni maquinari\n👩 Millora de rostres\n🦋 Més de 10 models per a triar\n🏎 5 vegades més ràpid que Guanfu Desktop\n🎞  Augment de vídeos\n💰 Ús comercial\n 😴Augmenta mentres dormiu",

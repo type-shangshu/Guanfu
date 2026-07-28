@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Lass mich dir Guanfu Cloud vorstellen!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Gib uns einen Stern auf GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Bildskala",
-      "DESCRIPTION": "Alles über 4X (außer 16X Double Guanfu) skaliert das Bild nur und verwendet kein KI-Upscaling.",
+      "DESCRIPTION": "Alles über 4X (außer 16X Double Upscale) skaliert das Bild nur und verwendet kein KI-Upscaling.",
       "WARNING": "Alles über 5X kann auf einigen Geräten Leistungsprobleme verursachen!",
       "ADDITIONAL_WARNING": "Dies kann auf einigen Geräten Leistungsprobleme verursachen!"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Batch-Guanfu",
       "DESCRIPTION": "Hiermit kannst du alle Dateien in einem Ordner auf einmal guanfuen"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Doppel-Guanfu",
       "DESCRIPTION": "Aktiviere diese Option, um ein Bild zweimal zu guanfuen. Beachte, dass dies die Verarbeitungszeit deutlich erhöhen und möglicherweise Leistungsprobleme bei Skalierungen über 4X verursachen kann."
     },
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Guanfu von ",
       "TO_TITLE": " zu ",
       "NO_OUTPUT_FOLDER_ALERT": "Bitte wähle zuerst einen Ausgabeordner",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Guanfuen ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Linsenansicht",
       "SLIDER_VIEW_TITLE": "Schiebeansicht",
       "ZOOM_AMOUNT_TITLE": "Zoomstärke",
-      "TOTAL_GUANFUS": "Gesamte Guanfus",
-      "TOTAL_BATCH_GUANFUS": "Gesamte Batch-Guanfus",
-      "TOTAL_IMAGE_GUANFUS": "Gesamte Bild-Guanfus",
-      "TOTAL_DOUBLE_GUANFUS": "Gesamte Doppel-Guanfus",
-      "AVERAGE_GUANFU_TIME": "Durchschnittliche Guanfu-Zeit",
-      "LAST_GUANFU_DURATION": "Letzte Guanfu-Dauer",
+      "TOTAL_UPSCALES": "Gesamte Upscales",
+      "TOTAL_BATCH_UPSCALES": "Gesamte Batch-Upscales",
+      "TOTAL_IMAGE_UPSCALES": "Gesamte Bild-Upscales",
+      "TOTAL_DOUBLE_UPSCALES": "Gesamte Doppel-Upscales",
+      "AVERAGE_UPSCALE_TIME": "Durchschnittliche Guanfu-Zeit",
+      "LAST_UPSCALE_DURATION": "Letzte Guanfu-Dauer",
       "LAST_USED_AT": "Zuletzt verwendet"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Batch-Guanfu in Arbeit:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Batch-Guanfu in Arbeit:",
       "IN_PROGRESS_TITLE": "Guanfu arbeitet...",
       "STOP_BUTTON_TITLE": "STOPP"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Ausgewählter Ordner:",
         "DONE_TITLE": "Alles erledigt!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Guanfu-Ordner öffnen"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Guanfu-Ordner öffnen"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Guanfued"
+      "UPSCALED_TITLE": "Upscaled"
     },
     "DIALOG_BOX": {
       "CLOSE": "Schließen"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Auf einigen Systemen sind die Metadaten in anderen Formaten als JPG möglicherweise nicht sichtbar. Verwende gegebenenfalls spezielle Tools zum Anzeigen der Metadaten."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Kommt bald!",
     "CATCHY_PHRASE_1": "Keine Fehler mehr, Hardwareprobleme, Qualitätseinbußen oder lange Ladezeiten!",
     "CATCHY_PHRASE_2": "🌐 Guanfu überall, jederzeit, auf jedem Gerät\n☁️ Keine Grafikkarte oder Hardware erforderlich\n👩 Gesichtsverbesserung\n🦋 10+ Modelle zur Auswahl\n🏎️ 5-mal schneller als Guanfu Desktop\n🎞️ Video-Upscaling\n💰 Kommerzielle Nutzung\n😴 Guanfu im Schlaf",

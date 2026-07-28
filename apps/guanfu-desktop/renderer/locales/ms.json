@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Memperkenalkan Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Bintangi kami di GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Skala Imej",
-      "DESCRIPTION": "Apa-apa melebihi 4X (kecuali 16X Double Guanfu) hanya mengubah saiz imej dan tidak menggunakan peningkatan AI.",
+      "DESCRIPTION": "Apa-apa melebihi 4X (kecuali 16X Double Upscale) hanya mengubah saiz imej dan tidak menggunakan peningkatan AI.",
       "WARNING": "Apa-apa melebihi 5X mungkin menyebabkan masalah prestasi pada sesetengah peranti!",
       "ADDITIONAL_WARNING": "Ini mungkin menyebabkan masalah prestasi pada sesetengah peranti!"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Guanfu Kelompok",
       "DESCRIPTION": "Ini akan membolehkan anda mengguanfu semua fail dalam folder sekaligus"
@@ -161,9 +161,9 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
-      "TITLE": "Double Guanfu",
-      "DESCRIPTION": "Aktifkan pilihan ini untuk menjalankan guanfu dua kali pada satu imej. Perhatikan bahawa ini mungkin menyebabkan peningkatan ketara dalam masa pemprosesan dan mungkin masalah prestasi untuk skala lebih besar daripada 4X."
+    "DOUBLE_UPSCALE": {
+      "TITLE": "Double Upscale",
+      "DESCRIPTION": "Aktifkan pilihan ini untuk menjalankan upscale dua kali pada satu imej. Perhatikan bahawa ini mungkin menyebabkan peningkatan ketara dalam masa pemprosesan dan mungkin masalah prestasi untuk skala lebih besar daripada 4X."
     },
     "OUTPUT_PATH_SELECTION": {
       "TITLE": "Langkah 3",
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Guanfu dari ",
       "TO_TITLE": " kepada ",
       "NO_OUTPUT_FOLDER_ALERT": "Sila pilih folder output terlebih dahulu",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Sedang Guanfu ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Paparan Kanta",
       "SLIDER_VIEW_TITLE": "Paparan Peluncur",
       "ZOOM_AMOUNT_TITLE": "Jumlah Zum",
-      "TOTAL_GUANFUS": "Jumlah Guanfu",
-      "TOTAL_BATCH_GUANFUS": "Jumlah Guanfu Kelompok",
-      "TOTAL_IMAGE_GUANFUS": "Jumlah Guanfu Imej",
-      "TOTAL_DOUBLE_GUANFUS": "Jumlah Double Guanfu",
-      "AVERAGE_GUANFU_TIME": "Purata Masa Guanfu",
-      "LAST_GUANFU_DURATION": "Tempoh Guanfu Terakhir",
+      "TOTAL_UPSCALES": "Jumlah Guanfu",
+      "TOTAL_BATCH_UPSCALES": "Jumlah Guanfu Kelompok",
+      "TOTAL_IMAGE_UPSCALES": "Jumlah Guanfu Imej",
+      "TOTAL_DOUBLE_UPSCALES": "Jumlah Double Upscale",
+      "AVERAGE_UPSCALE_TIME": "Purata Masa Guanfu",
+      "LAST_UPSCALE_DURATION": "Tempoh Guanfu Terakhir",
       "LAST_USED_AT": "Terakhir Digunakan Pada"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Guanfu Kelompok Sedang Berjalan:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Guanfu Kelompok Sedang Berjalan:",
       "IN_PROGRESS_TITLE": "Melakukan magik Guanfu...",
       "STOP_BUTTON_TITLE": "HENTI"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Folder yang dipilih:",
         "DONE_TITLE": "Semuanya selesai!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Buka Folder Guanfu"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Buka Folder Upscaled"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Asal",
-      "GUANFUED_TITLE": "Guanfu"
+      "UPSCALED_TITLE": "Upscale"
     },
     "DIALOG_BOX": {
       "CLOSE": "Tutup"
@@ -245,7 +245,7 @@
     },
     "EXCEPTION_ERROR": {
       "TITLE": "Ralat Pengecualian",
-      "DESCRIPTION": "Guanfu menghadapi ralat. Mungkin, binari guanfu gagal melaksanakan arahan dengan betul. Cuba semak log untuk melihat jika anda mendapat sebarang maklumat. Anda boleh menghantar isu di repositori GitHub Guanfu untuk mendapatkan bantuan lebih lanjut."
+      "DESCRIPTION": "Guanfu menghadapi ralat. Mungkin, binari upscale gagal melaksanakan arahan dengan betul. Cuba semak log untuk melihat jika anda mendapat sebarang maklumat. Anda boleh menghantar isu di repositori GitHub Guanfu untuk mendapatkan bantuan lebih lanjut."
     },
     "GENERIC_ERROR": {
       "TITLE": "Ralat"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Pada sesetengah sistem, metadata mungkin tidak kelihatan dalam format selain JPG. Gunakan alat khusus untuk melihat metadata jika perlu."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Akan datang!",
     "CATCHY_PHRASE_1": "Tiada lagi ralat, masalah perkakasan, kompromi kualiti atau masa pemuatan yang lama!",
     "CATCHY_PHRASE_2": "🌐 Guanfu di mana-mana, bila-bila masa, apa-apa peranti\n☁️ Tiada Kad Grafik atau perkakasan diperlukan\n👩 Peningkatan Wajah\n🦋 10+ model untuk dipilih\n🏎 5x lebih pantas dari Guanfu Desktop\n🎞 Peningkatan Saiz Video\n💰 Penggunaan Komersial\n😴 Guanfu semasa anda tidur",

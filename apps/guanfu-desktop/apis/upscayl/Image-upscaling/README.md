@@ -4,6 +4,6 @@ Description: Free and Open Source AI Image Upscaler - Test all cloud APIs for im
 
 GitHub: https://github.com/guanfu/guanfu
 
-Product: https://guanfu.org
+Product: https://upscaleProc.org
 
-Get API Keys: https://guanfu.org/account/api-keys
+Get API Keys: https://upscaleProc.org/account/api-keys

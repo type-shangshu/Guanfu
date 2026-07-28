@@ -1,6 +1,6 @@
 {
   "baseUrl": {
-    "value": "https://api.guanfu.org",
+    "value": "https://api.upscaleProc.org",
     "type": "string",
     "id": 0,
     "isSecret": false

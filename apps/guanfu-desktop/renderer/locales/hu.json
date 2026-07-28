@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Bemutatjuk az Guanfu Cloud-ot!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Csillagozz be minket GitHubon 😁",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Csoportos Guanfu",
       "DESCRIPTION": "Lehetővé teszi, hogy egy mappa összes fájlját egyszerre felskálázd"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Dupla Guanfu",
       "DESCRIPTION": "Kapcsold be ezt az opciót, hogy kétszer fusson le az Guanfu egy képen. Ez jelentősen megnövelheti a feldolgozási időt, és 4X fölötti nagyítás esetén teljesítményproblémákat okozhat."
     },
@@ -178,7 +178,7 @@
       "FROM_TITLE": "Méretezés: ",
       "TO_TITLE": " → ",
       "NO_OUTPUT_FOLDER_ALERT": "Először válassz mentési mappát",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Guanfuezés ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Lencse nézet",
       "SLIDER_VIEW_TITLE": "Csúszka nézet",
       "ZOOM_AMOUNT_TITLE": "Nagyítás mértéke",
-      "TOTAL_GUANFUS": "Összes Guanfu",
-      "TOTAL_BATCH_GUANFUS": "Összes csoportos Guanfu",
-      "TOTAL_IMAGE_GUANFUS": "Összes kép Guanfu",
-      "TOTAL_DOUBLE_GUANFUS": "Összes dupla Guanfu",
-      "AVERAGE_GUANFU_TIME": "Átlagos Guanfu időtartam",
-      "LAST_GUANFU_DURATION": "Utolsó Guanfu időtartama",
+      "TOTAL_UPSCALES": "Összes Guanfu",
+      "TOTAL_BATCH_UPSCALES": "Összes csoportos Guanfu",
+      "TOTAL_IMAGE_UPSCALES": "Összes kép Guanfu",
+      "TOTAL_DOUBLE_UPSCALES": "Összes dupla Guanfu",
+      "AVERAGE_UPSCALE_TIME": "Átlagos Guanfu időtartam",
+      "LAST_UPSCALE_DURATION": "Utolsó Guanfu időtartama",
       "LAST_USED_AT": "Utoljára használva"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Csoportos Guanfu Folyamatban:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Csoportos Guanfu Folyamatban:",
       "IN_PROGRESS_TITLE": "Az Guanfu varázslata folyamatban...",
       "STOP_BUTTON_TITLE": "MEGÁLLÍTÁS"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Választott mappa:",
         "DONE_TITLE": "Kész!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Guanfu mappa megnyitása"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Guanfu mappa megnyitása"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Eredeti",
-      "GUANFUED_TITLE": "Felskálázott"
+      "UPSCALED_TITLE": "Felskálázott"
     },
     "DIALOG_BOX": {
       "CLOSE": "Bezár"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Néhány rendszeren a metaadatok nem jelennek meg más formátumokban, csak JPG-ben. Szükség esetén speciális eszközöket használj a metaadatok megtekintéséhez."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Hamarosan!",
     "CATCHY_PHRASE_1": "Nincsenek többé hibák, hardverproblémák, minőségromlás vagy hosszú várakozási idők!",
     "CATCHY_PHRASE_2": "🌐 Guanfu bárhol, bármikor, bármilyen eszközön\n☁️ Nem kell videókártya vagy hardver\n👩 Arc Kiemelés\n🦋 Több mint 10 modell közül választhatsz\n🏎 5x gyorsabb, mint az Guanfu asztali verziója\n🎞 Videó feljavítás\n💰 Kereskedelmi használat\n😴 Guanfu alvás közben",

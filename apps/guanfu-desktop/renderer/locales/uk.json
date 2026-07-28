@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Представляємо Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Поставте нам зірку на GitHub 😁",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Пакетний Guanfu",
       "DESCRIPTION": "Це дозволить вам обробити всі файли в теці одночасно"
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Подвійний Guanfu",
       "DESCRIPTION": "Увімкніть цю опцію для подвійної обробки зображення. Зауважте, що це може значно збільшити час обробки та можливі проблеми з продуктивністю для масштабів більше 4X."
     },
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Режим лупи",
       "SLIDER_VIEW_TITLE": "Режим слайдера",
       "ZOOM_AMOUNT_TITLE": "Рівень масштабу",
-      "TOTAL_GUANFUS": "Всього оброблено",
-      "TOTAL_BATCH_GUANFUS": "Всього пакетних обробок",
-      "TOTAL_IMAGE_GUANFUS": "Всього оброблених зображень",
-      "TOTAL_DOUBLE_GUANFUS": "Всього подвійних обробок",
-      "AVERAGE_GUANFU_TIME": "Середній час обробки",
-      "LAST_GUANFU_DURATION": "Тривалість останньої обробки",
+      "TOTAL_UPSCALES": "Всього оброблено",
+      "TOTAL_BATCH_UPSCALES": "Всього пакетних обробок",
+      "TOTAL_IMAGE_UPSCALES": "Всього оброблених зображень",
+      "TOTAL_DOUBLE_UPSCALES": "Всього подвійних обробок",
+      "AVERAGE_UPSCALE_TIME": "Середній час обробки",
+      "LAST_UPSCALE_DURATION": "Тривалість останньої обробки",
       "LAST_USED_AT": "Останнє використання"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Виконується пакетна обробка:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Виконується пакетна обробка:",
       "IN_PROGRESS_TITLE": "Виконуємо магію Guanfu...",
       "STOP_BUTTON_TITLE": "СТОП"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Обрана тека:",
         "DONE_TITLE": "Все готово!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Відкрити теку з результатами"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Відкрити теку з результатами"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Оригінал",
-      "GUANFUED_TITLE": "Оброблене"
+      "UPSCALED_TITLE": "Оброблене"
     },
     "DIALOG_BOX": {
       "CLOSE": "Закрити"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "На деяких системах метадані можуть не відображатися в форматах, відмінних від JPG. За потреби використовуйте спеціальні інструменти для перегляду метаданих."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Скоро!",
     "CATCHY_PHRASE_1": "Більше жодних помилок, проблем з обладнанням, компромісів з якістю чи довгого очікування!",
     "CATCHY_PHRASE_2": "🌐 Guanfu будь-де, будь-коли, на будь-якому пристрої\n☁️ Не потрібна відеокарта чи потужне обладнання\n👩 Покращення облич\n🦋 Понад 10 моделей на вибір\n🏎 У 5 разів швидше за десктопну версію\n🎞 Обробка відео\n💰 Комерційне використання\n😴 Обробка під час вашого сну",

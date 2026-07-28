@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "¡Presentamos Guanfu Cloud!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Danos una estrella en GitHub 😁",
@@ -56,7 +56,7 @@
     },
     "IMAGE_SCALE": {
       "TITLE": "Escala de imagen",
-      "DESCRIPTION": "Cualquier cosa por encima de 4X (excepto 16X Double Guanfu) solo redimensiona la imagen y no usa aumento con IA.",
+      "DESCRIPTION": "Cualquier cosa por encima de 4X (excepto 16X Double Upscale) solo redimensiona la imagen y no usa aumento con IA.",
       "WARNING": "¡Cualquier cosa por encima de 5X puede causar problemas de rendimiento en algunos dispositivos!",
       "ADDITIONAL_WARNING": "¡Esto puede causar problemas de rendimiento en algunos dispositivos!"
     },
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Aumento por lotes",
       "DESCRIPTION": "Esto te permitirá aumentar todas las imágenes en una carpeta a la vez"
@@ -162,7 +162,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Doble Guanfu",
       "DESCRIPTION": "Habilita esta opción para realizar dos aumentos en una imagen. Ten en cuenta que esto puede causar un aumento significativo en el tiempo de procesamiento y posiblemente problemas de rendimiento para escalas superiores a 4X."
     },
@@ -179,7 +179,7 @@
       "FROM_TITLE": "Aumentar desde ",
       "TO_TITLE": " a ",
       "NO_OUTPUT_FOLDER_ALERT": "Por favor, selecciona primero una carpeta de salida",
-      "START_BUTTON_TITLE": "Guanfu 🚀",
+      "START_BUTTON_TITLE": "Upscale 🚀",
       "IN_PROGRESS_BUTTON_TITLE": "Aumentando ⏳"
     },
     "MORE_OPTIONS_DRAWER": {
@@ -187,16 +187,16 @@
       "LENS_VIEW_TITLE": "Vista de lente",
       "SLIDER_VIEW_TITLE": "Vista de deslizador",
       "ZOOM_AMOUNT_TITLE": "Cantidad de zoom",
-      "TOTAL_GUANFUS": "Total de aumentos",
-      "TOTAL_BATCH_GUANFUS": "Total de aumentos por lotes",
-      "TOTAL_IMAGE_GUANFUS": "Total de imágenes aumentadas",
-      "TOTAL_DOUBLE_GUANFUS": "Total de dobles aumentos",
-      "AVERAGE_GUANFU_TIME": "Tiempo promedio de aumento",
-      "LAST_GUANFU_DURATION": "Duración del último aumento",
+      "TOTAL_UPSCALES": "Total de aumentos",
+      "TOTAL_BATCH_UPSCALES": "Total de aumentos por lotes",
+      "TOTAL_IMAGE_UPSCALES": "Total de imágenes aumentadas",
+      "TOTAL_DOUBLE_UPSCALES": "Total de dobles aumentos",
+      "AVERAGE_UPSCALE_TIME": "Tiempo promedio de aumento",
+      "LAST_UPSCALE_DURATION": "Duración del último aumento",
       "LAST_USED_AT": "Último uso"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Aumento por lotes en progreso:",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Aumento por lotes en progreso:",
       "IN_PROGRESS_TITLE": "Haciendo la magia de Guanfu...",
       "STOP_BUTTON_TITLE": "DETENER"
     },
@@ -216,12 +216,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Carpeta seleccionada:",
         "DONE_TITLE": "¡Todo listo!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Abrir carpeta con imágenes aumentadas"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Abrir carpeta con imágenes aumentadas"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Original",
-      "GUANFUED_TITLE": "Aumentado"
+      "UPSCALED_TITLE": "Aumentado"
     },
     "DIALOG_BOX": {
       "CLOSE": "Cerrar"
@@ -281,7 +281,7 @@
       "DESCRIPTION": "En algunos sistemas, los metadatos pueden no ser visibles en formatos distintos a JPG. Usa herramientas específicas para ver los metadatos si es necesario."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "¡Próximamente!",
     "CATCHY_PHRASE_1": "¡No más errores, problemas de hardware, compromisos de calidad o largos tiempos de carga!",
     "CATCHY_PHRASE_2": "🌐 Aumenta en cualquier lugar, en cualquier momento, en cualquier dispositivo\n☁️ No se requiere tarjeta gráfica ni hardware\n👩 Mejora de rostros\n🦋 Más de 10 modelos para elegir\n🏎 5 veces más rápido que Guanfu Desktop\n🎞 Aumento de videos\n💰 Uso comercial\n😴 Aumenta mientras duermes",

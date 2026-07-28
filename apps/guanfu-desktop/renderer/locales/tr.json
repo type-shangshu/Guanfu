@@ -1,5 +1,5 @@
 {
-  "TITLE": "Guanfu",
+  "TITLE": "Upscale",
   "INTRO": "Guanfu Cloud ile tanışın!",
   "HEADER": {
     "GITHUB_BUTTON_TITLE": "Bize GitHub'da yıldız verin! 🌟",
@@ -113,7 +113,7 @@
     }
   },
   "APP": {
-    "TITLE": "Guanfu",
+    "TITLE": "Upscale",
     "BATCH_MODE": {
       "TITLE": "Topyekün Guanfu",
       "DESCRIPTION": "Bununla birlikte tek seferde bir bütün klasörü Guanfu edebilirsiniz."
@@ -161,7 +161,7 @@
         }
       }
     },
-    "DOUBLE_GUANFU": {
+    "DOUBLE_UPSCALE": {
       "TITLE": "Çifte Guanfu",
       "DESCRIPTION": "Bu seçeneği etkinleştirerek, bir görüntü üzerinde Guanfu'ı iki kez çalıştırabilirsiniz. Lakin, bu işlem süresinde önemli bir uzamaya ve 4X'ten büyük ölçeklerde performans sorunlarına yol açabilir."
     },
@@ -186,16 +186,16 @@
       "LENS_VIEW_TITLE": "Lensli Büyüteç",
       "SLIDER_VIEW_TITLE": "Kaydırmalı Büyüteç",
       "ZOOM_AMOUNT_TITLE": "Yakınlaştırma Miktarı",
-      "TOTAL_GUANFUS": "Toplam Guanfular",
-      "TOTAL_BATCH_GUANFUS": "Toplam Topyekün Guanfular",
-      "TOTAL_IMAGE_GUANFUS": "Toplam Görsel Guanfuları",
-      "TOTAL_DOUBLE_GUANFUS": "Toplam Çifte Guanfular",
-      "AVERAGE_GUANFU_TIME": "Ortalama Guanfu Süresi",
-      "LAST_GUANFU_DURATION": "Son Guanfu Süresi",
+      "TOTAL_UPSCALES": "Toplam Guanfular",
+      "TOTAL_BATCH_UPSCALES": "Toplam Topyekün Guanfular",
+      "TOTAL_IMAGE_UPSCALES": "Toplam Görsel Guanfuları",
+      "TOTAL_DOUBLE_UPSCALES": "Toplam Çifte Guanfular",
+      "AVERAGE_UPSCALE_TIME": "Ortalama Guanfu Süresi",
+      "LAST_UPSCALE_DURATION": "Son Guanfu Süresi",
       "LAST_USED_AT": "En son şu tarihte kullanıldı"
     },
     "PROGRESS_BAR": {
-      "BATCH_GUANFU_IN_PROGRESS_TITLE": "Topyekün Guanfu ediliyor...",
+      "BATCH_UPSCALE_IN_PROGRESS_TITLE": "Topyekün Guanfu ediliyor...",
       "IN_PROGRESS_TITLE": "Guanfu sihrini konuşturuyor...",
       "STOP_BUTTON_TITLE": "DURDUR"
     },
@@ -215,12 +215,12 @@
       "BATCH": {
         "SELECTED_FOLDER_TITLE": "Seçili klasör:",
         "DONE_TITLE": "Hepsi tamamlandı!",
-        "OPEN_GUANFUED_FOLDER_TITLE": "Guanfulenmiş klasörü açın"
+        "OPEN_UPSCALED_FOLDER_TITLE": "Guanfulenmiş klasörü açın"
       }
     },
     "SLIDER": {
       "ORIGINAL_TITLE": "Orjinali",
-      "GUANFUED_TITLE": "Guanfulanmışı"
+      "UPSCALED_TITLE": "Guanfulanmışı"
     },
     "DIALOG_BOX": {
       "CLOSE": "Kapat"
@@ -280,7 +280,7 @@
       "DESCRIPTION": "Bazı sistemlerde, JPG dışındaki formatlarda meta veriler görüntülenemeyebilir. Gerekirse meta verileri görüntülemek için özel araçlar kullanın."
     }
   },
-  "GUANFU_CLOUD": {
+  "CLOUD_MODAL": {
     "COMING_SOON": "Yakında sizlerle!",
     "CATCHY_PHRASE_1": "Artık hatalar, donanım uyuşmazlıkları, kalite tavizleri ya da uzun yükleme süreleri yok!",
     "CATCHY_PHRASE_2": "🌐 Guanfu her yerde, her zaman , her cihazda\n☁️ Ekran kartına ya da donanıma gerek yok.\n👩 Yüz güzelleştirici\n🦋 Seçilebilecek 10 model ve fazlası\n🏎 Guanfu Desktop'tan 5 kat daha hızlı\n🎞 Video İyileştirici\n💰 Ticari Kullanım\n😴 Siz uyurken Guanfu",
