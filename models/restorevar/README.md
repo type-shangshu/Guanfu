@@ -7,8 +7,6 @@ The desktop app expects these NCNN artifacts at runtime:
 
 They can be downloaded from https://modelscope.cn/models/nju9xh/RestoreVAR-ncnn/files
 
-The SKILL.md is a skill for converting pytorch model to ncnn model.
-
 Run `scripts/stage-restorevar-models.sh` if needed. For local development the models are copied into:
 
 `apps/guanfu-desktop/resources/models/`
