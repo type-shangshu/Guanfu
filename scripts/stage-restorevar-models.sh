@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SRC="${1:-/home/ljw/RestoreVAR/artifacts/restorevar_models}"
+SRC="$ROOT/models/restorevar"
 DST="$ROOT/apps/guanfu-desktop/resources/models"
 
 mkdir -p "$DST"

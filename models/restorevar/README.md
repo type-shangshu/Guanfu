@@ -9,7 +9,7 @@ They can be downloaded from https://modelscope.cn/models/nju9xh/RestoreVAR-ncnn/
 
 The SKILL.md is a skill for converting pytorch model to ncnn model.
 
-For local development they are currently copied into:
+Run `scripts/stage-restorevar-models.sh` if needed. For local development the models are copied into:
 
 `apps/guanfu-desktop/resources/models/`
 
