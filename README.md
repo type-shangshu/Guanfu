@@ -4,9 +4,9 @@ Guanfu is a desktop image restoration and enhancement client built as an AGPL-3.
 
 This repository is organized as a clean monorepo:
 
-- `apps/guanfu-desktop`: Electron desktop client based on the Upscayl project.
-- `backends/upscayl-ncnn`: NCNN backend derived from upscayl-ncnn with RestoreVAR support.
-- `models/restorevar`: model packaging notes.
+- `apps/guanfu-desktop`: Electron desktop client based on the [Upscayl](https://github.com/upscayl/upscayl) project.
+- `backends/upscayl-ncnn`: NCNN backend derived from [upscayl-ncnn](https://github.com/upscayl/upscayl-ncnn) with RestoreVAR support.
+- `models/restorevar`: model downloading and packaging notes.
 - `docs`: architecture and compliance notes.
 
 ## Current Roadmap
@@ -24,11 +24,7 @@ Build the native backend and update the desktop app binary:
 scripts/build-backend.sh
 ```
 
-Stage RestoreVAR model artifacts for local packaging:
-
-```bash
-scripts/stage-restorevar-models.sh /path/to/restorevar_models
-```
+Download RestoreVAR-NCNN model (`restorevar.bin` and `restorevar.param`) from https://modelscope.cn/models/nju9xh/RestoreVAR-ncnn and put them in `models/restorevar`. 
 
 Build a Linux x64 release package:
 
